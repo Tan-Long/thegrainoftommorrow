@@ -1,0 +1,641 @@
+{
+  "url": "https://www.greenfarming.vn/frequently-asked-questions",
+  "title": "Carbon Farming",
+  "height": 1000,
+  "bodyText": "CARBON FARMING Ứng dụng nông trại Thống Kê Về Chúng Tôi Công Nghệ Đặt Câu Hỏi Góp Ý Tiếng Việt English Đăng nhập Đăng ký CÁC CÂU HỎI THƯỜNG GẶP FAQ Các câu hỏi thường gặp sẽ được trả lời ở dưới đây. Câu hỏi thường gặp Đặt câu hỏi Chào mừng đến trang hỏi đáp của Carbon Farming, dưới đây là các câu hỏi thường gặp khi bắt đầu. Canh tác carbon là gì? ▼ Canh tác carbon là một tập hợp các thực hành nông nghiệp giúp lưu trữ carbon trong đất, giảm lượng carbon trong khí quyển. Các phương pháp này bao gồm trồng cây che phủ, giảm cày xới và trồng cây xanh. Bù trừ carbon là gì? ▼ Bù trừ carbon là sự giảm phát thải khí nhà kính được sử dụng để bù đắp cho lượng phát thải ở nơi khác. Ví dụ, một công ty phát thải nhiều carbon dioxide có thể mua tín chỉ bù trừ carbon để bù đắp lượng phát thải của họ. Chương trình ACCU & Cơ quan quản lý năng lượng sạch là gì? ▼ Chương trình ACCU là một chương trình cho phép các chủ đất kiếm được Đơn vị tín chỉ carbon Úc (ACCUs) bằng cách lưu trữ carbon trong đất. Cơ quan Quản lý Năng lượng Sạch là cơ quan chính phủ giám sát chương trình ACCU. Quỹ Giảm Phát Thải là gì? ▼ Quỹ Giảm Phát Thải là một quỹ của chính phủ cung cấp các ưu đãi tài chính cho doanh nghiệp để giảm phát thải khí nhà kính. Quỹ này được sử dụng để mua tín chỉ bù trừ carbon từ các doanh nghiệp đã giảm phát thải của họ.",
+  "bodyStyle": {
+    "display": "block",
+    "position": "static",
+    "font": "Inter, sans-serif",
+    "size": "16px",
+    "weight": "400",
+    "line": "24px",
+    "color": "rgb(102, 102, 102)",
+    "background": "rgba(0, 0, 0, 0)",
+    "bgImage": "none",
+    "padding": "0px",
+    "margin": "0px",
+    "radius": "0px",
+    "shadow": "none"
+  },
+  "sections": [
+    {
+      "i": 0,
+      "tag": "DIV",
+      "cls": "",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 881
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "CARBON FARMING Ứng dụng nông trại Thống Kê Về Chúng Tôi Công Nghệ Đặt Câu Hỏi Góp Ý Tiếng Việt English Đăng nhập Đăng ký CÁC CÂU HỎI THƯỜNG GẶP FAQ Các câu hỏi thường gặp sẽ được trả lời ở dưới đây. Câu hỏi thường gặp Đặt câu hỏi Chào mừng đến trang hỏi đáp của Carbon Farming, dưới đây là các câu hỏi thường gặp khi bắt đầu. Canh tác carbon là gì? ▼ Canh tác carbon là một tập hợp các thực hành nông nghiệp giúp lưu trữ carbon trong đất, giảm lượng carbon trong khí quyển. Các phương pháp này bao gồm trồng cây che phủ, giảm cày xới và trồng cây xanh. Bù trừ carbon là gì? ▼ Bù trừ carbon là sự giảm phát thải khí nhà kính được sử dụng để bù đắp cho lượng phát thải ở nơi khác. Ví dụ, một công ty phát thải nhiều carbon dioxide có thể mua tín chỉ bù trừ carbon để bù đắp lượng phát thải của họ. Chương trình ACCU & Cơ quan quản lý năng lượng sạch là gì? ▼ Chương trình ACCU là một chương trình cho phép các chủ đất kiếm được Đơn vị tín chỉ carbon Úc (ACCUs) bằng cách lưu trữ carbon trong đất. Cơ quan Quản lý Năng lượng Sạch là cơ quan chính phủ giám sát chương trình ACCU. Quỹ Giảm Phát Thải là gì? ▼ Quỹ Giảm Phát Thải là một quỹ của chính phủ cung cấp các ưu đãi tài chính cho doanh nghiệp để giảm phát thải khí nhà kính. Quỹ này được sử dụng để mua tín chỉ bù trừ carbon từ các doanh nghiệp đã giảm phát thải của họ.",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "CARBON FARMING",
+          "box": {
+            "x": 112,
+            "y": 24,
+            "w": 298,
+            "h": 80
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "36px",
+            "weight": "700",
+            "line": "40px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "linear-gradient(126.97deg, rgb(73, 175, 76) 0%, rgb(85, 197, 149) 110.11%)",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [
+        {
+          "alt": "logo",
+          "src": "https://www.greenfarming.vn/logo.svg",
+          "natural": [
+            56,
+            56
+          ],
+          "box": {
+            "x": 40,
+            "y": 36,
+            "w": 56,
+            "h": 56
+          }
+        },
+        {
+          "alt": "language translation",
+          "src": "https://www.greenfarming.vn/assets/flags/vi.png",
+          "natural": [
+            2000,
+            1333
+          ],
+          "box": {
+            "x": 1400,
+            "y": 6,
+            "w": 24,
+            "h": 16
+          }
+        }
+      ],
+      "links": [
+        {
+          "text": "Carbon Farming",
+          "href": "https://www.greenfarming.vn/",
+          "box": {
+            "x": 40,
+            "y": 24,
+            "w": 370,
+            "h": 80
+          }
+        },
+        {
+          "text": "Ứng dụng nông trại",
+          "href": "https://www.greenfarming.vn/app",
+          "box": {
+            "x": 410,
+            "y": 36,
+            "w": 151,
+            "h": 56
+          }
+        },
+        {
+          "text": "Thống kê",
+          "href": "https://www.greenfarming.vn/frequently-asked-questions",
+          "box": {
+            "x": 585,
+            "y": 36,
+            "w": 75,
+            "h": 56
+          }
+        },
+        {
+          "text": "Về chúng tôi",
+          "href": "https://www.greenfarming.vn/about-us",
+          "box": {
+            "x": 684,
+            "y": 36,
+            "w": 105,
+            "h": 56
+          }
+        },
+        {
+          "text": "Công nghệ",
+          "href": "https://www.greenfarming.vn/architecture",
+          "box": {
+            "x": 814,
+            "y": 36,
+            "w": 88,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đặt câu hỏi",
+          "href": "https://www.greenfarming.vn/frequently-asked-questions",
+          "box": {
+            "x": 926,
+            "y": 36,
+            "w": 93,
+            "h": 56
+          }
+        },
+        {
+          "text": "Góp ý",
+          "href": "https://www.greenfarming.vn/feedback",
+          "box": {
+            "x": 1043,
+            "y": 36,
+            "w": 48,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đăng nhập",
+          "href": "https://www.greenfarming.vn/login",
+          "box": {
+            "x": 1091,
+            "y": 27,
+            "w": 167,
+            "h": 74
+          }
+        },
+        {
+          "text": "Đăng ký",
+          "href": "https://www.greenfarming.vn/signup",
+          "box": {
+            "x": 1266,
+            "y": 27,
+            "w": 134,
+            "h": 74
+          }
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Open menu",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "style": {
+            "display": "none",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "400",
+            "line": "32px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "text": "Câu hỏi thường gặp",
+          "box": {
+            "x": 510,
+            "y": 428,
+            "w": 190,
+            "h": 72
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "700",
+            "line": "28px",
+            "color": "rgb(22, 163, 74)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "20px 0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "text": "Đặt câu hỏi",
+          "box": {
+            "x": 700,
+            "y": 430,
+            "w": 190,
+            "h": 68
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "700",
+            "line": "28px",
+            "color": "rgb(107, 114, 128)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "20px 0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "text": "Canh tác carbon là gì?▼",
+          "box": {
+            "x": 80,
+            "y": 573,
+            "w": 1280,
+            "h": 64
+          },
+          "style": {
+            "display": "flex",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(0, 0, 0)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "16px 0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "text": "Bù trừ carbon là gì?▼",
+          "box": {
+            "x": 80,
+            "y": 654,
+            "w": 1280,
+            "h": 64
+          },
+          "style": {
+            "display": "flex",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(0, 0, 0)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "16px 0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "text": "Chương trình ACCU & Cơ quan quản lý năng lượng sạch là gì?▼",
+          "box": {
+            "x": 80,
+            "y": 735,
+            "w": 1280,
+            "h": 64
+          },
+          "style": {
+            "display": "flex",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(0, 0, 0)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "16px 0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "text": "Quỹ Giảm Phát Thải là gì?▼",
+          "box": {
+            "x": 80,
+            "y": 816,
+            "w": 1280,
+            "h": 64
+          },
+          "style": {
+            "display": "flex",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(0, 0, 0)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "16px 0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ]
+    },
+    {
+      "i": 1,
+      "tag": "HEADER",
+      "cls": "flex justify-between items-center md:px-10 px-6 py-6 shadow-md z-10 relative",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 128
+      },
+      "style": {
+        "display": "flex",
+        "position": "relative",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "24px 40px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px"
+      },
+      "text": "CARBON FARMING Ứng dụng nông trại Thống Kê Về Chúng Tôi Công Nghệ Đặt Câu Hỏi Góp Ý Tiếng Việt English Đăng nhập Đăng ký",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "CARBON FARMING",
+          "box": {
+            "x": 112,
+            "y": 24,
+            "w": 298,
+            "h": 80
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "36px",
+            "weight": "700",
+            "line": "40px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "linear-gradient(126.97deg, rgb(73, 175, 76) 0%, rgb(85, 197, 149) 110.11%)",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [
+        {
+          "alt": "logo",
+          "src": "https://www.greenfarming.vn/logo.svg",
+          "natural": [
+            56,
+            56
+          ],
+          "box": {
+            "x": 40,
+            "y": 36,
+            "w": 56,
+            "h": 56
+          }
+        },
+        {
+          "alt": "language translation",
+          "src": "https://www.greenfarming.vn/assets/flags/vi.png",
+          "natural": [
+            2000,
+            1333
+          ],
+          "box": {
+            "x": 1400,
+            "y": 6,
+            "w": 24,
+            "h": 16
+          }
+        }
+      ],
+      "links": [
+        {
+          "text": "Carbon Farming",
+          "href": "https://www.greenfarming.vn/",
+          "box": {
+            "x": 40,
+            "y": 24,
+            "w": 370,
+            "h": 80
+          }
+        },
+        {
+          "text": "Ứng dụng nông trại",
+          "href": "https://www.greenfarming.vn/app",
+          "box": {
+            "x": 410,
+            "y": 36,
+            "w": 151,
+            "h": 56
+          }
+        },
+        {
+          "text": "Thống kê",
+          "href": "https://www.greenfarming.vn/frequently-asked-questions",
+          "box": {
+            "x": 585,
+            "y": 36,
+            "w": 75,
+            "h": 56
+          }
+        },
+        {
+          "text": "Về chúng tôi",
+          "href": "https://www.greenfarming.vn/about-us",
+          "box": {
+            "x": 684,
+            "y": 36,
+            "w": 105,
+            "h": 56
+          }
+        },
+        {
+          "text": "Công nghệ",
+          "href": "https://www.greenfarming.vn/architecture",
+          "box": {
+            "x": 814,
+            "y": 36,
+            "w": 88,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đặt câu hỏi",
+          "href": "https://www.greenfarming.vn/frequently-asked-questions",
+          "box": {
+            "x": 926,
+            "y": 36,
+            "w": 93,
+            "h": 56
+          }
+        },
+        {
+          "text": "Góp ý",
+          "href": "https://www.greenfarming.vn/feedback",
+          "box": {
+            "x": 1043,
+            "y": 36,
+            "w": 48,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đăng nhập",
+          "href": "https://www.greenfarming.vn/login",
+          "box": {
+            "x": 1091,
+            "y": 27,
+            "w": 167,
+            "h": 74
+          }
+        },
+        {
+          "text": "Đăng ký",
+          "href": "https://www.greenfarming.vn/signup",
+          "box": {
+            "x": 1266,
+            "y": 27,
+            "w": 134,
+            "h": 74
+          }
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Open menu",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "style": {
+            "display": "none",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "400",
+            "line": "32px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "alt": "logo",
+      "src": "https://www.greenfarming.vn/logo.svg",
+      "natural": [
+        56,
+        56
+      ],
+      "box": {
+        "x": 40,
+        "y": 36,
+        "w": 56,
+        "h": 56
+      }
+    },
+    {
+      "alt": "language translation",
+      "src": "https://www.greenfarming.vn/assets/flags/vi.png",
+      "natural": [
+        2000,
+        1333
+      ],
+      "box": {
+        "x": 1400,
+        "y": 6,
+        "w": 24,
+        "h": 16
+      }
+    }
+  ],
+  "links": [
+    {
+      "text": "Carbon Farming",
+      "href": "https://www.greenfarming.vn/"
+    },
+    {
+      "text": "Ứng dụng nông trại",
+      "href": "https://www.greenfarming.vn/app"
+    },
+    {
+      "text": "Thống kê",
+      "href": "https://www.greenfarming.vn/frequently-asked-questions"
+    },
+    {
+      "text": "Về chúng tôi",
+      "href": "https://www.greenfarming.vn/about-us"
+    },
+    {
+      "text": "Công nghệ",
+      "href": "https://www.greenfarming.vn/architecture"
+    },
+    {
+      "text": "Đặt câu hỏi",
+      "href": "https://www.greenfarming.vn/frequently-asked-questions"
+    },
+    {
+      "text": "Góp ý",
+      "href": "https://www.greenfarming.vn/feedback"
+    },
+    {
+      "text": "Đăng nhập",
+      "href": "https://www.greenfarming.vn/login"
+    },
+    {
+      "text": "Đăng ký",
+      "href": "https://www.greenfarming.vn/signup"
+    }
+  ]
+}

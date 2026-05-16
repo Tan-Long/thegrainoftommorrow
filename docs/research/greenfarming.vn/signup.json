@@ -1,0 +1,298 @@
+{
+  "url": "https://www.greenfarming.vn/signup",
+  "title": "Carbon Farming",
+  "height": 1000,
+  "bodyText": "Register New Account Username Password Password Confimations Phone Number Email Create New Account Already have an account? Login Here Copyright©Carbon Farming Data Hub 2023. All rights reserved.",
+  "bodyStyle": {
+    "display": "block",
+    "position": "static",
+    "font": "Inter, sans-serif",
+    "size": "16px",
+    "weight": "400",
+    "line": "24px",
+    "color": "rgb(102, 102, 102)",
+    "background": "rgba(0, 0, 0, 0)",
+    "bgImage": "none",
+    "padding": "0px",
+    "margin": "0px",
+    "radius": "0px",
+    "shadow": "none"
+  },
+  "inputs": [
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "placeholder": "john.doe1432",
+      "text": "",
+      "box": {
+        "x": 596,
+        "y": 251,
+        "w": 296,
+        "h": 24
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px 0px 0px 8px",
+        "radius": "0px",
+        "shadow": "none"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "type": "password",
+      "placeholder": "Must have at least 6 characters",
+      "text": "",
+      "box": {
+        "x": 596,
+        "y": 319,
+        "w": 296,
+        "h": 24
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px 0px 0px 8px",
+        "radius": "0px",
+        "shadow": "none"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "type": "password",
+      "placeholder": "Confirm your password",
+      "text": "",
+      "box": {
+        "x": 596,
+        "y": 387,
+        "w": 296,
+        "h": 24
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px 0px 0px 8px",
+        "radius": "0px",
+        "shadow": "none"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "type": "tel",
+      "placeholder": "Ex: 091 234 5678",
+      "text": "",
+      "box": {
+        "x": 596,
+        "y": 455,
+        "w": 296,
+        "h": 24
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px 0px 0px 8px",
+        "radius": "0px",
+        "shadow": "none"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "type": "email",
+      "placeholder": "Ex: john.doe1432@gmail.com",
+      "text": "",
+      "box": {
+        "x": 596,
+        "y": 523,
+        "w": 296,
+        "h": 24
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px 0px 0px 8px",
+        "radius": "0px",
+        "shadow": "none"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "type": null,
+      "placeholder": null,
+      "text": "Create New Account",
+      "box": {
+        "x": 624,
+        "y": 566,
+        "w": 192,
+        "h": 48
+      },
+      "style": {
+        "display": "flex",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "700",
+        "line": "24px",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(34, 197, 94)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px 192px 12px",
+        "radius": "8px",
+        "shadow": "none"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "type": null,
+      "placeholder": null,
+      "text": "Login Here",
+      "box": {
+        "x": 780,
+        "y": 626,
+        "w": 84,
+        "h": 24
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "700",
+        "line": "24px",
+        "color": "rgb(34, 197, 94)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px 0px 0px 8px",
+        "radius": "0px",
+        "shadow": "none"
+      }
+    }
+  ],
+  "images": [
+    {
+      "alt": "Logo",
+      "src": "https://www.greenfarming.vn/logo.png",
+      "natural": [
+        174,
+        150
+      ],
+      "box": {
+        "x": 633,
+        "y": 8,
+        "w": 174,
+        "h": 150
+      }
+    },
+    {
+      "alt": "",
+      "src": "https://www.greenfarming.vn/person.png",
+      "natural": [
+        24,
+        24
+      ],
+      "box": {
+        "x": 564,
+        "y": 251,
+        "w": 24,
+        "h": 24
+      }
+    },
+    {
+      "alt": "",
+      "src": "https://www.greenfarming.vn/encrypted.png",
+      "natural": [
+        24,
+        24
+      ],
+      "box": {
+        "x": 564,
+        "y": 319,
+        "w": 24,
+        "h": 24
+      }
+    },
+    {
+      "alt": "",
+      "src": "https://www.greenfarming.vn/encrypted.png",
+      "natural": [
+        24,
+        24
+      ],
+      "box": {
+        "x": 564,
+        "y": 387,
+        "w": 24,
+        "h": 24
+      }
+    },
+    {
+      "alt": "",
+      "src": "https://www.greenfarming.vn/call.png",
+      "natural": [
+        24,
+        24
+      ],
+      "box": {
+        "x": 564,
+        "y": 455,
+        "w": 24,
+        "h": 24
+      }
+    },
+    {
+      "alt": "",
+      "src": "https://www.greenfarming.vn/mail.png",
+      "natural": [
+        24,
+        24
+      ],
+      "box": {
+        "x": 564,
+        "y": 523,
+        "w": 24,
+        "h": 24
+      }
+    }
+  ]
+}

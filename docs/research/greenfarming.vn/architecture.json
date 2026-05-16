@@ -1,0 +1,1078 @@
+{
+  "url": "https://www.greenfarming.vn/architecture",
+  "title": "Carbon Farming",
+  "height": 4503,
+  "bodyText": "CARBON FARMING Ứng dụng nông trại Thống Kê Về Chúng Tôi Công Nghệ Đặt Câu Hỏi Góp Ý Tiếng Việt English Đăng nhập Đăng ký Kiến Trúc Dự Án Hệ thống AI và Digital Twins cho nông nghiệp carbon bền vững tại tỉnh Thanh Hóa 2 Hệ thống con 50 Hợp tác xã IoT & AI Tổng Quan Dự Án Dự án nhằm triển khai nền tảng digital twin được hỗ trợ bởi AI để quản lý phát thải và hấp thụ carbon nông nghiệp tại tỉnh Thanh Hóa, Việt Nam. Hệ thống hoạt động trên hai hệ thống con bổ sung cho nhau. Khả năng mở rộng Các tổ chức có thể điều chỉnh chiến lược giám sát dựa trên ngân sách và hồ sơ phát thải Hiệu quả chi phí Hệ thống tuân thủ quốc gia chi phí thấp cho giám sát rộng rãi Độ chính xác cao Hệ thống giám sát tại chỗ cung cấp đo lường chính xác với sai số nhỏ Hệ Thống Giám Sát Carbon Tuân Thủ Quốc Gia Triển khai rộng rãi tại hai huyện Hoằng Hóa và Hà Trung, hợp tác với 50 hợp tác xã để mở rộng đa dạng cây trồng và sử dụng dữ liệu thống kê cùng vệ tinh Quản lý thông tin Dữ liệu nông nghiệp được nhập và lưu trữ có hệ thống, bao gồm diện tích, loại cây trồng, dữ liệu chăn nuôi, dữ liệu rừng Hỗ trợ giám sát carbon Tạo báo cáo về tình trạng canh tác, phát thải và hấp thụ, phục vụ phân tích khí nhà kính và đánh giá tác động môi trường Tìm kiếm và phân tích Hỗ trợ tìm kiếm và trích xuất thông tin nhanh chóng thay vì quản lý dữ liệu bằng phương pháp giấy tờ truyền thống Trực quan hóa dữ liệu Tạo biểu đồ trực quan giúp người dùng dễ dàng xác định xu hướng và mối quan hệ trong dữ liệu nông nghiệp Hệ Thống Giám Sát Carbon Tại Chỗ cho Canh Tác Lúa Triển khai tại 10 hộ trồng lúa với cảm biến IoT, cung cấp khuyến nghị thực hành nông nghiệp nhằm giảm phát thải và tính toán hệ số phát thải địa phương Cảm biến mực nước Lắp đặt tại ruộng lúa để giám sát mực nước, hỗ trợ tính toán hệ số phát thải CH₄ Mực nước trong ruộng là yếu tố quan trọng xác định phát thải CH₄ do phân hủy kỵ khí Cảm biến đất Thu thập các chỉ số như nhiệt độ, độ ẩm, độ dẫn điện, pH, NPK trong đất Dữ liệu hỗ trợ tối ưu hóa sử dụng phân bón và điều chỉnh thực hành canh tác Hiệu chuẩn dữ liệu Xác minh và hiệu chuẩn dữ liệu cảm biến dựa trên mẫu đất thực tế Thiết kế lồng khí nhà kính để xác minh phương pháp tính toán dựa trên dữ liệu cảm biến Tích Hợp Hai Hệ Thống Hai hệ thống con hoạt động song song, bổ sung và hỗ trợ lẫn nhau để tạo ra giải pháp giám sát carbon mạnh mẽ và có thể mở rộng Hệ Thống Tuân Thủ Quốc Gia Chi phí thấp, phạm vi rộng • Sử dụng dữ liệu vệ tinh và drone • Áp dụng hệ số phát thải quốc gia • Giám sát 50 hợp tác xã • Cung cấp tổng quan chi phí hiệu quả Hệ Thống Giám Sát Tại Chỗ Độ chính xác cao, chi tiết địa phương • Sử dụng cảm biến IoT chuyên dụng • Phát triển hệ số phát thải địa phương • Giám sát 10 hộ trồng lúa • Xác minh và tinh chỉnh ước tính rộng hơn Quy Trình Tích Hợp Dữ Liệu Bằng cách kết hợp dữ liệu từ hai hệ thống con, chúng tôi sẽ thiết lập nền tảng vững chắc để mở rộng dự án vượt ra ngoài các hộ thí điểm và hợp tác xã, đảm bảo độ chính xác dữ liệu và cho phép so sánh toàn diện. Thông Số Kỹ Thuật Đầu Ra Hệ Thống Tuân Thủ Báo cáo thống kê về dữ liệu nông nghiệp được thu thập Trực quan hóa dữ liệu trên biểu đồ và bản đồ Hỗ trợ tìm kiếm và trích xuất thông tin nhanh chóng Số hóa dữ liệu nông nghiệp từ phương pháp giấy tờ Đầu Ra Hệ Thống Tại Chỗ Báo cáo định kỳ về mức phát thải CH₄ và CO₂ Khuyến nghị canh tác dựa trên dữ liệu Xác định hệ số phát thải địa phương chính xác Tối ưu hóa tài nguyên canh tác và giảm tác động môi trường",
+  "bodyStyle": {
+    "display": "block",
+    "position": "static",
+    "font": "Inter, sans-serif",
+    "size": "16px",
+    "weight": "400",
+    "line": "24px",
+    "color": "rgb(102, 102, 102)",
+    "background": "rgba(0, 0, 0, 0)",
+    "bgImage": "none",
+    "padding": "0px",
+    "margin": "0px",
+    "radius": "0px",
+    "shadow": "none"
+  },
+  "sections": [
+    {
+      "i": 0,
+      "tag": "DIV",
+      "cls": "overflow-x-hidden",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1435,
+        "h": 4503
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "CARBON FARMING Ứng dụng nông trại Thống Kê Về Chúng Tôi Công Nghệ Đặt Câu Hỏi Góp Ý Tiếng Việt English Đăng nhập Đăng ký Kiến Trúc Dự Án Hệ thống AI và Digital Twins cho nông nghiệp carbon bền vững tại tỉnh Thanh Hóa 2 Hệ thống con 50 Hợp tác xã IoT & AI Tổng Quan Dự Án Dự án nhằm triển khai nền tảng digital twin được hỗ trợ bởi AI để quản lý phát thải và hấp thụ carbon nông nghiệp tại tỉnh Thanh Hóa, Việt Nam. Hệ thống hoạt động trên hai hệ thống con bổ sung cho nhau. Khả năng mở rộng Các tổ chức có thể điều chỉnh chiến lược giám sát dựa trên ngân sách và hồ sơ phát thải Hiệu quả chi phí Hệ thống tuân thủ quốc gia chi phí thấp cho giám sát rộng rãi Độ chính xác cao Hệ thống giám sát tại chỗ cung cấp đo lường chính xác với sai số nhỏ Hệ Thống Giám Sát Carbon Tuân Thủ Quốc Gia Triển khai rộng rãi tại hai huyện Hoằng Hóa và Hà Trung, hợp tác với 50 hợp tác xã để mở rộng đa dạng cây trồng và sử dụng dữ liệu thống kê cùng vệ tinh Quản lý thông tin Dữ liệu nông nghiệp được nhập và lưu trữ có hệ thống, bao gồm diện tích, loại cây trồng, dữ liệu chăn nuôi, dữ liệu rừng Hỗ trợ giám sát carbon Tạo báo cáo về tình trạng canh tác, phát thải và hấp thụ, phục vụ phân tích khí nhà kính và đánh giá tác động môi trường Tìm kiếm và phân tích Hỗ trợ tìm kiếm và trích xuất thông tin nhanh chóng thay vì quản lý dữ liệu bằng phương pháp giấy tờ truyền thống Trực quan hóa dữ liệu Tạo biểu đồ trực quan giúp người dùng dễ dàng xác định xu hướng và mối quan hệ trong dữ liệu nông nghiệp Hệ Thống Giám Sát Carbon Tại Chỗ cho Canh Tác Lúa Triển khai tại 10 hộ trồng lúa với cảm biến IoT, cung cấp khuyến nghị thực hành nông nghiệp nhằm giảm phát thải và tính toán hệ số phát thải địa phương Cảm biến mực nước Lắp đặt tại ruộng lúa để giám sát mực nước, hỗ trợ tính toán hệ số phát thải CH₄ Mực nước trong ruộng là yếu tố quan trọng xác định phát thải CH₄ do phân hủy kỵ khí Cảm biến đất Thu thập các chỉ số như nhiệt độ, độ ẩm, độ dẫn điện, pH, NPK trong đất Dữ liệu hỗ trợ tối ưu hóa sử dụng phân bón và điều chỉnh thực hành canh tác Hiệu chuẩn dữ liệu Xác minh và hiệu chuẩn dữ liệu cảm biến dựa trên mẫu đất thực tế Thiết kế lồng khí nhà kính để xác minh phương pháp tính toán dựa trên dữ liệu cảm biến Tích Hợp Hai Hệ Thống Hai hệ thống con hoạt động song song, bổ sung và hỗ trợ lẫn nhau để tạo ra giải pháp giám sát carbon mạnh mẽ và có thể mở rộng Hệ Thống Tuân Thủ Quốc Gia Chi phí thấp, phạm vi rộng • Sử dụng dữ liệu vệ tinh và drone • Áp dụng hệ số phát thải quốc gia • Giám sát 50 hợp tác xã • Cung cấp tổng quan chi phí hiệu quả Hệ Thống Giám Sát Tại Chỗ Độ chính xác cao, chi tiết địa phương • Sử dụng cảm biến IoT chuyên dụng • Phát triển hệ số phát thải địa phương • Giám sát 10 hộ trồng lúa • Xác minh và tinh chỉnh ước tính rộng hơn Quy Trình Tích Hợp Dữ Liệu Bằng cách kết hợp dữ liệu từ hai hệ thống con, chúng tôi sẽ thiết lập nền tảng vững chắc để mở rộng dự án vượt ra ngoài các hộ thí điểm và hợp tác xã, đảm bảo độ chính xác dữ liệu và cho phép so sánh toàn diện. Thông Số Kỹ Thuật Đầu Ra Hệ Thống Tuân Thủ Báo cáo thống kê về dữ liệu nông nghiệp được thu thập Trực quan hóa dữ liệu trên biểu đồ và bản đồ Hỗ trợ tìm kiếm và trích xuất thông tin nhanh chóng Số hóa dữ liệu nông nghiệp từ phương pháp giấy tờ Đầu Ra Hệ Thống Tại Chỗ Báo cáo định kỳ về mức phát thải CH₄ và CO₂ Khuyến nghị canh tác dựa trên dữ liệu Xác định hệ số phát thải địa phương chính xác Tối ưu hóa tài nguyên canh tác và giảm tác động môi trường",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "CARBON FARMING",
+          "box": {
+            "x": 112,
+            "y": 24,
+            "w": 297,
+            "h": 80
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "36px",
+            "weight": "700",
+            "line": "40px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "linear-gradient(126.97deg, rgb(73, 175, 76) 0%, rgb(85, 197, 149) 110.11%)",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H1",
+          "text": "Kiến Trúc Dự Án",
+          "box": {
+            "x": 94,
+            "y": 208,
+            "w": 672,
+            "h": 48
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "48px",
+            "weight": "700",
+            "line": "48px",
+            "color": "rgb(22, 163, 74)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 24px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Tổng Quan Dự Án",
+          "box": {
+            "x": 270,
+            "y": 562,
+            "w": 896,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 24px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Khả năng mở rộng",
+          "box": {
+            "x": 119,
+            "y": 831,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Hiệu quả chi phí",
+          "box": {
+            "x": 545,
+            "y": 831,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Độ chính xác cao",
+          "box": {
+            "x": 972,
+            "y": 831,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Hệ Thống Giám Sát Carbon Tuân Thủ Quốc Gia",
+          "box": {
+            "x": 94,
+            "y": 1148,
+            "w": 1248,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Quản lý thông tin",
+          "box": {
+            "x": 119,
+            "y": 1991,
+            "w": 244,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "18px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 12px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Hỗ trợ giám sát carbon",
+          "box": {
+            "x": 437,
+            "y": 1991,
+            "w": 244,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "18px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 12px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Tìm kiếm và phân tích",
+          "box": {
+            "x": 755,
+            "y": 1991,
+            "w": 244,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "18px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 12px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Trực quan hóa dữ liệu",
+          "box": {
+            "x": 1073,
+            "y": 1991,
+            "w": 244,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "18px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 12px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Hệ Thống Giám Sát Carbon Tại Chỗ cho Canh Tác Lúa",
+          "box": {
+            "x": 94,
+            "y": 2264,
+            "w": 1248,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Cảm biến mực nước",
+          "box": {
+            "x": 171,
+            "y": 3074,
+            "w": 173,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "18px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 0px 12px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Cảm biến đất",
+          "box": {
+            "x": 597,
+            "y": 3074,
+            "w": 114,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "18px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 0px 12px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Hiệu chuẩn dữ liệu",
+          "box": {
+            "x": 1024,
+            "y": 3074,
+            "w": 161,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "18px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 0px 12px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Tích Hợp Hai Hệ Thống",
+          "box": {
+            "x": 270,
+            "y": 3373,
+            "w": 896,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Hệ Thống Tuân Thủ Quốc Gia",
+          "box": {
+            "x": 342,
+            "y": 3554,
+            "w": 283,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Hệ Thống Giám Sát Tại Chỗ",
+          "box": {
+            "x": 806,
+            "y": 3554,
+            "w": 280,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Quy Trình Tích Hợp Dữ Liệu",
+          "box": {
+            "x": 303,
+            "y": 3888,
+            "w": 830,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Thông Số Kỹ Thuật",
+          "box": {
+            "x": 270,
+            "y": 4141,
+            "w": 896,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 32px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Đầu Ra Hệ Thống Tuân Thủ",
+          "box": {
+            "x": 323,
+            "y": 4234,
+            "w": 237,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "18px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Đầu Ra Hệ Thống Tại Chỗ",
+          "box": {
+            "x": 787,
+            "y": 4234,
+            "w": 222,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "18px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [
+        {
+          "alt": "logo",
+          "src": "https://www.greenfarming.vn/logo.svg",
+          "natural": [
+            56,
+            56
+          ],
+          "box": {
+            "x": 40,
+            "y": 36,
+            "w": 56,
+            "h": 56
+          }
+        },
+        {
+          "alt": "language translation",
+          "src": "https://www.greenfarming.vn/assets/flags/vi.png",
+          "natural": [
+            2000,
+            1333
+          ],
+          "box": {
+            "x": 1395,
+            "y": 6,
+            "w": 24,
+            "h": 16
+          }
+        },
+        {
+          "alt": "Sơ đồ kiến trúc hệ thống giám sát carbon tuân thủ quốc gia",
+          "src": "https://www.greenfarming.vn/system-architecture-1.png",
+          "natural": [
+            1416,
+            766
+          ],
+          "box": {
+            "x": 206,
+            "y": 1304,
+            "w": 1024,
+            "h": 554
+          }
+        },
+        {
+          "alt": "Sơ đồ hệ thống giám sát carbon tại chỗ cho canh tác lúa",
+          "src": "https://www.greenfarming.vn/system-architecture-2.png",
+          "natural": [
+            1470,
+            826
+          ],
+          "box": {
+            "x": 206,
+            "y": 2420,
+            "w": 1024,
+            "h": 575
+          }
+        }
+      ],
+      "links": [
+        {
+          "text": "Carbon Farming",
+          "href": "https://www.greenfarming.vn/",
+          "box": {
+            "x": 40,
+            "y": 24,
+            "w": 369,
+            "h": 80
+          }
+        },
+        {
+          "text": "Ứng dụng nông trại",
+          "href": "https://www.greenfarming.vn/app",
+          "box": {
+            "x": 409,
+            "y": 36,
+            "w": 150,
+            "h": 56
+          }
+        },
+        {
+          "text": "Thống kê",
+          "href": "https://www.greenfarming.vn/architecture",
+          "box": {
+            "x": 583,
+            "y": 36,
+            "w": 75,
+            "h": 56
+          }
+        },
+        {
+          "text": "Về chúng tôi",
+          "href": "https://www.greenfarming.vn/about-us",
+          "box": {
+            "x": 682,
+            "y": 36,
+            "w": 105,
+            "h": 56
+          }
+        },
+        {
+          "text": "Công nghệ",
+          "href": "https://www.greenfarming.vn/architecture",
+          "box": {
+            "x": 811,
+            "y": 36,
+            "w": 88,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đặt câu hỏi",
+          "href": "https://www.greenfarming.vn/frequently-asked-questions",
+          "box": {
+            "x": 923,
+            "y": 36,
+            "w": 93,
+            "h": 56
+          }
+        },
+        {
+          "text": "Góp ý",
+          "href": "https://www.greenfarming.vn/feedback",
+          "box": {
+            "x": 1040,
+            "y": 36,
+            "w": 48,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đăng nhập",
+          "href": "https://www.greenfarming.vn/login",
+          "box": {
+            "x": 1087,
+            "y": 27,
+            "w": 166,
+            "h": 74
+          }
+        },
+        {
+          "text": "Đăng ký",
+          "href": "https://www.greenfarming.vn/signup",
+          "box": {
+            "x": 1261,
+            "y": 27,
+            "w": 134,
+            "h": 74
+          }
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Open menu",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "style": {
+            "display": "none",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "400",
+            "line": "32px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ]
+    },
+    {
+      "i": 1,
+      "tag": "HEADER",
+      "cls": "flex justify-between items-center md:px-10 px-6 py-6 shadow-md z-10 relative",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1435,
+        "h": 128
+      },
+      "style": {
+        "display": "flex",
+        "position": "relative",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "24px 40px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px"
+      },
+      "text": "CARBON FARMING Ứng dụng nông trại Thống Kê Về Chúng Tôi Công Nghệ Đặt Câu Hỏi Góp Ý Tiếng Việt English Đăng nhập Đăng ký",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "CARBON FARMING",
+          "box": {
+            "x": 112,
+            "y": 24,
+            "w": 297,
+            "h": 80
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "36px",
+            "weight": "700",
+            "line": "40px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "linear-gradient(126.97deg, rgb(73, 175, 76) 0%, rgb(85, 197, 149) 110.11%)",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [
+        {
+          "alt": "logo",
+          "src": "https://www.greenfarming.vn/logo.svg",
+          "natural": [
+            56,
+            56
+          ],
+          "box": {
+            "x": 40,
+            "y": 36,
+            "w": 56,
+            "h": 56
+          }
+        },
+        {
+          "alt": "language translation",
+          "src": "https://www.greenfarming.vn/assets/flags/vi.png",
+          "natural": [
+            2000,
+            1333
+          ],
+          "box": {
+            "x": 1395,
+            "y": 6,
+            "w": 24,
+            "h": 16
+          }
+        }
+      ],
+      "links": [
+        {
+          "text": "Carbon Farming",
+          "href": "https://www.greenfarming.vn/",
+          "box": {
+            "x": 40,
+            "y": 24,
+            "w": 369,
+            "h": 80
+          }
+        },
+        {
+          "text": "Ứng dụng nông trại",
+          "href": "https://www.greenfarming.vn/app",
+          "box": {
+            "x": 409,
+            "y": 36,
+            "w": 150,
+            "h": 56
+          }
+        },
+        {
+          "text": "Thống kê",
+          "href": "https://www.greenfarming.vn/architecture",
+          "box": {
+            "x": 583,
+            "y": 36,
+            "w": 75,
+            "h": 56
+          }
+        },
+        {
+          "text": "Về chúng tôi",
+          "href": "https://www.greenfarming.vn/about-us",
+          "box": {
+            "x": 682,
+            "y": 36,
+            "w": 105,
+            "h": 56
+          }
+        },
+        {
+          "text": "Công nghệ",
+          "href": "https://www.greenfarming.vn/architecture",
+          "box": {
+            "x": 811,
+            "y": 36,
+            "w": 88,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đặt câu hỏi",
+          "href": "https://www.greenfarming.vn/frequently-asked-questions",
+          "box": {
+            "x": 923,
+            "y": 36,
+            "w": 93,
+            "h": 56
+          }
+        },
+        {
+          "text": "Góp ý",
+          "href": "https://www.greenfarming.vn/feedback",
+          "box": {
+            "x": 1040,
+            "y": 36,
+            "w": 48,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đăng nhập",
+          "href": "https://www.greenfarming.vn/login",
+          "box": {
+            "x": 1087,
+            "y": 27,
+            "w": 166,
+            "h": 74
+          }
+        },
+        {
+          "text": "Đăng ký",
+          "href": "https://www.greenfarming.vn/signup",
+          "box": {
+            "x": 1261,
+            "y": 27,
+            "w": 134,
+            "h": 74
+          }
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Open menu",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "style": {
+            "display": "none",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "400",
+            "line": "32px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "alt": "logo",
+      "src": "https://www.greenfarming.vn/logo.svg",
+      "natural": [
+        56,
+        56
+      ],
+      "box": {
+        "x": 40,
+        "y": 36,
+        "w": 56,
+        "h": 56
+      }
+    },
+    {
+      "alt": "language translation",
+      "src": "https://www.greenfarming.vn/assets/flags/vi.png",
+      "natural": [
+        2000,
+        1333
+      ],
+      "box": {
+        "x": 1395,
+        "y": 6,
+        "w": 24,
+        "h": 16
+      }
+    },
+    {
+      "alt": "Sơ đồ kiến trúc hệ thống giám sát carbon tuân thủ quốc gia",
+      "src": "https://www.greenfarming.vn/system-architecture-1.png",
+      "natural": [
+        1416,
+        766
+      ],
+      "box": {
+        "x": 206,
+        "y": 1304,
+        "w": 1024,
+        "h": 554
+      }
+    },
+    {
+      "alt": "Sơ đồ hệ thống giám sát carbon tại chỗ cho canh tác lúa",
+      "src": "https://www.greenfarming.vn/system-architecture-2.png",
+      "natural": [
+        1470,
+        826
+      ],
+      "box": {
+        "x": 206,
+        "y": 2420,
+        "w": 1024,
+        "h": 575
+      }
+    }
+  ],
+  "links": [
+    {
+      "text": "Carbon Farming",
+      "href": "https://www.greenfarming.vn/"
+    },
+    {
+      "text": "Ứng dụng nông trại",
+      "href": "https://www.greenfarming.vn/app"
+    },
+    {
+      "text": "Thống kê",
+      "href": "https://www.greenfarming.vn/architecture"
+    },
+    {
+      "text": "Về chúng tôi",
+      "href": "https://www.greenfarming.vn/about-us"
+    },
+    {
+      "text": "Công nghệ",
+      "href": "https://www.greenfarming.vn/architecture"
+    },
+    {
+      "text": "Đặt câu hỏi",
+      "href": "https://www.greenfarming.vn/frequently-asked-questions"
+    },
+    {
+      "text": "Góp ý",
+      "href": "https://www.greenfarming.vn/feedback"
+    },
+    {
+      "text": "Đăng nhập",
+      "href": "https://www.greenfarming.vn/login"
+    },
+    {
+      "text": "Đăng ký",
+      "href": "https://www.greenfarming.vn/signup"
+    }
+  ]
+}

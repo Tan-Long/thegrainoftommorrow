@@ -1,0 +1,797 @@
+{
+  "url": "https://www.greenfarming.vn/feedback",
+  "title": "Carbon Farming",
+  "height": 1000,
+  "bodyText": "CARBON FARMING Ứng dụng nông trại Thống Kê Về Chúng Tôi Công Nghệ Đặt Câu Hỏi Góp Ý Tiếng Việt English Đăng nhập Đăng ký Góp ý sản phẩm Form gồm 7 phần. Bạn có thể gửi ẩn danh; nếu đã đăng nhập, hệ thống sẽ ghi nhận tài khoản của bạn. 1 Vai trò & sử dụng 2 Tính năng đã dùng 3 Đánh giá gợi ý 4 Áp dụng kiến nghị 5 Hỗ trợ canh tác 6 Trải nghiệm 7 Ý kiến chung Vai trò & sử dụng Giúp chúng tôi hiểu bối cảnh sử dụng của bạn. Vai trò * — Chọn — Nông dân Hợp tác xã Cán bộ nhà nước Khác Địa điểm (huyện, xã, …) * 0/512 Tần suất sử dụng * — Chọn — Hàng ngày Hàng tuần Thỉnh thoảng Lần đầu sử dụng Quay lại Tiếp theo",
+  "bodyStyle": {
+    "display": "block",
+    "position": "static",
+    "font": "Inter, sans-serif",
+    "size": "16px",
+    "weight": "400",
+    "line": "24px",
+    "color": "rgb(102, 102, 102)",
+    "background": "rgba(0, 0, 0, 0)",
+    "bgImage": "none",
+    "padding": "0px",
+    "margin": "0px",
+    "radius": "0px",
+    "shadow": "none"
+  },
+  "sections": [
+    {
+      "i": 0,
+      "tag": "HEADER",
+      "cls": "flex justify-between items-center md:px-10 px-6 py-6 shadow-md z-10 relative",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 128
+      },
+      "style": {
+        "display": "flex",
+        "position": "relative",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "24px 40px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px"
+      },
+      "text": "CARBON FARMING Ứng dụng nông trại Thống Kê Về Chúng Tôi Công Nghệ Đặt Câu Hỏi Góp Ý Tiếng Việt English Đăng nhập Đăng ký",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "CARBON FARMING",
+          "box": {
+            "x": 112,
+            "y": 24,
+            "w": 298,
+            "h": 80
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "36px",
+            "weight": "700",
+            "line": "40px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "linear-gradient(126.97deg, rgb(73, 175, 76) 0%, rgb(85, 197, 149) 110.11%)",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [
+        {
+          "alt": "logo",
+          "src": "https://www.greenfarming.vn/logo.svg",
+          "natural": [
+            56,
+            56
+          ],
+          "box": {
+            "x": 40,
+            "y": 36,
+            "w": 56,
+            "h": 56
+          }
+        },
+        {
+          "alt": "language translation",
+          "src": "https://www.greenfarming.vn/assets/flags/vi.png",
+          "natural": [
+            2000,
+            1333
+          ],
+          "box": {
+            "x": 1400,
+            "y": 6,
+            "w": 24,
+            "h": 16
+          }
+        }
+      ],
+      "links": [
+        {
+          "text": "Carbon Farming",
+          "href": "https://www.greenfarming.vn/",
+          "box": {
+            "x": 40,
+            "y": 24,
+            "w": 370,
+            "h": 80
+          }
+        },
+        {
+          "text": "Ứng dụng nông trại",
+          "href": "https://www.greenfarming.vn/app",
+          "box": {
+            "x": 410,
+            "y": 36,
+            "w": 151,
+            "h": 56
+          }
+        },
+        {
+          "text": "Thống kê",
+          "href": "https://www.greenfarming.vn/feedback",
+          "box": {
+            "x": 585,
+            "y": 36,
+            "w": 75,
+            "h": 56
+          }
+        },
+        {
+          "text": "Về chúng tôi",
+          "href": "https://www.greenfarming.vn/about-us",
+          "box": {
+            "x": 684,
+            "y": 36,
+            "w": 105,
+            "h": 56
+          }
+        },
+        {
+          "text": "Công nghệ",
+          "href": "https://www.greenfarming.vn/architecture",
+          "box": {
+            "x": 814,
+            "y": 36,
+            "w": 88,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đặt câu hỏi",
+          "href": "https://www.greenfarming.vn/frequently-asked-questions",
+          "box": {
+            "x": 926,
+            "y": 36,
+            "w": 93,
+            "h": 56
+          }
+        },
+        {
+          "text": "Góp ý",
+          "href": "https://www.greenfarming.vn/feedback",
+          "box": {
+            "x": 1043,
+            "y": 36,
+            "w": 48,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đăng nhập",
+          "href": "https://www.greenfarming.vn/login",
+          "box": {
+            "x": 1091,
+            "y": 27,
+            "w": 167,
+            "h": 74
+          }
+        },
+        {
+          "text": "Đăng ký",
+          "href": "https://www.greenfarming.vn/signup",
+          "box": {
+            "x": 1266,
+            "y": 27,
+            "w": 134,
+            "h": 74
+          }
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Open menu",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "style": {
+            "display": "none",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "400",
+            "line": "32px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ]
+    },
+    {
+      "i": 1,
+      "tag": "MAIN",
+      "cls": "bg-lightGray pb-16 pt-6 md:pt-10",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 128,
+        "w": 1440,
+        "h": 801
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(244, 246, 243)",
+        "bgImage": "none",
+        "padding": "40px 0px 64px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "Góp ý sản phẩm Form gồm 7 phần. Bạn có thể gửi ẩn danh; nếu đã đăng nhập, hệ thống sẽ ghi nhận tài khoản của bạn. 1 Vai trò & sử dụng 2 Tính năng đã dùng 3 Đánh giá gợi ý 4 Áp dụng kiến nghị 5 Hỗ trợ canh tác 6 Trải nghiệm 7 Ý kiến chung Vai trò & sử dụng Giúp chúng tôi hiểu bối cảnh sử dụng của bạn. Vai trò * — Chọn — Nông dân Hợp tác xã Cán bộ nhà nước Khác Địa điểm (huyện, xã, …) * 0/512 Tần suất sử dụng * — Chọn — Hàng ngày Hàng tuần Thỉnh thoảng Lần đầu sử dụng Quay lại Tiếp theo",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Góp ý sản phẩm",
+          "box": {
+            "x": 360,
+            "y": 168,
+            "w": 720,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "linear-gradient(126.97deg, rgb(73, 175, 76) 0%, rgb(85, 197, 149) 110.11%)",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Vai trò & sử dụng",
+          "box": {
+            "x": 385,
+            "y": 409,
+            "w": 670,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(22, 22, 22)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [],
+      "links": [],
+      "buttons": [
+        {
+          "text": "Quay lại",
+          "box": {
+            "x": 360,
+            "y": 815,
+            "w": 112,
+            "h": 50
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(22, 22, 22)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "12px 24px",
+            "margin": "0px",
+            "radius": "8px",
+            "shadow": "none"
+          }
+        },
+        {
+          "text": "Tiếp theo",
+          "box": {
+            "x": 959,
+            "y": 815,
+            "w": 121,
+            "h": 50
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(64, 179, 78)",
+            "bgImage": "none",
+            "padding": "12px 24px",
+            "margin": "0px",
+            "radius": "8px",
+            "shadow": "none"
+          }
+        }
+      ]
+    },
+    {
+      "i": 2,
+      "tag": "DIV",
+      "cls": "mx-auto max-w-3xl px-4 md:px-6",
+      "id": "",
+      "box": {
+        "x": 336,
+        "y": 168,
+        "w": 768,
+        "h": 697
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "0px 24px",
+        "margin": "0px 336px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "Góp ý sản phẩm Form gồm 7 phần. Bạn có thể gửi ẩn danh; nếu đã đăng nhập, hệ thống sẽ ghi nhận tài khoản của bạn. 1 Vai trò & sử dụng 2 Tính năng đã dùng 3 Đánh giá gợi ý 4 Áp dụng kiến nghị 5 Hỗ trợ canh tác 6 Trải nghiệm 7 Ý kiến chung Vai trò & sử dụng Giúp chúng tôi hiểu bối cảnh sử dụng của bạn. Vai trò * — Chọn — Nông dân Hợp tác xã Cán bộ nhà nước Khác Địa điểm (huyện, xã, …) * 0/512 Tần suất sử dụng * — Chọn — Hàng ngày Hàng tuần Thỉnh thoảng Lần đầu sử dụng Quay lại Tiếp theo",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Góp ý sản phẩm",
+          "box": {
+            "x": 360,
+            "y": 168,
+            "w": 720,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "linear-gradient(126.97deg, rgb(73, 175, 76) 0%, rgb(85, 197, 149) 110.11%)",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Vai trò & sử dụng",
+          "box": {
+            "x": 385,
+            "y": 409,
+            "w": 670,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(22, 22, 22)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [],
+      "links": [],
+      "buttons": [
+        {
+          "text": "Quay lại",
+          "box": {
+            "x": 360,
+            "y": 815,
+            "w": 112,
+            "h": 50
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(22, 22, 22)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "12px 24px",
+            "margin": "0px",
+            "radius": "8px",
+            "shadow": "none"
+          }
+        },
+        {
+          "text": "Tiếp theo",
+          "box": {
+            "x": 959,
+            "y": 815,
+            "w": 121,
+            "h": 50
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(64, 179, 78)",
+            "bgImage": "none",
+            "padding": "12px 24px",
+            "margin": "0px",
+            "radius": "8px",
+            "shadow": "none"
+          }
+        }
+      ]
+    },
+    {
+      "i": 3,
+      "tag": "SECTION",
+      "cls": "Toastify",
+      "id": "feedback-form",
+      "box": {
+        "x": 0,
+        "y": 929,
+        "w": 1440,
+        "h": 0
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "",
+      "headings": [],
+      "images": [],
+      "links": [],
+      "buttons": []
+    }
+  ],
+  "inputs": [
+    {
+      "tag": "BUTTON",
+      "type": null,
+      "name": null,
+      "placeholder": null,
+      "value": "",
+      "text": "",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "style": {
+        "display": "none",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "24px",
+        "weight": "400",
+        "line": "32px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "options": []
+    },
+    {
+      "tag": "SELECT",
+      "type": null,
+      "name": null,
+      "placeholder": null,
+      "value": "vi",
+      "text": "Tiếng ViệtEnglish",
+      "box": {
+        "x": 1400,
+        "y": 4,
+        "w": 40,
+        "h": 19
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "14px",
+        "weight": "400",
+        "line": "normal",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "options": [
+        {
+          "text": "Tiếng Việt",
+          "value": "vi",
+          "selected": true
+        },
+        {
+          "text": "English",
+          "value": "en",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "tag": "SELECT",
+      "type": null,
+      "name": null,
+      "placeholder": null,
+      "value": "",
+      "text": "— Chọn —Nông dânHợp tác xãCán bộ nhà nướcKhác",
+      "box": {
+        "x": 385,
+        "y": 505,
+        "w": 670,
+        "h": 41
+      },
+      "style": {
+        "display": "inline-block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "14px",
+        "weight": "400",
+        "line": "normal",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "10px 12px",
+        "margin": "4px 0px 0px",
+        "radius": "8px",
+        "shadow": "none"
+      },
+      "options": [
+        {
+          "text": "— Chọn —",
+          "value": "",
+          "selected": true
+        },
+        {
+          "text": "Nông dân",
+          "value": "FARMER",
+          "selected": false
+        },
+        {
+          "text": "Hợp tác xã",
+          "value": "COOPERATIVE",
+          "selected": false
+        },
+        {
+          "text": "Cán bộ nhà nước",
+          "value": "GOVERNMENT_OFFICER",
+          "selected": false
+        },
+        {
+          "text": "Khác",
+          "value": "OTHER",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "tag": "TEXTAREA",
+      "type": null,
+      "name": null,
+      "placeholder": null,
+      "value": "",
+      "text": "",
+      "box": {
+        "x": 385,
+        "y": 590,
+        "w": 670,
+        "h": 58
+      },
+      "style": {
+        "display": "inline-block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "14px",
+        "weight": "400",
+        "line": "20px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "8px 12px",
+        "margin": "4px 0px 0px",
+        "radius": "8px",
+        "shadow": "none"
+      },
+      "options": []
+    },
+    {
+      "tag": "SELECT",
+      "type": null,
+      "name": null,
+      "placeholder": null,
+      "value": "",
+      "text": "— Chọn —Hàng ngàyHàng tuầnThỉnh thoảngLần đầu sử dụng",
+      "box": {
+        "x": 385,
+        "y": 717,
+        "w": 670,
+        "h": 41
+      },
+      "style": {
+        "display": "inline-block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "14px",
+        "weight": "400",
+        "line": "normal",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "10px 12px",
+        "margin": "4px 0px 0px",
+        "radius": "8px",
+        "shadow": "none"
+      },
+      "options": [
+        {
+          "text": "— Chọn —",
+          "value": "",
+          "selected": true
+        },
+        {
+          "text": "Hàng ngày",
+          "value": "DAILY",
+          "selected": false
+        },
+        {
+          "text": "Hàng tuần",
+          "value": "WEEKLY",
+          "selected": false
+        },
+        {
+          "text": "Thỉnh thoảng",
+          "value": "OCCASIONALLY",
+          "selected": false
+        },
+        {
+          "text": "Lần đầu sử dụng",
+          "value": "FIRST_TIME",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "name": null,
+      "placeholder": null,
+      "value": "",
+      "text": "Quay lại",
+      "box": {
+        "x": 360,
+        "y": 815,
+        "w": 112,
+        "h": 50
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "600",
+        "line": "24px",
+        "color": "rgb(22, 22, 22)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "12px 24px",
+        "margin": "0px",
+        "radius": "8px",
+        "shadow": "none"
+      },
+      "options": []
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "name": null,
+      "placeholder": null,
+      "value": "",
+      "text": "Tiếp theo",
+      "box": {
+        "x": 959,
+        "y": 815,
+        "w": 121,
+        "h": 50
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "600",
+        "line": "24px",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(64, 179, 78)",
+        "bgImage": "none",
+        "padding": "12px 24px",
+        "margin": "0px",
+        "radius": "8px",
+        "shadow": "none"
+      },
+      "options": []
+    }
+  ]
+}

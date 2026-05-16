@@ -1,0 +1,2468 @@
+{
+  "url": "https://www.greenfarming.vn/about-us",
+  "title": "Carbon Farming",
+  "height": 3749,
+  "bodyText": "CARBON FARMING Ứng dụng nông trại Thống Kê Về Chúng Tôi Công Nghệ Đặt Câu Hỏi Góp Ý Tiếng Việt English Đăng nhập Đăng ký Về Chúng Tôi Liên minh đa quốc gia hàng đầu trong lĩnh vực nông nghiệp sinh thái và quản lý carbon 6 Đối tác chiến lược 20+ Chuyên gia hàng đầu 4+ Năm hợp tác Tài trợ & Đối tác TÀI TRỢ BỞI QUẢN LÝ BỞI HỢP TÁC VỚI Các Đơn Vị Tham Gia Liên minh mạnh mẽ giữa các tổ chức học thuật hàng đầu, cơ quan chính phủ và công ty công nghệ tiên tiến Đơn vị dẫn dắt tại Úc Đại học Griffith Trường đại học hàng đầu về đổi mới với trọng tâm hành động khí hậu và nghiên cứu ứng dụng Vai trò trong dự án Quản lý dự án, kết nối các bên liên quan và lãnh đạo nhóm AI Đơn vị dẫn dắt tại Việt Nam Đại học Bách Khoa Hà Nội Trường đại học kỹ thuật danh tiếng, dẫn đầu về đào tạo khoa học, kỹ thuật và công nghệ Vai trò trong dự án Lãnh đạo nhóm nông nghiệp carbon, hệ thống đo lường carbon và đào tạo nông dân Đối tác chính phủ Sở Nông nghiệp và Môi trường Thanh Hóa Sở Nông nghiệp và Môi trường điều phối hơn 50 hợp tác xã Vai trò trong dự án Đối tác triển khai, xác định yêu cầu người dùng và thử nghiệm nền tảng Đối tác công nghệ MiSmart Chuyên gia sản xuất máy bay nông nghiệp với chứng nhận ISO 9001:2015 Vai trò trong dự án Công nghệ drone, thu thập dữ liệu tự động và tích hợp cảm biến Đối tác thương mại MiAgri Xây dựng hệ sinh thái nông nghiệp phygital và nền tảng số cho nông dân Việt Nam Vai trò trong dự án Kiếm tiền từ IP, thương mại hóa nền tảng và tích hợp thị trường Đối tác công nghệ Aimesoft Nhà cung cấp dịch vụ AI hàng đầu với tầm nhìn dẫn đầu công nghệ số hóa bản sao toàn cầu Vai trò trong dự án Phát triển theo tiêu chuẩn công nghiệp, tích hợp nền tảng và thương mại hóa dài hạn Đội Ngũ Chuyên Gia Các nhà nghiên cứu và chuyên gia hàng đầu từ các tổ chức đối tác PGS. Henry Nguyễn Quản lý dự án, Trưởng nhóm WP2 Đại học Griffith Phó Giáo sư và Nghiên cứu sinh ARC DECRA chuyên ngành AI và khoa học dữ liệu PGS. Jun Jo Trưởng nhóm WP1 Đại học Griffith Chủ tịch Ủy ban Olympic Robot Quốc tế và Giám đốc Phòng thí nghiệm Robot Griffith PGS. Văn Diệu Anh Trưởng nhóm WP3 Đại học Bách Khoa Hà Nội Phó Trưởng khoa Quản lý Môi trường, chuyên gia về ô nhiễm môi trường GS. Yongsheng Gao Đồng Trưởng nhóm WP1 Đại học Griffith Giám đốc ARC Farming Hub và IIIS, chuyên gia về tin học môi trường và thị giác máy tính PGS. Nguyễn Phi Lê Thành viên nhóm WP2 Đại học Bách Khoa Hà Nội Giám đốc Điều hành BKAI, lãnh đạo hơn 30 nhà nghiên cứu trong AI ứng dụng cho nông nghiệp PGS. Huỳnh Quyết Thắng Thành viên nhóm WP2 Đại học Bách Khoa Hà Nội Giám đốc HUST, chuyên gia về chất lượng phần mềm và phân tích dữ liệu lớn Tầm Nhìn & Tác Động Chúng tôi cam kết xây dựng một hệ sinh thái nông nghiệp bền vững, thông minh và hiệu quả thông qua việc ứng dụng công nghệ tiên tiến và quản lý carbon khoa học. Mục Tiêu Nâng cao năng suất nông nghiệp và giảm thiểu tác động môi trường thông qua công nghệ AI Thành Tựu Kết nối thành công 50+ hợp tác xã và phát triển nền tảng quản lý carbon tiên tiến Tương Lai Mở rộng mô hình ra toàn quốc và trở thành tiêu chuẩn cho nông nghiệp bền vững",
+  "bodyStyle": {
+    "display": "block",
+    "position": "static",
+    "font": "Inter, sans-serif",
+    "size": "16px",
+    "weight": "400",
+    "line": "24px",
+    "color": "rgb(102, 102, 102)",
+    "background": "rgba(0, 0, 0, 0)",
+    "bgImage": "none",
+    "padding": "0px",
+    "margin": "0px",
+    "radius": "0px",
+    "shadow": "none"
+  },
+  "sections": [
+    {
+      "i": 0,
+      "tag": "HEADER",
+      "cls": "flex justify-between items-center md:px-10 px-6 py-6 shadow-md z-10 relative",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1435,
+        "h": 128
+      },
+      "style": {
+        "display": "flex",
+        "position": "relative",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "24px 40px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px"
+      },
+      "text": "CARBON FARMING Ứng dụng nông trại Thống Kê Về Chúng Tôi Công Nghệ Đặt Câu Hỏi Góp Ý Tiếng Việt English Đăng nhập Đăng ký",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "CARBON FARMING",
+          "box": {
+            "x": 112,
+            "y": 24,
+            "w": 297,
+            "h": 80
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "36px",
+            "weight": "700",
+            "line": "40px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "linear-gradient(126.97deg, rgb(73, 175, 76) 0%, rgb(85, 197, 149) 110.11%)",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [
+        {
+          "alt": "logo",
+          "src": "https://www.greenfarming.vn/logo.svg",
+          "natural": [
+            56,
+            56
+          ],
+          "box": {
+            "x": 40,
+            "y": 36,
+            "w": 56,
+            "h": 56
+          }
+        },
+        {
+          "alt": "language translation",
+          "src": "https://www.greenfarming.vn/assets/flags/vi.png",
+          "natural": [
+            2000,
+            1333
+          ],
+          "box": {
+            "x": 1395,
+            "y": 6,
+            "w": 24,
+            "h": 16
+          }
+        }
+      ],
+      "links": [
+        {
+          "text": "Carbon Farming",
+          "href": "https://www.greenfarming.vn/",
+          "box": {
+            "x": 40,
+            "y": 24,
+            "w": 369,
+            "h": 80
+          }
+        },
+        {
+          "text": "Ứng dụng nông trại",
+          "href": "https://www.greenfarming.vn/app",
+          "box": {
+            "x": 409,
+            "y": 36,
+            "w": 150,
+            "h": 56
+          }
+        },
+        {
+          "text": "Thống kê",
+          "href": "https://www.greenfarming.vn/about-us",
+          "box": {
+            "x": 583,
+            "y": 36,
+            "w": 75,
+            "h": 56
+          }
+        },
+        {
+          "text": "Về chúng tôi",
+          "href": "https://www.greenfarming.vn/about-us",
+          "box": {
+            "x": 682,
+            "y": 36,
+            "w": 105,
+            "h": 56
+          }
+        },
+        {
+          "text": "Công nghệ",
+          "href": "https://www.greenfarming.vn/architecture",
+          "box": {
+            "x": 811,
+            "y": 36,
+            "w": 88,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đặt câu hỏi",
+          "href": "https://www.greenfarming.vn/frequently-asked-questions",
+          "box": {
+            "x": 923,
+            "y": 36,
+            "w": 93,
+            "h": 56
+          }
+        },
+        {
+          "text": "Góp ý",
+          "href": "https://www.greenfarming.vn/feedback",
+          "box": {
+            "x": 1040,
+            "y": 36,
+            "w": 48,
+            "h": 56
+          }
+        },
+        {
+          "text": "Đăng nhập",
+          "href": "https://www.greenfarming.vn/login",
+          "box": {
+            "x": 1087,
+            "y": 27,
+            "w": 166,
+            "h": 74
+          }
+        },
+        {
+          "text": "Đăng ký",
+          "href": "https://www.greenfarming.vn/signup",
+          "box": {
+            "x": 1261,
+            "y": 27,
+            "w": 134,
+            "h": 74
+          }
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Open menu",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "style": {
+            "display": "none",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "400",
+            "line": "32px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ]
+    },
+    {
+      "i": 1,
+      "tag": "MAIN",
+      "cls": "",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 128,
+        "w": 1435,
+        "h": 3621
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "Về Chúng Tôi Liên minh đa quốc gia hàng đầu trong lĩnh vực nông nghiệp sinh thái và quản lý carbon 6 Đối tác chiến lược 20+ Chuyên gia hàng đầu 4+ Năm hợp tác Tài trợ & Đối tác TÀI TRỢ BỞI QUẢN LÝ BỞI HỢP TÁC VỚI Các Đơn Vị Tham Gia Liên minh mạnh mẽ giữa các tổ chức học thuật hàng đầu, cơ quan chính phủ và công ty công nghệ tiên tiến Đơn vị dẫn dắt tại Úc Đại học Griffith Trường đại học hàng đầu về đổi mới với trọng tâm hành động khí hậu và nghiên cứu ứng dụng Vai trò trong dự án Quản lý dự án, kết nối các bên liên quan và lãnh đạo nhóm AI Đơn vị dẫn dắt tại Việt Nam Đại học Bách Khoa Hà Nội Trường đại học kỹ thuật danh tiếng, dẫn đầu về đào tạo khoa học, kỹ thuật và công nghệ Vai trò trong dự án Lãnh đạo nhóm nông nghiệp carbon, hệ thống đo lường carbon và đào tạo nông dân Đối tác chính phủ Sở Nông nghiệp và Môi trường Thanh Hóa Sở Nông nghiệp và Môi trường điều phối hơn 50 hợp tác xã Vai trò trong dự án Đối tác triển khai, xác định yêu cầu người dùng và thử nghiệm nền tảng Đối tác công nghệ MiSmart Chuyên gia sản xuất máy bay nông nghiệp với chứng nhận ISO 9001:2015 Vai trò trong dự án Công nghệ drone, thu thập dữ liệu tự động và tích hợp cảm biến Đối tác thương mại MiAgri Xây dựng hệ sinh thái nông nghiệp phygital và nền tảng số cho nông dân Việt Nam Vai trò trong dự án Kiếm tiền từ IP, thương mại hóa nền tảng và tích hợp thị trường Đối tác công nghệ Aimesoft Nhà cung cấp dịch vụ AI hàng đầu với tầm nhìn dẫn đầu công nghệ số hóa bản sao toàn cầu Vai trò trong dự án Phát triển theo tiêu chuẩn công nghiệp, tích hợp nền tảng và thương mại hóa dài hạn Đội Ngũ Chuyên Gia Các nhà nghiên cứu và chuyên gia hàng đầu từ các tổ chức đối tác PGS. Henry Nguyễn Quản lý dự án, Trưởng nhóm WP2 Đại học Griffith Phó Giáo sư và Nghiên cứu sinh ARC DECRA chuyên ngành AI và khoa học dữ liệu PGS. Jun Jo Trưởng nhóm WP1 Đại học Griffith Chủ tịch Ủy ban Olympic Robot Quốc tế và Giám đốc Phòng thí nghiệm Robot Griffith PGS. Văn Diệu Anh Trưởng nhóm WP3 Đại học Bách Khoa Hà Nội Phó Trưởng khoa Quản lý Môi trường, chuyên gia về ô nhiễm môi trường GS. Yongsheng Gao Đồng Trưởng nhóm WP1 Đại học Griffith Giám đốc ARC Farming Hub và IIIS, chuyên gia về tin học môi trường và thị giác máy tính PGS. Nguyễn Phi Lê Thành viên nhóm WP2 Đại học Bách Khoa Hà Nội Giám đốc Điều hành BKAI, lãnh đạo hơn 30 nhà nghiên cứu trong AI ứng dụng cho nông nghiệp PGS. Huỳnh Quyết Thắng Thành viên nhóm WP2 Đại học Bách Khoa Hà Nội Giám đốc HUST, chuyên gia về chất lượng phần mềm và phân tích dữ liệu lớn Tầm Nhìn & Tác Động Chúng tôi cam kết xây dựng một hệ sinh thái nông nghiệp bền vững, thông minh và hiệu quả thông qua việc ứng dụng công nghệ tiên tiến và quản lý carbon khoa học. Mục Tiêu Nâng cao năng suất nông nghiệp và giảm thiểu tác động môi trường thông qua công nghệ AI Thành Tựu Kết nối thành công 50+ hợp tác xã và phát triển nền tảng quản lý carbon tiên tiến Tương Lai Mở rộng mô hình ra toàn quốc và trở thành tiêu chuẩn cho nông nghiệp bền vững",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Về Chúng Tôi",
+          "box": {
+            "x": 94,
+            "y": 208,
+            "w": 672,
+            "h": 48
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "48px",
+            "weight": "700",
+            "line": "48px",
+            "color": "rgb(22, 163, 74)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 24px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Tài trợ & Đối tác",
+          "box": {
+            "x": 94,
+            "y": 560,
+            "w": 1248,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Các Đơn Vị Tham Gia",
+          "box": {
+            "x": 94,
+            "y": 923,
+            "w": 1248,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Đại học Griffith",
+          "box": {
+            "x": 119,
+            "y": 1306,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 119,
+            "y": 1447,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Đại học Bách Khoa Hà Nội",
+          "box": {
+            "x": 545,
+            "y": 1306,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 545,
+            "y": 1423,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Sở Nông nghiệp và Môi trường Thanh Hóa",
+          "box": {
+            "x": 972,
+            "y": 1306,
+            "w": 345,
+            "h": 56
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 972,
+            "y": 1451,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "MiSmart",
+          "box": {
+            "x": 119,
+            "y": 1855,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 119,
+            "y": 1972,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "MiAgri",
+          "box": {
+            "x": 545,
+            "y": 1855,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 545,
+            "y": 1972,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Aimesoft",
+          "box": {
+            "x": 972,
+            "y": 1855,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 972,
+            "y": 1996,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Đội Ngũ Chuyên Gia",
+          "box": {
+            "x": 94,
+            "y": 2225,
+            "w": 1248,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "PGS. Henry Nguyễn",
+          "box": {
+            "x": 127,
+            "y": 2538,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "PGS. Jun Jo",
+          "box": {
+            "x": 553,
+            "y": 2538,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "PGS. Văn Diệu Anh",
+          "box": {
+            "x": 980,
+            "y": 2538,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "GS. Yongsheng Gao",
+          "box": {
+            "x": 127,
+            "y": 3012,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "PGS. Nguyễn Phi Lê",
+          "box": {
+            "x": 553,
+            "y": 3012,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "PGS. Huỳnh Quyết Thắng",
+          "box": {
+            "x": 980,
+            "y": 3012,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H2",
+          "text": "Tầm Nhìn & Tác Động",
+          "box": {
+            "x": 94,
+            "y": 3381,
+            "w": 1248,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Mục Tiêu",
+          "box": {
+            "x": 94,
+            "y": 3601,
+            "w": 395,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Thành Tựu",
+          "box": {
+            "x": 520,
+            "y": 3601,
+            "w": 395,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Tương Lai",
+          "box": {
+            "x": 947,
+            "y": 3601,
+            "w": 395,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [
+        {
+          "alt": "Aus4Innovation",
+          "src": "https://www.greenfarming.vn/images/about-us/sponsors/aus4innovation.webp",
+          "natural": [
+            1618,
+            349
+          ],
+          "box": {
+            "x": 94,
+            "y": 628,
+            "w": 576,
+            "h": 167
+          }
+        },
+        {
+          "alt": "Australian Aid",
+          "src": "https://www.greenfarming.vn/images/about-us/sponsors/australian-aid.png",
+          "natural": [
+            600,
+            272
+          ],
+          "box": {
+            "x": 766,
+            "y": 676,
+            "w": 165,
+            "h": 119
+          }
+        },
+        {
+          "alt": "CSIRO",
+          "src": "https://www.greenfarming.vn/images/about-us/sponsors/csiro.png",
+          "natural": [
+            360,
+            212
+          ],
+          "box": {
+            "x": 971,
+            "y": 676,
+            "w": 165,
+            "h": 119
+          }
+        },
+        {
+          "alt": "Ministry of Science and Technology of Vietnam",
+          "src": "https://www.greenfarming.vn/images/about-us/sponsors/bkhcn.png",
+          "natural": [
+            920,
+            661
+          ],
+          "box": {
+            "x": 1176,
+            "y": 676,
+            "w": 165,
+            "h": 119
+          }
+        },
+        {
+          "alt": "Đại học Griffith",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/griffith.png",
+          "natural": [
+            1080,
+            1080
+          ],
+          "box": {
+            "x": 211,
+            "y": 1076,
+            "w": 160,
+            "h": 160
+          }
+        },
+        {
+          "alt": "Đại học Bách Khoa Hà Nội",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/hust.png",
+          "natural": [
+            1037,
+            1080
+          ],
+          "box": {
+            "x": 641,
+            "y": 1076,
+            "w": 154,
+            "h": 160
+          }
+        },
+        {
+          "alt": "Sở Nông nghiệp và Môi trường Thanh Hóa",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/thanh-hoa-doard.png",
+          "natural": [
+            2048,
+            2048
+          ],
+          "box": {
+            "x": 1064,
+            "y": 1076,
+            "w": 160,
+            "h": 160
+          }
+        },
+        {
+          "alt": "MiSmart",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/mismart.png",
+          "natural": [
+            1080,
+            402
+          ],
+          "box": {
+            "x": 135,
+            "y": 1647,
+            "w": 313,
+            "h": 116
+          }
+        },
+        {
+          "alt": "MiAgri",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/miagri.png",
+          "natural": [
+            1080,
+            521
+          ],
+          "box": {
+            "x": 561,
+            "y": 1629,
+            "w": 313,
+            "h": 151
+          }
+        },
+        {
+          "alt": "Aimesoft",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/aimesoft.png",
+          "natural": [
+            1080,
+            365
+          ],
+          "box": {
+            "x": 988,
+            "y": 1652,
+            "w": 313,
+            "h": 106
+          }
+        },
+        {
+          "alt": "PGS. Henry Nguyễn",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/henry-nguyen.jpg",
+          "natural": [
+            150,
+            150
+          ],
+          "box": {
+            "x": 219,
+            "y": 2370,
+            "w": 144,
+            "h": 144
+          }
+        },
+        {
+          "alt": "PGS. Jun Jo",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/jun-jo.jpg",
+          "natural": [
+            138,
+            177
+          ],
+          "box": {
+            "x": 645,
+            "y": 2370,
+            "w": 144,
+            "h": 144
+          }
+        },
+        {
+          "alt": "PGS. Văn Diệu Anh",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/dieu-anh-van.jpg",
+          "natural": [
+            600,
+            901
+          ],
+          "box": {
+            "x": 1072,
+            "y": 2370,
+            "w": 144,
+            "h": 144
+          }
+        },
+        {
+          "alt": "GS. Yongsheng Gao",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/yongsheng-gao.jpg",
+          "natural": [
+            180,
+            180
+          ],
+          "box": {
+            "x": 219,
+            "y": 2844,
+            "w": 144,
+            "h": 144
+          }
+        },
+        {
+          "alt": "PGS. Nguyễn Phi Lê",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/phi-le-nguyen.jpg",
+          "natural": [
+            1691,
+            1259
+          ],
+          "box": {
+            "x": 645,
+            "y": 2844,
+            "w": 144,
+            "h": 144
+          }
+        },
+        {
+          "alt": "PGS. Huỳnh Quyết Thắng",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/quyet-thang-huynh.jpg",
+          "natural": [
+            233,
+            250
+          ],
+          "box": {
+            "x": 1072,
+            "y": 2844,
+            "w": 144,
+            "h": 144
+          }
+        }
+      ],
+      "links": [],
+      "buttons": []
+    },
+    {
+      "i": 2,
+      "tag": "SECTION",
+      "cls": "relative py-20 overflow-hidden",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 128,
+        "w": 1435,
+        "h": 368
+      },
+      "style": {
+        "display": "block",
+        "position": "relative",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "80px 0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "Về Chúng Tôi Liên minh đa quốc gia hàng đầu trong lĩnh vực nông nghiệp sinh thái và quản lý carbon 6 Đối tác chiến lược 20+ Chuyên gia hàng đầu 4+ Năm hợp tác",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Về Chúng Tôi",
+          "box": {
+            "x": 94,
+            "y": 208,
+            "w": 672,
+            "h": 48
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "48px",
+            "weight": "700",
+            "line": "48px",
+            "color": "rgb(22, 163, 74)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 24px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [],
+      "links": [],
+      "buttons": []
+    },
+    {
+      "i": 3,
+      "tag": "SECTION",
+      "cls": "py-16 bg-white",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 496,
+        "w": 1435,
+        "h": 363
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "64px 0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "Tài trợ & Đối tác TÀI TRỢ BỞI QUẢN LÝ BỞI HỢP TÁC VỚI",
+      "headings": [
+        {
+          "tag": "H2",
+          "text": "Tài trợ & Đối tác",
+          "box": {
+            "x": 94,
+            "y": 560,
+            "w": 1248,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [
+        {
+          "alt": "Aus4Innovation",
+          "src": "https://www.greenfarming.vn/images/about-us/sponsors/aus4innovation.webp",
+          "natural": [
+            1618,
+            349
+          ],
+          "box": {
+            "x": 94,
+            "y": 628,
+            "w": 576,
+            "h": 167
+          }
+        },
+        {
+          "alt": "Australian Aid",
+          "src": "https://www.greenfarming.vn/images/about-us/sponsors/australian-aid.png",
+          "natural": [
+            600,
+            272
+          ],
+          "box": {
+            "x": 766,
+            "y": 676,
+            "w": 165,
+            "h": 119
+          }
+        },
+        {
+          "alt": "CSIRO",
+          "src": "https://www.greenfarming.vn/images/about-us/sponsors/csiro.png",
+          "natural": [
+            360,
+            212
+          ],
+          "box": {
+            "x": 971,
+            "y": 676,
+            "w": 165,
+            "h": 119
+          }
+        },
+        {
+          "alt": "Ministry of Science and Technology of Vietnam",
+          "src": "https://www.greenfarming.vn/images/about-us/sponsors/bkhcn.png",
+          "natural": [
+            920,
+            661
+          ],
+          "box": {
+            "x": 1176,
+            "y": 676,
+            "w": 165,
+            "h": 119
+          }
+        }
+      ],
+      "links": [],
+      "buttons": []
+    },
+    {
+      "i": 4,
+      "tag": "SECTION",
+      "cls": "py-16 bg-white",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 859,
+        "w": 1435,
+        "h": 1302
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "64px 0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "Các Đơn Vị Tham Gia Liên minh mạnh mẽ giữa các tổ chức học thuật hàng đầu, cơ quan chính phủ và công ty công nghệ tiên tiến Đơn vị dẫn dắt tại Úc Đại học Griffith Trường đại học hàng đầu về đổi mới với trọng tâm hành động khí hậu và nghiên cứu ứng dụng Vai trò trong dự án Quản lý dự án, kết nối các bên liên quan và lãnh đạo nhóm AI Đơn vị dẫn dắt tại Việt Nam Đại học Bách Khoa Hà Nội Trường đại học kỹ thuật danh tiếng, dẫn đầu về đào tạo khoa học, kỹ thuật và công nghệ Vai trò trong dự án Lãnh đạo nhóm nông nghiệp carbon, hệ thống đo lường carbon và đào tạo nông dân Đối tác chính phủ Sở Nông nghiệp và Môi trường Thanh Hóa Sở Nông nghiệp và Môi trường điều phối hơn 50 hợp tác xã Vai trò trong dự án Đối tác triển khai, xác định yêu cầu người dùng và thử nghiệm nền tảng Đối tác công nghệ MiSmart Chuyên gia sản xuất máy bay nông nghiệp với chứng nhận ISO 9001:2015 Vai trò trong dự án Công nghệ drone, thu thập dữ liệu tự động và tích hợp cảm biến Đối tác thương mại MiAgri Xây dựng hệ sinh thái nông nghiệp phygital và nền tảng số cho nông dân Việt Nam Vai trò trong dự án Kiếm tiền từ IP, thương mại hóa nền tảng và tích hợp thị trường Đối tác công nghệ Aimesoft Nhà cung cấp dịch vụ AI hàng đầu với tầm nhìn dẫn đầu công nghệ số hóa bản sao toàn cầu Vai trò trong dự án Phát triển theo tiêu chuẩn công nghiệp, tích hợp nền tảng và thương mại hóa dài hạn",
+      "headings": [
+        {
+          "tag": "H2",
+          "text": "Các Đơn Vị Tham Gia",
+          "box": {
+            "x": 94,
+            "y": 923,
+            "w": 1248,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Đại học Griffith",
+          "box": {
+            "x": 119,
+            "y": 1306,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 119,
+            "y": 1447,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Đại học Bách Khoa Hà Nội",
+          "box": {
+            "x": 545,
+            "y": 1306,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 545,
+            "y": 1423,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Sở Nông nghiệp và Môi trường Thanh Hóa",
+          "box": {
+            "x": 972,
+            "y": 1306,
+            "w": 345,
+            "h": 56
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 972,
+            "y": 1451,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "MiSmart",
+          "box": {
+            "x": 119,
+            "y": 1855,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 119,
+            "y": 1972,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "MiAgri",
+          "box": {
+            "x": 545,
+            "y": 1855,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 545,
+            "y": 1972,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Aimesoft",
+          "box": {
+            "x": 972,
+            "y": 1855,
+            "w": 345,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "8px 0px 0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H4",
+          "text": "Vai trò trong dự án",
+          "box": {
+            "x": 972,
+            "y": 1996,
+            "w": 345,
+            "h": 24
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "16px",
+            "weight": "600",
+            "line": "24px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [
+        {
+          "alt": "Đại học Griffith",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/griffith.png",
+          "natural": [
+            1080,
+            1080
+          ],
+          "box": {
+            "x": 211,
+            "y": 1076,
+            "w": 160,
+            "h": 160
+          }
+        },
+        {
+          "alt": "Đại học Bách Khoa Hà Nội",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/hust.png",
+          "natural": [
+            1037,
+            1080
+          ],
+          "box": {
+            "x": 641,
+            "y": 1076,
+            "w": 154,
+            "h": 160
+          }
+        },
+        {
+          "alt": "Sở Nông nghiệp và Môi trường Thanh Hóa",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/thanh-hoa-doard.png",
+          "natural": [
+            2048,
+            2048
+          ],
+          "box": {
+            "x": 1064,
+            "y": 1076,
+            "w": 160,
+            "h": 160
+          }
+        },
+        {
+          "alt": "MiSmart",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/mismart.png",
+          "natural": [
+            1080,
+            402
+          ],
+          "box": {
+            "x": 135,
+            "y": 1647,
+            "w": 313,
+            "h": 116
+          }
+        },
+        {
+          "alt": "MiAgri",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/miagri.png",
+          "natural": [
+            1080,
+            521
+          ],
+          "box": {
+            "x": 561,
+            "y": 1629,
+            "w": 313,
+            "h": 151
+          }
+        },
+        {
+          "alt": "Aimesoft",
+          "src": "https://www.greenfarming.vn/images/about-us/partners/aimesoft.png",
+          "natural": [
+            1080,
+            365
+          ],
+          "box": {
+            "x": 988,
+            "y": 1652,
+            "w": 313,
+            "h": 106
+          }
+        }
+      ],
+      "links": [],
+      "buttons": []
+    },
+    {
+      "i": 5,
+      "tag": "SECTION",
+      "cls": "py-16 bg-gray-50",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 2161,
+        "w": 1435,
+        "h": 1156
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(249, 250, 251)",
+        "bgImage": "none",
+        "padding": "64px 0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "Đội Ngũ Chuyên Gia Các nhà nghiên cứu và chuyên gia hàng đầu từ các tổ chức đối tác PGS. Henry Nguyễn Quản lý dự án, Trưởng nhóm WP2 Đại học Griffith Phó Giáo sư và Nghiên cứu sinh ARC DECRA chuyên ngành AI và khoa học dữ liệu PGS. Jun Jo Trưởng nhóm WP1 Đại học Griffith Chủ tịch Ủy ban Olympic Robot Quốc tế và Giám đốc Phòng thí nghiệm Robot Griffith PGS. Văn Diệu Anh Trưởng nhóm WP3 Đại học Bách Khoa Hà Nội Phó Trưởng khoa Quản lý Môi trường, chuyên gia về ô nhiễm môi trường GS. Yongsheng Gao Đồng Trưởng nhóm WP1 Đại học Griffith Giám đốc ARC Farming Hub và IIIS, chuyên gia về tin học môi trường và thị giác máy tính PGS. Nguyễn Phi Lê Thành viên nhóm WP2 Đại học Bách Khoa Hà Nội Giám đốc Điều hành BKAI, lãnh đạo hơn 30 nhà nghiên cứu trong AI ứng dụng cho nông nghiệp PGS. Huỳnh Quyết Thắng Thành viên nhóm WP2 Đại học Bách Khoa Hà Nội Giám đốc HUST, chuyên gia về chất lượng phần mềm và phân tích dữ liệu lớn",
+      "headings": [
+        {
+          "tag": "H2",
+          "text": "Đội Ngũ Chuyên Gia",
+          "box": {
+            "x": 94,
+            "y": 2225,
+            "w": 1248,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "PGS. Henry Nguyễn",
+          "box": {
+            "x": 127,
+            "y": 2538,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "PGS. Jun Jo",
+          "box": {
+            "x": 553,
+            "y": 2538,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "PGS. Văn Diệu Anh",
+          "box": {
+            "x": 980,
+            "y": 2538,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "GS. Yongsheng Gao",
+          "box": {
+            "x": 127,
+            "y": 3012,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "PGS. Nguyễn Phi Lê",
+          "box": {
+            "x": 553,
+            "y": 3012,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "PGS. Huỳnh Quyết Thắng",
+          "box": {
+            "x": 980,
+            "y": 3012,
+            "w": 329,
+            "h": 32
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "24px",
+            "weight": "600",
+            "line": "32px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [
+        {
+          "alt": "PGS. Henry Nguyễn",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/henry-nguyen.jpg",
+          "natural": [
+            150,
+            150
+          ],
+          "box": {
+            "x": 219,
+            "y": 2370,
+            "w": 144,
+            "h": 144
+          }
+        },
+        {
+          "alt": "PGS. Jun Jo",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/jun-jo.jpg",
+          "natural": [
+            138,
+            177
+          ],
+          "box": {
+            "x": 645,
+            "y": 2370,
+            "w": 144,
+            "h": 144
+          }
+        },
+        {
+          "alt": "PGS. Văn Diệu Anh",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/dieu-anh-van.jpg",
+          "natural": [
+            600,
+            901
+          ],
+          "box": {
+            "x": 1072,
+            "y": 2370,
+            "w": 144,
+            "h": 144
+          }
+        },
+        {
+          "alt": "GS. Yongsheng Gao",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/yongsheng-gao.jpg",
+          "natural": [
+            180,
+            180
+          ],
+          "box": {
+            "x": 219,
+            "y": 2844,
+            "w": 144,
+            "h": 144
+          }
+        },
+        {
+          "alt": "PGS. Nguyễn Phi Lê",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/phi-le-nguyen.jpg",
+          "natural": [
+            1691,
+            1259
+          ],
+          "box": {
+            "x": 645,
+            "y": 2844,
+            "w": 144,
+            "h": 144
+          }
+        },
+        {
+          "alt": "PGS. Huỳnh Quyết Thắng",
+          "src": "https://www.greenfarming.vn/images/about-us/experts/quyet-thang-huynh.jpg",
+          "natural": [
+            233,
+            250
+          ],
+          "box": {
+            "x": 1072,
+            "y": 2844,
+            "w": 144,
+            "h": 144
+          }
+        }
+      ],
+      "links": [],
+      "buttons": []
+    },
+    {
+      "i": 6,
+      "tag": "SECTION",
+      "cls": "py-16 bg-white",
+      "id": "",
+      "box": {
+        "x": 0,
+        "y": 3317,
+        "w": 1435,
+        "h": 432
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "64px 0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      },
+      "text": "Tầm Nhìn & Tác Động Chúng tôi cam kết xây dựng một hệ sinh thái nông nghiệp bền vững, thông minh và hiệu quả thông qua việc ứng dụng công nghệ tiên tiến và quản lý carbon khoa học. Mục Tiêu Nâng cao năng suất nông nghiệp và giảm thiểu tác động môi trường thông qua công nghệ AI Thành Tựu Kết nối thành công 50+ hợp tác xã và phát triển nền tảng quản lý carbon tiên tiến Tương Lai Mở rộng mô hình ra toàn quốc và trở thành tiêu chuẩn cho nông nghiệp bền vững",
+      "headings": [
+        {
+          "tag": "H2",
+          "text": "Tầm Nhìn & Tác Động",
+          "box": {
+            "x": 94,
+            "y": 3381,
+            "w": 1248,
+            "h": 36
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "30px",
+            "weight": "700",
+            "line": "36px",
+            "color": "rgb(17, 24, 39)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 16px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Mục Tiêu",
+          "box": {
+            "x": 94,
+            "y": 3601,
+            "w": 395,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Thành Tựu",
+          "box": {
+            "x": 520,
+            "y": 3601,
+            "w": 395,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        },
+        {
+          "tag": "H3",
+          "text": "Tương Lai",
+          "box": {
+            "x": 947,
+            "y": 3601,
+            "w": 395,
+            "h": 28
+          },
+          "style": {
+            "display": "block",
+            "position": "static",
+            "font": "Inter, sans-serif",
+            "size": "20px",
+            "weight": "600",
+            "line": "28px",
+            "color": "rgb(102, 102, 102)",
+            "background": "rgba(0, 0, 0, 0)",
+            "bgImage": "none",
+            "padding": "0px",
+            "margin": "0px 0px 8px",
+            "radius": "0px",
+            "shadow": "none"
+          }
+        }
+      ],
+      "images": [],
+      "links": [],
+      "buttons": []
+    }
+  ],
+  "images": [
+    {
+      "alt": "logo",
+      "src": "https://www.greenfarming.vn/logo.svg",
+      "natural": [
+        56,
+        56
+      ],
+      "box": {
+        "x": 40,
+        "y": 36,
+        "w": 56,
+        "h": 56
+      }
+    },
+    {
+      "alt": "language translation",
+      "src": "https://www.greenfarming.vn/assets/flags/vi.png",
+      "natural": [
+        2000,
+        1333
+      ],
+      "box": {
+        "x": 1395,
+        "y": 6,
+        "w": 24,
+        "h": 16
+      }
+    },
+    {
+      "alt": "Aus4Innovation",
+      "src": "https://www.greenfarming.vn/images/about-us/sponsors/aus4innovation.webp",
+      "natural": [
+        1618,
+        349
+      ],
+      "box": {
+        "x": 94,
+        "y": 628,
+        "w": 576,
+        "h": 167
+      }
+    },
+    {
+      "alt": "Australian Aid",
+      "src": "https://www.greenfarming.vn/images/about-us/sponsors/australian-aid.png",
+      "natural": [
+        600,
+        272
+      ],
+      "box": {
+        "x": 766,
+        "y": 676,
+        "w": 165,
+        "h": 119
+      }
+    },
+    {
+      "alt": "CSIRO",
+      "src": "https://www.greenfarming.vn/images/about-us/sponsors/csiro.png",
+      "natural": [
+        360,
+        212
+      ],
+      "box": {
+        "x": 971,
+        "y": 676,
+        "w": 165,
+        "h": 119
+      }
+    },
+    {
+      "alt": "Ministry of Science and Technology of Vietnam",
+      "src": "https://www.greenfarming.vn/images/about-us/sponsors/bkhcn.png",
+      "natural": [
+        920,
+        661
+      ],
+      "box": {
+        "x": 1176,
+        "y": 676,
+        "w": 165,
+        "h": 119
+      }
+    },
+    {
+      "alt": "Đại học Griffith",
+      "src": "https://www.greenfarming.vn/images/about-us/partners/griffith.png",
+      "natural": [
+        1080,
+        1080
+      ],
+      "box": {
+        "x": 211,
+        "y": 1076,
+        "w": 160,
+        "h": 160
+      }
+    },
+    {
+      "alt": "Đại học Bách Khoa Hà Nội",
+      "src": "https://www.greenfarming.vn/images/about-us/partners/hust.png",
+      "natural": [
+        1037,
+        1080
+      ],
+      "box": {
+        "x": 641,
+        "y": 1076,
+        "w": 154,
+        "h": 160
+      }
+    },
+    {
+      "alt": "Sở Nông nghiệp và Môi trường Thanh Hóa",
+      "src": "https://www.greenfarming.vn/images/about-us/partners/thanh-hoa-doard.png",
+      "natural": [
+        2048,
+        2048
+      ],
+      "box": {
+        "x": 1064,
+        "y": 1076,
+        "w": 160,
+        "h": 160
+      }
+    },
+    {
+      "alt": "MiSmart",
+      "src": "https://www.greenfarming.vn/images/about-us/partners/mismart.png",
+      "natural": [
+        1080,
+        402
+      ],
+      "box": {
+        "x": 135,
+        "y": 1647,
+        "w": 313,
+        "h": 116
+      }
+    },
+    {
+      "alt": "MiAgri",
+      "src": "https://www.greenfarming.vn/images/about-us/partners/miagri.png",
+      "natural": [
+        1080,
+        521
+      ],
+      "box": {
+        "x": 561,
+        "y": 1629,
+        "w": 313,
+        "h": 151
+      }
+    },
+    {
+      "alt": "Aimesoft",
+      "src": "https://www.greenfarming.vn/images/about-us/partners/aimesoft.png",
+      "natural": [
+        1080,
+        365
+      ],
+      "box": {
+        "x": 988,
+        "y": 1652,
+        "w": 313,
+        "h": 106
+      }
+    },
+    {
+      "alt": "PGS. Henry Nguyễn",
+      "src": "https://www.greenfarming.vn/images/about-us/experts/henry-nguyen.jpg",
+      "natural": [
+        150,
+        150
+      ],
+      "box": {
+        "x": 219,
+        "y": 2370,
+        "w": 144,
+        "h": 144
+      }
+    },
+    {
+      "alt": "PGS. Jun Jo",
+      "src": "https://www.greenfarming.vn/images/about-us/experts/jun-jo.jpg",
+      "natural": [
+        138,
+        177
+      ],
+      "box": {
+        "x": 645,
+        "y": 2370,
+        "w": 144,
+        "h": 144
+      }
+    },
+    {
+      "alt": "PGS. Văn Diệu Anh",
+      "src": "https://www.greenfarming.vn/images/about-us/experts/dieu-anh-van.jpg",
+      "natural": [
+        600,
+        901
+      ],
+      "box": {
+        "x": 1072,
+        "y": 2370,
+        "w": 144,
+        "h": 144
+      }
+    },
+    {
+      "alt": "GS. Yongsheng Gao",
+      "src": "https://www.greenfarming.vn/images/about-us/experts/yongsheng-gao.jpg",
+      "natural": [
+        180,
+        180
+      ],
+      "box": {
+        "x": 219,
+        "y": 2844,
+        "w": 144,
+        "h": 144
+      }
+    },
+    {
+      "alt": "PGS. Nguyễn Phi Lê",
+      "src": "https://www.greenfarming.vn/images/about-us/experts/phi-le-nguyen.jpg",
+      "natural": [
+        1691,
+        1259
+      ],
+      "box": {
+        "x": 645,
+        "y": 2844,
+        "w": 144,
+        "h": 144
+      }
+    },
+    {
+      "alt": "PGS. Huỳnh Quyết Thắng",
+      "src": "https://www.greenfarming.vn/images/about-us/experts/quyet-thang-huynh.jpg",
+      "natural": [
+        233,
+        250
+      ],
+      "box": {
+        "x": 1072,
+        "y": 2844,
+        "w": 144,
+        "h": 144
+      }
+    }
+  ],
+  "links": [
+    {
+      "text": "Carbon Farming",
+      "href": "https://www.greenfarming.vn/"
+    },
+    {
+      "text": "Ứng dụng nông trại",
+      "href": "https://www.greenfarming.vn/app"
+    },
+    {
+      "text": "Thống kê",
+      "href": "https://www.greenfarming.vn/about-us"
+    },
+    {
+      "text": "Về chúng tôi",
+      "href": "https://www.greenfarming.vn/about-us"
+    },
+    {
+      "text": "Công nghệ",
+      "href": "https://www.greenfarming.vn/architecture"
+    },
+    {
+      "text": "Đặt câu hỏi",
+      "href": "https://www.greenfarming.vn/frequently-asked-questions"
+    },
+    {
+      "text": "Góp ý",
+      "href": "https://www.greenfarming.vn/feedback"
+    },
+    {
+      "text": "Đăng nhập",
+      "href": "https://www.greenfarming.vn/login"
+    },
+    {
+      "text": "Đăng ký",
+      "href": "https://www.greenfarming.vn/signup"
+    }
+  ]
+}

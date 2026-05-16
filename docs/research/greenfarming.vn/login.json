@@ -1,0 +1,175 @@
+{
+  "url": "https://www.greenfarming.vn/login",
+  "title": "Carbon Farming",
+  "height": 1000,
+  "bodyText": "Đăng nhập tài khoản Tên đăng nhập Mật khẩu Đăng nhập Chưa có tài khoản? Đăng ký Copyright©Carbon Farming Data Hub 2024. All rights reserved.",
+  "bodyStyle": {
+    "display": "block",
+    "position": "static",
+    "font": "Inter, sans-serif",
+    "size": "16px",
+    "weight": "400",
+    "line": "24px",
+    "color": "rgb(102, 102, 102)",
+    "background": "rgba(0, 0, 0, 0)",
+    "bgImage": "none",
+    "padding": "0px",
+    "margin": "0px",
+    "radius": "0px",
+    "shadow": "none"
+  },
+  "inputs": [
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "placeholder": "john.doe1432",
+      "text": "",
+      "box": {
+        "x": 559,
+        "y": 355,
+        "w": 354,
+        "h": 24
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      }
+    },
+    {
+      "tag": "INPUT",
+      "type": "password",
+      "placeholder": "Must have at least 6 characters",
+      "text": "",
+      "box": {
+        "x": 559,
+        "y": 453,
+        "w": 354,
+        "h": 24
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "400",
+        "line": "24px",
+        "color": "rgb(102, 102, 102)",
+        "background": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px",
+        "radius": "0px",
+        "shadow": "none"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "type": null,
+      "placeholder": null,
+      "text": "Đăng nhập",
+      "box": {
+        "x": 545,
+        "y": 526,
+        "w": 350,
+        "h": 48
+      },
+      "style": {
+        "display": "flex",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "700",
+        "line": "24px",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(34, 197, 94)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px 175px",
+        "radius": "8px",
+        "shadow": "none"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "type": null,
+      "placeholder": null,
+      "text": "Đăng ký",
+      "box": {
+        "x": 764,
+        "y": 598,
+        "w": 64,
+        "h": 24
+      },
+      "style": {
+        "display": "block",
+        "position": "static",
+        "font": "Inter, sans-serif",
+        "size": "16px",
+        "weight": "700",
+        "line": "24px",
+        "color": "rgb(34, 197, 94)",
+        "background": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "padding": "0px",
+        "margin": "0px 0px 0px 8px",
+        "radius": "0px",
+        "shadow": "none"
+      }
+    }
+  ],
+  "images": [
+    {
+      "alt": "Logo",
+      "src": "https://www.greenfarming.vn/logo.png",
+      "natural": [
+        174,
+        150
+      ],
+      "box": {
+        "x": 633,
+        "y": 8,
+        "w": 174,
+        "h": 150
+      }
+    },
+    {
+      "alt": "person",
+      "src": "https://www.greenfarming.vn/person.png",
+      "natural": [
+        24,
+        24
+      ],
+      "box": {
+        "x": 527,
+        "y": 355,
+        "w": 24,
+        "h": 24
+      }
+    },
+    {
+      "alt": "encrypted",
+      "src": "https://www.greenfarming.vn/encrypted.png",
+      "natural": [
+        24,
+        24
+      ],
+      "box": {
+        "x": 527,
+        "y": 453,
+        "w": 24,
+        "h": 24
+      }
+    }
+  ]
+}
