@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
+import { publicAsset } from "@/lib/public-path";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,21 +16,21 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://greenfarming.vn"),
+  metadataBase: new URL("https://tan-long.github.io"),
   title: "Carbon Farming",
   description:
     "Trung tâm dữ liệu Về nông nghiệp sinh thái tỉnh Thanh Hóa",
   keywords: ["nông nghiệp", "cacbon", "nông nghiệp sinh thái", "thanh hóa"],
   authors: [{ name: "Carbon Farming Data Hub" }],
   icons: {
-    icon: "/images/greenfarming/logo.svg",
+    icon: publicAsset("/images/greenfarming/logo.svg"),
   },
   openGraph: {
     title: "Carbon Farming",
     description:
       "Trung tâm dữ liệu Về nông nghiệp sinh thái tỉnh Thanh Hóa",
-    images: ["/images/greenfarming/grapes1.webp"],
-    url: "https://greenfarming.vn/",
+    images: [publicAsset("/images/greenfarming/grapes1.webp")],
+    url: "https://tan-long.github.io/AI_asen_clone/",
     type: "website",
   },
 };

@@ -41,6 +41,7 @@ import {
   sponsors,
   text,
 } from "@/lib/greenfarming-data";
+import { publicAsset } from "@/lib/public-path";
 import { cn } from "@/lib/utils";
 import type {
   ExpertCard,
@@ -252,7 +253,16 @@ export function HomePage() {
   return (
     <main>
       <section className="home-hero">
-        <div className="site-container flex min-h-[900px] items-start pt-24 md:min-h-[1000px] md:pt-32 lg:min-h-[765px] lg:pt-32">
+        <Image
+          src={assets.hero}
+          fill
+          alt=""
+          className="hero-image"
+          priority
+          sizes="100vw"
+        />
+        <div className="hero-gradient" />
+        <div className="site-container relative z-10 flex min-h-[900px] items-start pt-24 md:min-h-[1000px] md:pt-32 lg:min-h-[765px] lg:pt-32">
           <div className="max-w-[690px]">
             <h1 className="text-[40px] font-extrabold uppercase leading-[1.4] text-primary-green md:text-[48px] lg:text-[52px]">
               <MultilineText value={t(homeHero.title, locale)} />
@@ -388,7 +398,7 @@ function EmissionMap() {
           {tileRows.flat().map((tile) => (
             <Image
               key={tile}
-              src={`/images/greenfarming/${tile}`}
+              src={publicAsset(`/images/greenfarming/${tile}`)}
               width={256}
               height={256}
               alt=""
@@ -798,7 +808,16 @@ function PageHero({
 
   return (
     <section className="page-hero">
-      <div className="site-container py-20">
+      <Image
+        src={assets.hero}
+        fill
+        alt=""
+        className="hero-image"
+        priority
+        sizes="100vw"
+      />
+      <div className="page-hero-gradient" />
+      <div className="site-container relative z-10 py-20">
         <h1 className="text-[52px] font-extrabold leading-tight text-[#11a048] drop-shadow-md">
           {t(title, locale)}
         </h1>

@@ -9,55 +9,63 @@ import type {
   NavItem,
   TextSection,
 } from "@/types/greenfarming";
+import { publicAsset } from "@/lib/public-path";
 
 export const assets = {
-  logo: "/images/greenfarming/logo.svg",
-  logoPng: "/images/greenfarming/logo.png",
-  hero: "/images/greenfarming/grapes1.webp",
-  flagVi: "/images/greenfarming/assets-flags-vi.png",
-  flagEn: "/images/greenfarming/assets-flags-en.png",
+  logo: publicAsset("/images/greenfarming/logo.svg"),
+  logoPng: publicAsset("/images/greenfarming/logo.png"),
+  hero: publicAsset("/images/greenfarming/grapes1.webp"),
+  flagVi: publicAsset("/images/greenfarming/assets-flags-vi.png"),
+  flagEn: publicAsset("/images/greenfarming/assets-flags-en.png"),
   icons: {
-    land: "/images/greenfarming/land-1.png",
-    cow: "/images/greenfarming/cow-2.png",
-    grass: "/images/greenfarming/grass-1.png",
-    pear: "/images/greenfarming/pear-1.png",
-    fertilizer: "/images/greenfarming/grass.png",
-    watering: "/images/greenfarming/watering-plants-1.png",
-    person: "/images/greenfarming/person.png",
-    mail: "/images/greenfarming/mail.png",
-    call: "/images/greenfarming/call.png",
-    encrypted: "/images/greenfarming/encrypted.png",
+    land: publicAsset("/images/greenfarming/land-1.png"),
+    cow: publicAsset("/images/greenfarming/cow-2.png"),
+    grass: publicAsset("/images/greenfarming/grass-1.png"),
+    pear: publicAsset("/images/greenfarming/pear-1.png"),
+    fertilizer: publicAsset("/images/greenfarming/grass.png"),
+    watering: publicAsset("/images/greenfarming/watering-plants-1.png"),
+    person: publicAsset("/images/greenfarming/person.png"),
+    mail: publicAsset("/images/greenfarming/mail.png"),
+    call: publicAsset("/images/greenfarming/call.png"),
+    encrypted: publicAsset("/images/greenfarming/encrypted.png"),
   },
   architecture: {
-    national: "/images/greenfarming/system-architecture-1.png",
-    onsite: "/images/greenfarming/system-architecture-2.png",
+    national: publicAsset("/images/greenfarming/system-architecture-1.png"),
+    onsite: publicAsset("/images/greenfarming/system-architecture-2.png"),
   },
   sponsors: {
-    aus4innovation:
+    aus4innovation: publicAsset(
       "/images/greenfarming/images-about-us-sponsors-aus4innovation.webp",
-    australianAid:
+    ),
+    australianAid: publicAsset(
       "/images/greenfarming/images-about-us-sponsors-australian-aid.png",
-    csiro: "/images/greenfarming/images-about-us-sponsors-csiro.png",
-    bkhcn: "/images/greenfarming/images-about-us-sponsors-bkhcn.png",
+    ),
+    csiro: publicAsset("/images/greenfarming/images-about-us-sponsors-csiro.png"),
+    bkhcn: publicAsset("/images/greenfarming/images-about-us-sponsors-bkhcn.png"),
   },
   partners: {
-    griffith: "/images/greenfarming/images-about-us-partners-griffith.png",
-    hust: "/images/greenfarming/images-about-us-partners-hust.png",
-    thanhHoa:
+    griffith: publicAsset("/images/greenfarming/images-about-us-partners-griffith.png"),
+    hust: publicAsset("/images/greenfarming/images-about-us-partners-hust.png"),
+    thanhHoa: publicAsset(
       "/images/greenfarming/images-about-us-partners-thanh-hoa-doard.png",
-    mismart: "/images/greenfarming/images-about-us-partners-mismart.png",
-    miagri: "/images/greenfarming/images-about-us-partners-miagri.png",
-    aimesoft: "/images/greenfarming/images-about-us-partners-aimesoft.png",
+    ),
+    mismart: publicAsset("/images/greenfarming/images-about-us-partners-mismart.png"),
+    miagri: publicAsset("/images/greenfarming/images-about-us-partners-miagri.png"),
+    aimesoft: publicAsset("/images/greenfarming/images-about-us-partners-aimesoft.png"),
   },
   experts: {
-    henry: "/images/greenfarming/images-about-us-experts-henry-nguyen.jpg",
-    jun: "/images/greenfarming/images-about-us-experts-jun-jo.jpg",
-    dieuAnh: "/images/greenfarming/images-about-us-experts-dieu-anh-van.jpg",
-    yongsheng:
+    henry: publicAsset("/images/greenfarming/images-about-us-experts-henry-nguyen.jpg"),
+    jun: publicAsset("/images/greenfarming/images-about-us-experts-jun-jo.jpg"),
+    dieuAnh: publicAsset(
+      "/images/greenfarming/images-about-us-experts-dieu-anh-van.jpg",
+    ),
+    yongsheng: publicAsset(
       "/images/greenfarming/images-about-us-experts-yongsheng-gao.jpg",
-    phiLe: "/images/greenfarming/images-about-us-experts-phi-le-nguyen.jpg",
-    quyetThang:
+    ),
+    phiLe: publicAsset("/images/greenfarming/images-about-us-experts-phi-le-nguyen.jpg"),
+    quyetThang: publicAsset(
       "/images/greenfarming/images-about-us-experts-quyet-thang-huynh.jpg",
+    ),
   },
 };
 
