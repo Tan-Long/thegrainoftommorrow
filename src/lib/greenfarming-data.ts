@@ -87,8 +87,12 @@ export const requiredMetrics = [
 export const scenarioResults = [
   {
     id: "baseline",
-    label: { vi: "2025", en: "2025" },
+    label: { vi: "Baseline 2025", en: "Baseline 2025" },
     value: "0.21",
+    max: "0.34",
+    co2: "424.32",
+    increase: "0%",
+    image: publicAsset("/images/grain/paddy-baseline-2025.png"),
     unit: "mg/kg",
     level: { vi: "Mốc hiện tại", en: "Current baseline" },
     description: {
@@ -100,6 +104,10 @@ export const scenarioResults = [
     id: "rcp45",
     label: { vi: "RCP4.5 2050", en: "RCP4.5 2050" },
     value: "0.268",
+    max: "0.383",
+    co2: "526",
+    increase: "+29.3%",
+    image: publicAsset("/images/grain/paddy-rcp45-2050.png"),
     unit: "mg/kg",
     level: { vi: "Tăng vừa", en: "Moderate increase" },
     description: {
@@ -111,6 +119,10 @@ export const scenarioResults = [
     id: "rcp85",
     label: { vi: "RCP8.5 2050", en: "RCP8.5 2050" },
     value: "0.304",
+    max: "0.427",
+    co2: "628",
+    increase: "+35.3%",
+    image: publicAsset("/images/grain/paddy-rcp85-2050.png"),
     unit: "mg/kg",
     level: { vi: "Ưu tiên cảnh báo", en: "Warning priority" },
     description: {
@@ -122,37 +134,71 @@ export const scenarioResults = [
 
 export const riskRegions = [
   {
-    name: "Mekong Delta",
-    viName: "Đồng bằng sông Cửu Long",
-    baseline: "0.22",
-    rcp45: "0.279",
-    rcp85: "0.318",
+    name: "North",
+    viName: "Miền Bắc",
+    baseline: "0.224",
+    rcp45: "0.283",
+    rcp85: "0.329",
     priority: { vi: "Rất cao", en: "Very high" },
   },
   {
-    name: "Red River Delta",
-    viName: "Đồng bằng sông Hồng",
-    baseline: "0.20",
-    rcp45: "0.255",
-    rcp85: "0.292",
+    name: "Central",
+    viName: "Miền Trung",
+    baseline: "0.205",
+    rcp45: "0.269",
+    rcp85: "0.316",
     priority: { vi: "Cao", en: "High" },
   },
   {
-    name: "Central Coast",
-    viName: "Duyên hải miền Trung",
-    baseline: "0.17",
-    rcp45: "0.222",
-    rcp85: "0.251",
+    name: "South",
+    viName: "Miền Nam",
+    baseline: "0.190",
+    rcp45: "0.251",
+    rcp85: "0.292",
     priority: { vi: "Trung bình", en: "Medium" },
   },
-  {
-    name: "Central Highlands",
-    viName: "Tây Nguyên",
-    baseline: "0.14",
-    rcp45: "0.186",
-    rcp85: "0.211",
-    priority: { vi: "Theo dõi", en: "Monitor" },
-  },
+];
+
+export const paddyMap = {
+  metadata: publicAsset("/images/grain/paddy-map-metadata.json"),
+  mask: publicAsset("/images/grain/paddy-mask-vietnam.png"),
+  bbox: "102.0-110.3E, 8.0-23.8N",
+  cropWindow: "1848x3518+9326+6774",
+  threshold: "0.20 mg/kg",
+  seasons: [
+    { id: "winter-spring", label: { vi: "Đông-Xuân", en: "Winter-Spring" } },
+    { id: "summer-autumn", label: { vi: "Hè-Thu", en: "Summer-Autumn" } },
+  ],
+  legend: [
+    { label: { vi: "An toàn", en: "Safe" }, range: "<0.15", color: "#5ea95a" },
+    { label: { vi: "Trung bình", en: "Moderate" }, range: "0.15-0.20", color: "#e0c24a" },
+    { label: { vi: "Cao", en: "High" }, range: "0.20-0.30", color: "#e0a72d" },
+    { label: { vi: "Rất cao", en: "Very high" }, range: ">0.30", color: "#d8532b" },
+  ],
+};
+
+export const modelConfiguration = [
+  { label: { vi: "Mẫu ban đầu", en: "Raw samples" }, value: "1,327" },
+  { label: { vi: "Mẫu giữ lại", en: "Retained samples" }, value: "946" },
+  { label: { vi: "Dataset sạch", en: "Cleaned model dataset" }, value: "881" },
+  { label: { vi: "Biến dự báo", en: "Predictors" }, value: "24" },
+  { label: { vi: "Mô hình", en: "Model" }, value: "Gaussian Process Regression" },
+  { label: { vi: "Kernel", en: "Kernel" }, value: "Matérn nu=0.5 + RBF + white noise + dot product" },
+  { label: { vi: "CO2 transform", en: "CO2 transform" }, value: "(CO2 - 424.32)" },
+  { label: { vi: "Target / features", en: "Target / features" }, value: "log(1 + x), z-score, normalize_y=true" },
+  { label: { vi: "Optuna", en: "Optuna" }, value: "30 trials, alpha/noise 0.01-1.0" },
+  { label: { vi: "Validation", en: "Validation" }, value: "5-fold CV R2 = 0.365 +/- 0.071" },
+  { label: { vi: "Test", en: "Test" }, value: "R2 = 0.3546, RMSE = 0.0743" },
+  { label: { vi: "Train", en: "Train" }, value: "R2 = 0.9033, RMSE = 0.0292" },
+  { label: { vi: "Projection", en: "Projection" }, value: "18,920 = 946 locations x 10 time steps x 2 scenarios" },
+  { label: { vi: "Ensemble", en: "Ensemble" }, value: "50 bootstrap GPR runs, median, p10/p90" },
+  { label: { vi: "Exceedance", en: "Exceedance" }, value: "50-run Random Forest classifier, P(Grain As > 0.2 mg/kg)" },
+];
+
+export const uncertaintyBands = [
+  { scenario: "baseline", p10: "0.16", p50: "0.21", p90: "0.29", exceedance: "54%" },
+  { scenario: "rcp45", p10: "0.21", p50: "0.268", p90: "0.35", exceedance: "72%" },
+  { scenario: "rcp85", p10: "0.24", p50: "0.304", p90: "0.39", exceedance: "83%" },
 ];
 
 export const predictorImportance = [

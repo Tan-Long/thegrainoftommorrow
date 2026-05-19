@@ -80,9 +80,19 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 75% 22%, rgba(216, 83, 43, 0.2), transparent 24%),
-      radial-gradient(circle at 88% 72%, rgba(31, 111, 67, 0.18), transparent 26%),
+      radial-gradient(circle at 75% 22%, rgba(216, 83, 43, 0.12), transparent 24%),
+      radial-gradient(circle at 88% 72%, rgba(31, 111, 67, 0.12), transparent 26%),
       linear-gradient(140deg, transparent 0%, rgba(233, 203, 116, 0.2) 100%);
+  }
+
+  .hero-paddy-raster {
+    position: absolute;
+    right: 8%;
+    top: 5%;
+    height: min(86%, 720px);
+    width: auto;
+    opacity: 0.22;
+    filter: drop-shadow(0 26px 44px rgba(31, 111, 67, 0.18));
   }
 
   .eyebrow {
@@ -159,69 +169,292 @@
     color: #143d2a;
   }
 
-  .risk-map-shape {
-    position: relative;
-    min-height: 300px;
+  .paddy-map-card {
+    overflow: hidden;
+  }
+
+  .map-toolbar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    align-items: end;
+  }
+
+  .map-toolbar label {
+    display: grid;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  .map-toolbar span {
+    color: #7a6a42;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .map-toolbar select,
+  .map-layer-button {
+    min-height: 42px;
     border: 1px solid #dfd2a9;
-    border-radius: 46% 54% 45% 55% / 33% 44% 56% 67%;
+    border-radius: 8px;
+    background: #fffdf7;
+    color: #26352b;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .map-toolbar select {
+    min-width: 0;
+    padding-inline: 10px;
+  }
+
+  .map-search {
+    grid-column: span 1;
+  }
+
+  .map-layer-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #1f6f43;
+  }
+
+  .leaflet-map-shell {
+    position: relative;
+    min-height: 560px;
+    overflow: hidden;
+    border: 1px solid #cdd8be;
+    border-radius: 8px;
     background:
-      radial-gradient(circle at 52% 76%, rgba(216, 83, 43, 0.9), transparent 10%),
-      radial-gradient(circle at 46% 55%, rgba(237, 151, 45, 0.84), transparent 14%),
-      radial-gradient(circle at 54% 34%, rgba(245, 203, 92, 0.9), transparent 16%),
-      radial-gradient(circle at 45% 18%, rgba(87, 167, 86, 0.8), transparent 15%),
-      linear-gradient(180deg, #e9f6d5, #fff4c7);
-    box-shadow: inset 0 0 38px rgba(31, 111, 67, 0.14);
+      linear-gradient(180deg, rgba(232, 244, 231, 0.88), rgba(240, 235, 208, 0.86)),
+      repeating-linear-gradient(0deg, rgba(31, 111, 67, 0.07) 0 1px, transparent 1px 38px),
+      repeating-linear-gradient(90deg, rgba(31, 111, 67, 0.06) 0 1px, transparent 1px 38px);
   }
 
-  .risk-map-shape-hero {
+  .vietnam-map-canvas {
     position: absolute;
-    right: 8%;
-    top: 15%;
-    width: 330px;
-    opacity: 0.78;
+    inset: 32px 44px 32px 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .risk-dot {
+  .paddy-raster-layer {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: saturate(1.08) drop-shadow(0 12px 18px rgba(31, 61, 42, 0.18));
+  }
+
+  .leaflet-label,
+  .map-scale {
     position: absolute;
-    width: 18px;
-    height: 18px;
-    border: 3px solid #ffffff;
+    z-index: 3;
+    border: 1px solid rgba(38, 53, 43, 0.18);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 7px;
+    color: #26352b;
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  .leaflet-label {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .map-scale {
+    left: 16px;
+    bottom: 16px;
+  }
+
+  .leaflet-controls {
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    z-index: 4;
+    display: grid;
+    overflow: hidden;
+    border: 1px solid rgba(38, 53, 43, 0.2);
+    border-radius: 4px;
+    background: #ffffff;
+  }
+
+  .leaflet-controls button,
+  .leaflet-locate {
+    display: inline-flex;
+    height: 32px;
+    width: 32px;
+    align-items: center;
+    justify-content: center;
+    color: #26352b;
+    font-weight: 900;
+  }
+
+  .leaflet-controls button + button {
+    border-top: 1px solid rgba(38, 53, 43, 0.18);
+  }
+
+  .leaflet-locate {
+    position: absolute;
+    left: 14px;
+    top: 86px;
+    z-index: 4;
+    border: 1px solid rgba(38, 53, 43, 0.2);
+    border-radius: 4px;
+    background: #ffffff;
+  }
+
+  .map-pin {
+    position: absolute;
+    z-index: 4;
+    border: 2px solid #ffffff;
     border-radius: 9999px;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+    background: #143d2a;
+    padding: 4px 8px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 900;
+    box-shadow: 0 8px 18px rgba(20, 61, 42, 0.22);
   }
 
-  .dot-red {
-    left: 52%;
-    top: 72%;
+  .map-pin-north {
+    left: 39%;
+    top: 14%;
+  }
+
+  .map-pin-central {
+    left: 51%;
+    top: 49%;
+  }
+
+  .map-pin-south {
+    left: 39%;
+    top: 82%;
+  }
+
+  .map-sidebar {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+  }
+
+  .map-region-button {
+    width: 100%;
+    border: 1px solid transparent;
+    text-align: left;
+  }
+
+  .map-region-button-active {
+    border-color: #1f6f43;
+    background: #ecf7ef;
+  }
+
+  .map-legend {
+    border-radius: 8px;
+    background: #fbf7e8;
+    padding: 12px;
+  }
+
+  .legend-row {
+    display: grid;
+    grid-template-columns: 16px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .legend-swatch {
+    height: 12px;
+    width: 12px;
+    border-radius: 9999px;
+  }
+
+  .legend-swatch-0 {
+    background: #5ea95a;
+  }
+
+  .legend-swatch-1 {
+    background: #e0c24a;
+  }
+
+  .legend-swatch-2 {
+    background: #e0a72d;
+  }
+
+  .legend-swatch-3 {
     background: #d8532b;
   }
 
-  .dot-orange {
-    left: 43%;
-    top: 54%;
-    background: #ed972d;
+  .risk-map-card-compact {
+    padding: 18px;
   }
 
-  .dot-yellow {
-    left: 56%;
-    top: 34%;
-    background: #f5cb5c;
+  .risk-map-card-compact .map-toolbar {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .dot-green {
-    left: 39%;
-    top: 19%;
-    background: #57a756;
+  .risk-map-card-compact .map-layer-button {
+    display: none;
   }
 
-  .dot-amber {
-    left: 63%;
-    top: 60%;
-    background: #d9a21b;
+  .risk-map-card-compact .leaflet-map-shell {
+    min-height: 360px;
   }
 
-  .risk-map-card-compact .risk-map-shape {
-    min-height: 230px;
+  .risk-map-card-compact .map-sidebar {
+    display: none;
+  }
+
+  .risk-map-card-compact .vietnam-map-canvas {
+    inset: 28px 44px 24px 56px;
+  }
+
+  .model-config-row {
+    display: grid;
+    grid-template-columns: minmax(110px, 0.42fr) minmax(0, 1fr);
+    gap: 12px;
+    border-bottom: 1px solid #efe5c9;
+    padding-block: 8px;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .model-config-row span {
+    color: #7a6a42;
+    font-weight: 900;
+  }
+
+  .model-config-row strong {
+    color: #26352b;
+    font-weight: 900;
+  }
+
+  .uncertainty-stat {
+    border-radius: 8px;
+    background: #ecf7ef;
+    padding: 12px;
+  }
+
+  .uncertainty-stat span {
+    display: block;
+    color: #7a6a42;
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .uncertainty-stat strong {
+    display: block;
+    margin-top: 4px;
+    color: #143d2a;
+    font-size: 17px;
+    font-weight: 900;
   }
 
   .region-row {
@@ -1223,6 +1456,14 @@
   .step-button:not(:last-child)::after {
     display: none;
   }
+
+  .map-toolbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .leaflet-map-shell {
+    min-height: 500px;
+  }
 }
 
 @media (max-width: 639px) {
@@ -1255,6 +1496,36 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .hero-paddy-raster {
+    right: -18%;
+    height: 72%;
+    opacity: 0.16;
+  }
+
+  .map-toolbar,
+  .risk-map-card-compact .map-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .leaflet-map-shell,
+  .risk-map-card-compact .leaflet-map-shell {
+    min-height: 430px;
+  }
+
+  .vietnam-map-canvas,
+  .risk-map-card-compact .vietnam-map-canvas {
+    inset: 34px 24px 30px 48px;
+  }
+
+  .map-sidebar {
+    gap: 10px;
+  }
+
+  .model-config-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
   .map-popup {
     left: 18%;
     top: 14%;
@@ -1263,8 +1534,7 @@
   }
 
   .map-legend {
-    transform: scale(0.8);
-    transform-origin: top right;
+    transform: none;
   }
 
   .auth-card {

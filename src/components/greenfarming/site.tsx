@@ -10,10 +10,12 @@ import {
   Database,
   FlaskConical,
   Layers3,
+  LocateFixed,
   Menu,
   Search,
   Send,
   ShieldCheck,
+  SlidersHorizontal,
   Sparkles,
   TrendingUp,
   Users,
@@ -31,13 +33,16 @@ import {
   feedbackSteps,
   heroStats,
   homeHero,
+  modelConfiguration,
   navItems,
+  paddyMap,
   predictorImportance,
   projectCards,
   requiredMetrics,
   riskRegions,
   scenarioResults,
   text,
+  uncertaintyBands,
 } from "@/lib/greenfarming-data";
 import { cn } from "@/lib/utils";
 import type { FeedbackField, Locale, LocalizedText } from "@/types/greenfarming";
@@ -209,12 +214,7 @@ export function HomePage() {
     <main>
       <section className="grain-hero">
         <div className="grain-field-visual" aria-hidden="true">
-          <div className="risk-map-shape risk-map-shape-hero">
-            <span className="risk-dot dot-red" />
-            <span className="risk-dot dot-orange" />
-            <span className="risk-dot dot-yellow" />
-            <span className="risk-dot dot-green" />
-          </div>
+          <Image src={scenarioResults[2].image} alt="" width={1848} height={3518} className="hero-paddy-raster" />
         </div>
         <div className="site-container relative z-10 grid min-h-[720px] items-center gap-10 py-16 lg:grid-cols-[1fr_470px]">
           <div>
@@ -344,47 +344,185 @@ function OverviewSections() {
   );
 }
 
-function ArsenicRiskMap({ compact = false }: { compact?: boolean }) {
+function regionValue(region: (typeof riskRegions)[number], scenario: ScenarioId) {
+  return scenario === "baseline" ? region.baseline : scenario === "rcp45" ? region.rcp45 : region.rcp85;
+}
+
+function ArsenicRiskMap({
+  compact = false,
+  scenario,
+  onScenarioChange,
+  selectedRegion,
+  onRegionChange,
+  season,
+  onSeasonChange,
+}: {
+  compact?: boolean;
+  scenario?: ScenarioId;
+  onScenarioChange?: (scenario: ScenarioId) => void;
+  selectedRegion?: string;
+  onRegionChange?: (region: string) => void;
+  season?: string;
+  onSeasonChange?: (season: string) => void;
+}) {
   const { locale } = useLocale();
+  const [localScenario, setLocalScenario] = useState<ScenarioId>("rcp85");
+  const [localRegion, setLocalRegion] = useState(riskRegions[0].name);
+  const [localSeason, setLocalSeason] = useState(paddyMap.seasons[1].id);
+  const activeScenarioId = scenario ?? localScenario;
+  const activeRegionName = selectedRegion ?? localRegion;
+  const activeSeason = season ?? localSeason;
+  const activeScenario = scenarioResults.find((item) => item.id === activeScenarioId) ?? scenarioResults[0];
+
+  const updateScenario = (nextScenario: ScenarioId) => {
+    if (onScenarioChange) {
+      onScenarioChange(nextScenario);
+    } else {
+      setLocalScenario(nextScenario);
+    }
+  };
+
+  const updateRegion = (nextRegion: string) => {
+    if (onRegionChange) {
+      onRegionChange(nextRegion);
+    } else {
+      setLocalRegion(nextRegion);
+    }
+  };
+
+  const updateSeason = (nextSeason: string) => {
+    if (onSeasonChange) {
+      onSeasonChange(nextSeason);
+    } else {
+      setLocalSeason(nextSeason);
+    }
+  };
 
   return (
-    <div className={cn("risk-map-card", compact && "risk-map-card-compact")}>
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h3 className="text-xl font-extrabold text-[#143d2a]">
-            {locale === "vi" ? "Bản đồ rủi ro minh họa Việt Nam" : "Illustrative Vietnam risk map"}
-          </h3>
-          <p className="mt-1 text-sm font-semibold text-[#7a6a42]">
-            {locale === "vi"
-              ? "Illustrative visualization based on project results"
-              : "Illustrative visualization based on project results"}
-          </p>
-        </div>
-        <Layers3 className="shrink-0 text-[#1f6f43]" />
+    <div className={cn("risk-map-card paddy-map-card", compact && "risk-map-card-compact")}>
+      <div className="map-toolbar">
+        <label>
+          <span>{locale === "vi" ? "Kịch bản" : "Scenario"}</span>
+          <select value={activeScenarioId} onChange={(event) => updateScenario(event.target.value as ScenarioId)}>
+            {scenarioResults.map((item) => (
+              <option key={item.id} value={item.id}>
+                {t(item.label, locale)}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>{locale === "vi" ? "Mùa vụ" : "Crop season"}</span>
+          <select value={activeSeason} onChange={(event) => updateSeason(event.target.value)}>
+            {paddyMap.seasons.map((item) => (
+              <option key={item.id} value={item.id}>
+                {t(item.label, locale)}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="map-search">
+          <span>{locale === "vi" ? "Tìm vùng" : "Region search"}</span>
+          <select value={activeRegionName} onChange={(event) => updateRegion(event.target.value)}>
+            {riskRegions.map((item) => (
+              <option key={item.name} value={item.name}>
+                {locale === "vi" ? item.viName : item.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button type="button" className="map-layer-button">
+          <Layers3 size={17} />
+          {locale === "vi" ? "Lớp" : "Layers"}
+        </button>
       </div>
-      <div className="mt-5 grid gap-5 md:grid-cols-[210px_1fr]">
-        <div className="risk-map-shape">
-          <span className="risk-dot dot-red" />
-          <span className="risk-dot dot-orange" />
-          <span className="risk-dot dot-yellow" />
-          <span className="risk-dot dot-green" />
-          <span className="risk-dot dot-amber" />
+
+      <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_240px]">
+        <div className="leaflet-map-shell">
+          <div className="leaflet-label">Leaflet</div>
+          <div className="leaflet-controls" aria-hidden="true">
+            <button type="button">+</button>
+            <button type="button">-</button>
+          </div>
+          <button type="button" className="leaflet-locate" aria-label="Locate">
+            <LocateFixed size={16} />
+          </button>
+          <div className="vietnam-map-canvas">
+            <Image
+              src={activeScenario.image}
+              alt={locale === "vi" ? "Lớp pixel lúa Việt Nam" : "Vietnam paddy pixel layer"}
+              width={1848}
+              height={3518}
+              className="paddy-raster-layer"
+              priority={compact}
+            />
+            <span className="map-pin map-pin-north">{locale === "vi" ? "Bắc" : "North"}</span>
+            <span className="map-pin map-pin-central">{locale === "vi" ? "Trung" : "Central"}</span>
+            <span className="map-pin map-pin-south">{locale === "vi" ? "Nam" : "South"}</span>
+          </div>
+          <div className="map-scale">200 km</div>
         </div>
-        <div className="grid content-center gap-3">
-          {riskRegions.map((region) => (
-            <div key={region.name} className="region-row">
-              <span>
-                <span className="block font-extrabold text-[#26352b]">
-                  {locale === "vi" ? region.viName : region.name}
+
+        <aside className="map-sidebar">
+          <div>
+            <p className="text-xs font-black uppercase text-[#7a6a42]">
+              {locale === "vi" ? "Trung bình quốc gia" : "National mean"}
+            </p>
+            <p className="mt-1 text-3xl font-extrabold text-[#143d2a]">
+              {activeScenario.value} <span className="text-sm">{activeScenario.unit}</span>
+            </p>
+            <p className="mt-1 text-sm font-bold text-[#d8532b]">
+              CO2 {activeScenario.co2} ppm · max {activeScenario.max} mg/kg · {activeScenario.increase}
+            </p>
+          </div>
+          <div className="grid gap-2">
+            {riskRegions.map((region) => (
+              <button
+                type="button"
+                key={region.name}
+                className={cn("region-row map-region-button", activeRegionName === region.name && "map-region-button-active")}
+                onClick={() => updateRegion(region.name)}
+              >
+                <span>
+                  <span className="block font-extrabold text-[#26352b]">
+                    {locale === "vi" ? region.viName : region.name}
+                  </span>
+                  <span className="text-xs font-semibold text-[#7a6a42]">
+                    {t(region.priority, locale)}
+                  </span>
                 </span>
-                <span className="text-xs font-semibold text-[#7a6a42]">
-                  {t(region.priority, locale)}
+                <span className="text-right font-extrabold text-[#143d2a]">
+                  {regionValue(region, activeScenarioId)}
                 </span>
-              </span>
-              <span className="text-right font-extrabold text-[#143d2a]">{region.rcp85} mg/kg</span>
-            </div>
-          ))}
-        </div>
+              </button>
+            ))}
+          </div>
+          <div className="map-legend">
+            <p className="text-xs font-black uppercase text-[#7a6a42]">
+              {locale === "vi" ? "Legend mg/kg" : "Legend mg/kg"}
+            </p>
+            {paddyMap.legend.map((item, index) => (
+              <div key={item.range} className="legend-row">
+                <span className={cn("legend-swatch", `legend-swatch-${index}`)} />
+                <span>{t(item.label, locale)}</span>
+                <span>{item.range}</span>
+              </div>
+            ))}
+            <p className="mt-2 text-xs font-bold text-[#735d13]">
+              {locale === "vi" ? "Ngưỡng cảnh báo" : "Warning threshold"}: {paddyMap.threshold}
+            </p>
+          </div>
+          <p className="text-xs font-semibold leading-[1.45] text-[#647067]">
+            {locale === "vi"
+              ? `Raster lúa crop từ ${paddyMap.bbox}; window ${paddyMap.cropWindow}.`
+              : `Paddy raster cropped from ${paddyMap.bbox}; window ${paddyMap.cropWindow}.`}
+          </p>
+        </aside>
+      </div>
+      <div className="mt-4 flex flex-wrap items-center gap-3 text-xs font-bold text-[#5d6a62]">
+        <span className="inline-flex items-center gap-2"><SlidersHorizontal size={15} /> {t(activeScenario.label, locale)}</span>
+        <span className="inline-flex items-center gap-2"><Search size={15} /> {activeRegionName}</span>
+        <span>{locale === "vi" ? "Demo cảnh báo sớm, không thay thế xét nghiệm lab." : "Early-warning demo, not a replacement for lab testing."}</span>
       </div>
     </div>
   );
@@ -492,10 +630,11 @@ export function AppDashboardPage() {
   const { locale } = useLocale();
   const [scenario, setScenario] = useState<ScenarioId>("rcp85");
   const [region, setRegion] = useState(riskRegions[0].name);
+  const [season, setSeason] = useState(paddyMap.seasons[1].id);
   const activeScenario = scenarioResults.find((item) => item.id === scenario) ?? scenarioResults[0];
   const activeRegion = riskRegions.find((item) => item.name === region) ?? riskRegions[0];
-  const activeValue =
-    scenario === "baseline" ? activeRegion.baseline : scenario === "rcp45" ? activeRegion.rcp45 : activeRegion.rcp85;
+  const activeValue = regionValue(activeRegion, scenario);
+  const activeUncertainty = uncertaintyBands.find((item) => item.scenario === scenario) ?? uncertaintyBands[0];
 
   return (
     <main className="bg-[#f5f8ed] py-10">
@@ -522,6 +661,13 @@ export function AppDashboardPage() {
                 </option>
               ))}
             </select>
+            <select className="dashboard-select" value={season} onChange={(event) => setSeason(event.target.value)}>
+              {paddyMap.seasons.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {t(item.label, locale)}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
@@ -534,10 +680,40 @@ export function AppDashboardPage() {
                 <Metric title={locale === "vi" ? "Validation" : "Validation"} value="CV R² ≈ 0.365" icon={<ShieldCheck />} />
               </div>
             </article>
-            <ArsenicRiskMap />
+            <ArsenicRiskMap
+              scenario={scenario}
+              onScenarioChange={setScenario}
+              selectedRegion={region}
+              onRegionChange={setRegion}
+              season={season}
+              onSeasonChange={setSeason}
+            />
           </div>
 
           <div className="grid gap-6">
+            <article className="dashboard-panel">
+              <h2 className="text-2xl font-extrabold text-[#143d2a]">
+                {locale === "vi" ? "Bất định p10/p90" : "p10/p90 uncertainty"}
+              </h2>
+              <div className="mt-5 grid grid-cols-3 gap-3">
+                {[
+                  ["p10", activeUncertainty.p10],
+                  ["p50", activeUncertainty.p50],
+                  ["p90", activeUncertainty.p90],
+                ].map(([label, value]) => (
+                  <div key={label} className="uncertainty-stat">
+                    <span>{label}</span>
+                    <strong>{value} mg/kg</strong>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 rounded-md bg-[#fff8df] p-3 text-sm font-semibold leading-[1.5] text-[#735d13]">
+                {locale === "vi"
+                  ? `Xác suất vượt 0.20 mg/kg trong ensemble RF: ${activeUncertainty.exceedance}. Đây là cảnh báo sớm, không thay thế xét nghiệm phòng lab.`
+                  : `RF ensemble probability above 0.20 mg/kg: ${activeUncertainty.exceedance}. This is early warning, not a substitute for lab testing.`}
+              </p>
+            </article>
+            <ModelConfigurationCard />
             <article className="dashboard-panel">
               <h2 className="text-2xl font-extrabold text-[#143d2a]">
                 {locale === "vi" ? "Khuyến nghị demo" : "Demo recommendation"}
@@ -573,6 +749,26 @@ function Metric({ title, value, icon }: { title: string; value: string; icon: Re
   );
 }
 
+function ModelConfigurationCard() {
+  const { locale } = useLocale();
+
+  return (
+    <article className="dashboard-panel">
+      <h2 className="text-2xl font-extrabold text-[#143d2a]">
+        {locale === "vi" ? "Model configuration" : "Model configuration"}
+      </h2>
+      <div className="mt-5 grid gap-2">
+        {modelConfiguration.map((item) => (
+          <div key={t(item.label, locale)} className="model-config-row">
+            <span>{t(item.label, locale)}</span>
+            <strong>{item.value}</strong>
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+}
+
 function ChatbotPanel() {
   const { locale } = useLocale();
   const [message, setMessage] = useState("");
@@ -587,8 +783,8 @@ function ChatbotPanel() {
       </div>
       <div className="mt-5 rounded-lg bg-[#eef7ed] p-4 text-sm font-semibold leading-[1.55]">
         {locale === "vi"
-          ? "Dựa trên RCP8.5 2050, Đồng bằng sông Cửu Long nên được ưu tiên lấy mẫu sớm. Cần kiểm tra lab trước khi kết luận an toàn thực phẩm."
-          : "Based on RCP8.5 2050, the Mekong Delta should be prioritized for earlier sampling. Lab testing is required before making food-safety conclusions."}
+          ? "Dựa trên RCP8.5 2050, miền Bắc nên được ưu tiên lấy mẫu sớm trong bản demo vùng. Cần kiểm tra lab trước khi kết luận an toàn thực phẩm."
+          : "Based on RCP8.5 2050, North Vietnam should be prioritized for earlier sampling in this regional demo. Lab testing is required before making food-safety conclusions."}
       </div>
       <div className="mt-4 flex gap-2">
         <input
