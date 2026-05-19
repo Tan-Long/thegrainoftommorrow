@@ -1089,8 +1089,8 @@ export function AppDashboardPage() {
               </div>
               <p className="mt-4 rounded-md bg-[#fff8df] p-3 text-sm font-semibold leading-[1.5] text-[#735d13]">
                 {locale === "vi"
-                  ? `Xác suất vượt ngưỡng tham chiếu 0.20 mg/kg trong ensemble RF: ${activeUncertainty.exceedance}. Đây là cảnh báo sớm, không thay thế xét nghiệm phòng lab hoặc quyết định an toàn thực phẩm chính thức.`
-                  : `RF ensemble probability above the 0.20 mg/kg reference threshold: ${activeUncertainty.exceedance}. This is early warning, not a substitute for laboratory testing or official food-safety decisions.`}
+                  ? `Xác suất ước tính vượt ngưỡng tham chiếu 0.20 mg/kg: ${activeUncertainty.exceedance}. Đây là cảnh báo sớm, không thay thế xét nghiệm phòng lab hoặc quyết định an toàn thực phẩm chính thức.`
+                  : `Estimated probability above the 0.20 mg/kg reference threshold: ${activeUncertainty.exceedance}. This is early warning, not a substitute for laboratory testing or official food-safety decisions.`}
               </p>
             </article>
             <ModelConfigurationCard />
@@ -1176,7 +1176,9 @@ function ChatbotPanel() {
     <article className="dashboard-panel">
       <div className="flex items-center gap-3">
         <Bot className="text-[#1f6f43]" />
-        <h2 className="text-2xl font-extrabold text-[#143d2a]">RAG chatbot mock</h2>
+        <h2 className="text-2xl font-extrabold text-[#143d2a]">
+          {locale === "vi" ? "Bản xem trước trợ lý AI" : "AI assistant preview"}
+        </h2>
       </div>
       <div className="mt-5 rounded-lg bg-[#eef7ed] p-4 text-sm font-semibold leading-[1.55]">
         {locale === "vi"

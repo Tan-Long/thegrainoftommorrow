@@ -308,10 +308,10 @@ export const faqItems: FaqItem[] = [
     },
   },
   {
-    question: { vi: "CV R² ≈ 0.365 nghĩa là gì?", en: "What does CV R² ≈ 0.365 mean?" },
+    question: { vi: "Mô hình đáng tin cậy đến đâu?", en: "How reliable is the model?" },
     answer: {
-      vi: "Đây là mức validation hiện tại của mô hình. Nó đủ để minh họa cảnh báo kịch bản và ưu tiên lấy mẫu, nhưng cần thêm dữ liệu để tăng độ chính xác.",
-      en: "It is the current validation level. It can support scenario warning and sampling prioritization, but more data is needed to improve accuracy.",
+      vi: "Mô hình nên được đọc như lớp cảnh báo sớm, không phải phép đo thay thế phòng lab. Validation hiện tại đạt 5-fold CV R² ≈ 0.365 và test R² = 0.3546, đủ để hỗ trợ ưu tiên lấy mẫu theo kịch bản nhưng cần xác minh lab và thêm dữ liệu để tăng độ chính xác.",
+      en: "The model should be read as an early-warning layer, not a lab replacement. Current validation is 5-fold CV R² ≈ 0.365 with test R² = 0.3546, enough to support scenario-based sampling priority while still requiring lab confirmation and more data to improve accuracy.",
     },
   },
   {
