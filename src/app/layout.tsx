@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Be_Vietnam_Pro, Inter } from "next/font/google";
 import { publicAsset } from "@/lib/public-path";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "vietnamese"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-const poppins = Poppins({
+const headingFont = Be_Vietnam_Pro({
   variable: "--font-poppins",
-  subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin", "vietnamese"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${inter.variable} ${poppins.variable} h-full antialiased`}
+      className={`${inter.variable} ${headingFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
