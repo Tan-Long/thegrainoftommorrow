@@ -457,9 +457,6 @@ function ArsenicRiskMap({
               className="paddy-raster-layer"
               priority={compact}
             />
-            <span className="map-pin map-pin-north">{locale === "vi" ? "Bắc" : "North"}</span>
-            <span className="map-pin map-pin-central">{locale === "vi" ? "Trung" : "Central"}</span>
-            <span className="map-pin map-pin-south">{locale === "vi" ? "Nam" : "South"}</span>
           </div>
           <div className="map-scale">200 km</div>
         </div>

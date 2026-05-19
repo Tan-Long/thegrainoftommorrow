@@ -330,34 +330,6 @@
     background: #ffffff;
   }
 
-  .map-pin {
-    position: absolute;
-    z-index: 5;
-    border: 2px solid #ffffff;
-    border-radius: 9999px;
-    background: #143d2a;
-    padding: 4px 8px;
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 900;
-    box-shadow: 0 8px 18px rgba(20, 61, 42, 0.22);
-  }
-
-  .map-pin-north {
-    left: 54%;
-    top: 19%;
-  }
-
-  .map-pin-central {
-    left: 58%;
-    top: 54%;
-  }
-
-  .map-pin-south {
-    left: 47%;
-    top: 82%;
-  }
-
   .map-sidebar {
     display: grid;
     align-content: start;
