@@ -30,6 +30,43 @@ const archipelagoMarkers = [
   { id: "truong-sa", name: "Trường Sa", enName: "Spratly Islands", coordinates: [114.2, 10.0] },
 ];
 
+const mergedProvinceGroups = [
+  { name: "Tuyên Quang", oldNames: ["Hà Giang", "Tuyên Quang"] },
+  { name: "Cao Bằng", oldNames: ["Cao Bằng"] },
+  { name: "Lai Châu", oldNames: ["Lai Châu"] },
+  { name: "Lào Cai", oldNames: ["Lào Cai", "Yên Bái"] },
+  { name: "Thái Nguyên", oldNames: ["Bắc Kạn", "Thái Nguyên"] },
+  { name: "Điện Biên", oldNames: ["Điện Biên"] },
+  { name: "Lạng Sơn", oldNames: ["Lạng Sơn"] },
+  { name: "Sơn La", oldNames: ["Sơn La"] },
+  { name: "Phú Thọ", oldNames: ["Hòa Bình", "Vĩnh Phúc", "Phú Thọ"] },
+  { name: "Bắc Ninh", oldNames: ["Bắc Giang", "Bắc Ninh"] },
+  { name: "Quảng Ninh", oldNames: ["Quảng Ninh"] },
+  { name: "TP. Hà Nội", oldNames: ["Hà Nội"] },
+  { name: "TP. Hải Phòng", oldNames: ["Hải Dương", "Hải Phòng"] },
+  { name: "Hưng Yên", oldNames: ["Thái Bình", "Hưng Yên"] },
+  { name: "Ninh Bình", oldNames: ["Hà Nam", "Ninh Bình", "Nam Định"] },
+  { name: "Thanh Hóa", oldNames: ["Thanh Hóa"] },
+  { name: "Nghệ An", oldNames: ["Nghệ An"] },
+  { name: "Hà Tĩnh", oldNames: ["Hà Tĩnh"] },
+  { name: "Quảng Trị", oldNames: ["Quảng Bình", "Quảng Trị"] },
+  { name: "TP. Huế", oldNames: ["Thừa Thiên Huế"] },
+  { name: "TP. Đà Nẵng", oldNames: ["Quảng Nam", "Đà Nẵng"] },
+  { name: "Quảng Ngãi", oldNames: ["Quảng Ngãi", "Kon Tum"] },
+  { name: "Gia Lai", oldNames: ["Gia Lai", "Bình Định"] },
+  { name: "Đắk Lắk", oldNames: ["Phú Yên", "Đắk Lắk"] },
+  { name: "Khánh Hòa", oldNames: ["Khánh Hòa", "Ninh Thuận"] },
+  { name: "Lâm Đồng", oldNames: ["Đắk Nông", "Lâm Đồng", "Bình Thuận"] },
+  { name: "Đồng Nai", oldNames: ["Bình Phước", "Đồng Nai"] },
+  { name: "Tây Ninh", oldNames: ["Long An", "Tây Ninh"] },
+  { name: "TP. Hồ Chí Minh", oldNames: ["Bình Dương", "Ho Chi Minh", "Bà Rịa–Vũng Tàu", "Côn Đảo"] },
+  { name: "Đồng Tháp", oldNames: ["Tiền Giang", "Đồng Tháp"] },
+  { name: "An Giang", oldNames: ["Kiên Giang", "An Giang"] },
+  { name: "Vĩnh Long", oldNames: ["Bến Tre", "Vĩnh Long", "Trà Vinh"] },
+  { name: "TP. Cần Thơ", oldNames: ["Sóc Trăng", "Hậu Giang", "Cần Thơ"] },
+  { name: "Cà Mau", oldNames: ["Bạc Liêu", "Cà Mau"] },
+];
+
 const scenarios = [
   {
     id: "baseline",
@@ -141,6 +178,14 @@ function updateBounds(bounds, [x, y]) {
   bounds.maxY = Math.max(bounds.maxY, y);
 }
 
+function normalizeProvinceName(name) {
+  return name.trim().replace(/\s+/g, " ");
+}
+
+function provinceName(feature) {
+  return normalizeProvinceName(feature.properties?.shapeName ?? feature.properties?.name ?? "");
+}
+
 function geometryToProjectedPathData(geometry, width, height) {
   const bounds = {
     minX: Number.POSITIVE_INFINITY,
@@ -165,6 +210,81 @@ function geometryToProjectedPathData(geometry, width, height) {
       y: Number(((bounds.minY + bounds.maxY) / 2).toFixed(2)),
     },
   };
+}
+
+function geometriesToProjectedPathData(geometries, width, height) {
+  const bounds = {
+    minX: Number.POSITIVE_INFINITY,
+    maxX: Number.NEGATIVE_INFINITY,
+    minY: Number.POSITIVE_INFINITY,
+    maxY: Number.NEGATIVE_INFINITY,
+  };
+  const paths = geometries.flatMap((geometry) => {
+    const polygons = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
+
+    return polygons.flatMap((polygon) =>
+      polygon.map((ring) => {
+        for (const coordinate of ring) {
+          updateBounds(bounds, projectedPoint(coordinate, width, height));
+        }
+        return `${projectedPolygonToPath(ring, width, height)} Z`;
+      }),
+    );
+  });
+
+  return {
+    path: paths.join(" "),
+    center: {
+      x: Number(((bounds.minX + bounds.maxX) / 2).toFixed(2)),
+      y: Number(((bounds.minY + bounds.maxY) / 2).toFixed(2)),
+    },
+  };
+}
+
+function coordinateKey([lon, lat]) {
+  return `${lon.toFixed(6)},${lat.toFixed(6)}`;
+}
+
+function segmentKey(start, end) {
+  const first = coordinateKey(start);
+  const second = coordinateKey(end);
+
+  return first < second ? `${first}|${second}` : `${second}|${first}`;
+}
+
+function mergedBoundaryPath(geometries, width, height) {
+  const segments = new Map();
+
+  for (const geometry of geometries) {
+    const polygons = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
+
+    for (const polygon of polygons) {
+      for (const ring of polygon) {
+        for (let index = 0; index < ring.length - 1; index += 1) {
+          const start = ring[index];
+          const end = ring[index + 1];
+          const key = segmentKey(start, end);
+          const current = segments.get(key);
+
+          if (current) {
+            current.count += 1;
+          } else {
+            segments.set(key, { count: 1, start, end });
+          }
+        }
+      }
+    }
+  }
+
+  return [...segments.values()]
+    .filter((segment) => segment.count === 1)
+    .map(({ start, end }) => {
+      const [x1, y1] = projectedPoint(start, width, height);
+      const [x2, y2] = projectedPoint(end, width, height);
+
+      return `M ${x1.toFixed(2)} ${y1.toFixed(2)} L ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+    })
+    .join(" ");
 }
 
 function geometryToPaths(geometry, width, height) {
@@ -220,6 +340,21 @@ function featureReferencePoint(feature) {
   return pointCount > 0 ? [lonTotal / pointCount, latTotal / pointCount] : [106, 16];
 }
 
+function featuresReferencePoint(features) {
+  let lonTotal = 0;
+  let latTotal = 0;
+  let pointCount = 0;
+
+  for (const feature of features) {
+    const [lon, lat] = featureReferencePoint(feature);
+    lonTotal += lon;
+    latTotal += lat;
+    pointCount += 1;
+  }
+
+  return pointCount > 0 ? [lonTotal / pointCount, latTotal / pointCount] : [106, 16];
+}
+
 function writeVietnamProvinceData(countryGeojsonPath, provinceGeojsonPath, width, height, output) {
   const countryGeojson = JSON.parse(readFileSync(countryGeojsonPath, "utf8"));
   const provinceGeojson = JSON.parse(readFileSync(provinceGeojsonPath, "utf8"));
@@ -227,19 +362,30 @@ function writeVietnamProvinceData(countryGeojsonPath, provinceGeojsonPath, width
     countryGeojson.features.find((item) => item.properties?.shapeISO === "VNM" || item.properties?.name === "Vietnam") ??
     countryGeojson.features[0];
   const country = geometryToProjectedPathData(countryFeature.geometry, width, height);
-  const provinces = provinceGeojson.features.map((feature, index) => {
-    const referencePoint = featureReferencePoint(feature);
-    const withReference = { ...feature, geometry: feature.geometry, properties: { ...feature.properties, referencePoint } };
-    const name = feature.properties?.shapeName ?? feature.properties?.name ?? `Province ${index + 1}`;
-    const province = geometryToProjectedPathData(feature.geometry, width, height);
+  const featuresByName = new Map(provinceGeojson.features.map((feature) => [provinceName(feature), feature]));
+  const provinces = mergedProvinceGroups.map((group, index) => {
+    const features = group.oldNames.map((name) => {
+      const feature = featuresByName.get(normalizeProvinceName(name));
+
+      if (!feature) {
+        throw new Error(`Missing old province "${name}" for merged province "${group.name}".`);
+      }
+
+      return feature;
+    });
+    const referencePoint = featuresReferencePoint(features);
+    const geometries = features.map((feature) => feature.geometry);
+    const province = geometriesToProjectedPathData(geometries, width, height);
     return {
-      id: String(feature.properties?.shapeID ?? name).toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-      name,
+      id: group.name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      name: group.name,
+      mergedFrom: group.oldNames,
       path: province.path,
+      boundaryPath: mergedBoundaryPath(geometries, width, height),
       center: province.center,
       metrics: provinceScenarioMetrics(
         {
-          ...withReference,
+          properties: { shapeName: group.name },
           geometry: {
             type: "Point",
             coordinates: referencePoint,

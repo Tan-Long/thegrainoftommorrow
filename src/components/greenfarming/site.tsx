@@ -402,7 +402,7 @@ function ProvinceBoundaryOverlay({ activeScenarioId }: { activeScenarioId: Scena
         </g>
         <g className="province-line-layer">
           {provinceMap.provinces.map((province) => (
-            <path key={`${province.id}-line`} d={province.path} />
+            <path key={`${province.id}-line`} d={province.boundaryPath} />
           ))}
         </g>
         <g className="country-line-layer">
