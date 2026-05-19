@@ -31,6 +31,7 @@
   "boundaryClip": "Vietnam ADM0 boundary from https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/VNM/ADM0/geoBoundaries-VNM-ADM0.geojson",
   "boundaryOverlay": {
     "file": "vietnam-boundaries.svg",
+    "provinceDataFile": "vietnam-provinces-map.json",
     "width": 755,
     "height": 1501,
     "countrySource": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/VNM/ADM0/geoBoundaries-VNM-ADM0.geojson",

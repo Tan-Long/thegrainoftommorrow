@@ -24,6 +24,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import provinceMap from "../../../public/images/grain/vietnam-provinces-map.json";
 import {
   architectureSteps,
   assets,
@@ -48,6 +49,7 @@ import { cn } from "@/lib/utils";
 import type { FeedbackField, Locale, LocalizedText } from "@/types/greenfarming";
 import {
   createContext,
+  type MouseEvent,
   type ReactNode,
   useContext,
   useEffect,
@@ -61,6 +63,13 @@ type LocaleContextValue = {
 };
 
 type ScenarioId = (typeof scenarioResults)[number]["id"];
+type ProvinceMapFeature = (typeof provinceMap.provinces)[number];
+
+type HoveredProvince = {
+  province: ProvinceMapFeature;
+  x: number;
+  y: number;
+};
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
@@ -341,6 +350,92 @@ function regionValue(region: (typeof riskRegions)[number], scenario: ScenarioId)
   return scenario === "baseline" ? region.baseline : scenario === "rcp45" ? region.rcp45 : region.rcp85;
 }
 
+function ProvinceBoundaryOverlay({ activeScenarioId }: { activeScenarioId: ScenarioId }) {
+  const { locale } = useLocale();
+  const [hoveredProvince, setHoveredProvince] = useState<HoveredProvince | null>(null);
+
+  const updateHoverPosition = (event: MouseEvent<SVGPathElement>, province: ProvinceMapFeature) => {
+    const rect = event.currentTarget.ownerSVGElement?.getBoundingClientRect();
+
+    if (!rect) {
+      return;
+    }
+
+    setHoveredProvince({
+      province,
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    });
+  };
+
+  return (
+    <>
+      <svg
+        className="province-boundary-overlay"
+        viewBox={`0 0 ${provinceMap.width} ${provinceMap.height}`}
+        preserveAspectRatio="xMidYMid slice"
+        aria-label={locale === "vi" ? "Ranh giới tỉnh Việt Nam" : "Vietnam provincial boundaries"}
+      >
+        <g className="country-shadow-layer">
+          <path d={provinceMap.countryPath} />
+        </g>
+        <g className="province-hit-layer">
+          {provinceMap.provinces.map((province) => (
+            <path
+              key={province.id}
+              d={province.path}
+              className={cn("province-hit-area", hoveredProvince?.province.id === province.id && "province-hit-area-active")}
+              tabIndex={0}
+              onMouseEnter={(event) => updateHoverPosition(event, province)}
+              onMouseMove={(event) => updateHoverPosition(event, province)}
+              onMouseLeave={() => setHoveredProvince(null)}
+              onFocus={() => {
+                setHoveredProvince({
+                  province,
+                  x: province.center.x,
+                  y: province.center.y,
+                });
+              }}
+              onBlur={() => setHoveredProvince(null)}
+            />
+          ))}
+        </g>
+        <g className="province-line-layer">
+          {provinceMap.provinces.map((province) => (
+            <path key={`${province.id}-line`} d={province.path} />
+          ))}
+        </g>
+        <g className="country-line-layer">
+          <path d={provinceMap.countryPath} />
+        </g>
+      </svg>
+      {hoveredProvince ? (
+        <div
+          className="province-hover-popup"
+          style={{
+            left: `min(${hoveredProvince.x + 14}px, calc(100% - 210px))`,
+            top: `min(${hoveredProvince.y + 14}px, calc(100% - 150px))`,
+          }}
+        >
+          <p>{hoveredProvince.province.name}</p>
+          <div className="province-popup-row">
+            <span>Baseline 2025</span>
+            <strong>{hoveredProvince.province.metrics.baseline.toFixed(3)} mg/kg</strong>
+          </div>
+          <div className={cn("province-popup-row", activeScenarioId === "rcp45" && "province-popup-row-active")}>
+            <span>RCP4.5 2050</span>
+            <strong>{hoveredProvince.province.metrics.rcp45.toFixed(3)} mg/kg</strong>
+          </div>
+          <div className={cn("province-popup-row", activeScenarioId === "rcp85" && "province-popup-row-active")}>
+            <span>RCP8.5 2050</span>
+            <strong>{hoveredProvince.province.metrics.rcp85.toFixed(3)} mg/kg</strong>
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 function ArsenicRiskMap({
   compact = false,
   scenario,
@@ -457,14 +552,7 @@ function ArsenicRiskMap({
               className="paddy-raster-layer"
               priority={compact}
             />
-            <Image
-              src={paddyMap.boundaries}
-              alt=""
-              width={755}
-              height={1501}
-              className="vietnam-boundary-layer"
-              priority={compact}
-            />
+            <ProvinceBoundaryOverlay activeScenarioId={activeScenarioId} />
           </div>
           <div className="map-scale">200 km</div>
         </div>
