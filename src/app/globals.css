@@ -485,7 +485,7 @@
 
   .map-toolbar {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 10px;
     align-items: end;
   }
@@ -517,10 +517,6 @@
   .map-toolbar select {
     min-width: 0;
     padding-inline: 10px;
-  }
-
-  .map-search {
-    grid-column: span 1;
   }
 
   .map-layer-button {
@@ -846,7 +842,7 @@
   }
 
   .risk-map-card-compact .map-toolbar {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .risk-map-card-compact .map-layer-button {

@@ -690,24 +690,18 @@ function ArsenicRiskMap({
   onScenarioChange,
   selectedRegion,
   onRegionChange,
-  season,
-  onSeasonChange,
 }: {
   compact?: boolean;
   scenario?: ScenarioId;
   onScenarioChange?: (scenario: ScenarioId) => void;
   selectedRegion?: string;
   onRegionChange?: (region: string) => void;
-  season?: string;
-  onSeasonChange?: (season: string) => void;
 }) {
   const { locale } = useLocale();
   const [localScenario, setLocalScenario] = useState<ScenarioId>("rcp85");
   const [localRegion, setLocalRegion] = useState(riskRegions[0].name);
-  const [localSeason, setLocalSeason] = useState(paddyMap.seasons[1].id);
   const activeScenarioId = scenario ?? localScenario;
   const activeRegionName = selectedRegion ?? localRegion;
-  const activeSeason = season ?? localSeason;
   const activeScenario = scenarioResults.find((item) => item.id === activeScenarioId) ?? scenarioResults[0];
 
   const updateScenario = (nextScenario: ScenarioId) => {
@@ -726,14 +720,6 @@ function ArsenicRiskMap({
     }
   };
 
-  const updateSeason = (nextSeason: string) => {
-    if (onSeasonChange) {
-      onSeasonChange(nextSeason);
-    } else {
-      setLocalSeason(nextSeason);
-    }
-  };
-
   return (
     <div className={cn("risk-map-card paddy-map-card", compact && "risk-map-card-compact")}>
       <div className="map-toolbar">
@@ -743,26 +729,6 @@ function ArsenicRiskMap({
             {scenarioResults.map((item) => (
               <option key={item.id} value={item.id}>
                 {t(item.label, locale)}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          <span>{locale === "vi" ? "Mùa vụ" : "Crop season"}</span>
-          <select value={activeSeason} onChange={(event) => updateSeason(event.target.value)}>
-            {paddyMap.seasons.map((item) => (
-              <option key={item.id} value={item.id}>
-                {t(item.label, locale)}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="map-search">
-          <span>{locale === "vi" ? "Tìm vùng" : "Region search"}</span>
-          <select value={activeRegionName} onChange={(event) => updateRegion(event.target.value)}>
-            {riskRegions.map((item) => (
-              <option key={item.name} value={item.name}>
-                {locale === "vi" ? item.viName : item.name}
               </option>
             ))}
           </select>
@@ -856,7 +822,6 @@ function ArsenicRiskMap({
       </div>
       <div className="mt-4 flex flex-wrap items-center gap-3 text-xs font-bold text-[#5d6a62]">
         <span className="inline-flex items-center gap-2"><SlidersHorizontal size={15} /> {t(activeScenario.label, locale)}</span>
-        <span className="inline-flex items-center gap-2"><Search size={15} /> {activeRegionName}</span>
         <span>{t(brand.disclaimer, locale)}</span>
       </div>
     </div>
@@ -1062,7 +1027,6 @@ export function AppDashboardPage() {
   const { locale } = useLocale();
   const [scenario, setScenario] = useState<ScenarioId>("rcp85");
   const [region, setRegion] = useState(riskRegions[0].name);
-  const [season, setSeason] = useState(paddyMap.seasons[1].id);
   const activeScenario = scenarioResults.find((item) => item.id === scenario) ?? scenarioResults[0];
   const activeRegion = riskRegions.find((item) => item.name === region) ?? riskRegions[0];
   const activeValue = regionValue(activeRegion, scenario);
@@ -1086,20 +1050,6 @@ export function AppDashboardPage() {
                 </option>
               ))}
             </select>
-            <select className="dashboard-select" value={region} onChange={(event) => setRegion(event.target.value)}>
-              {riskRegions.map((item) => (
-                <option key={item.name} value={item.name}>
-                  {locale === "vi" ? item.viName : item.name}
-                </option>
-              ))}
-            </select>
-            <select className="dashboard-select" value={season} onChange={(event) => setSeason(event.target.value)}>
-              {paddyMap.seasons.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {t(item.label, locale)}
-                </option>
-              ))}
-            </select>
           </div>
         </div>
 
@@ -1117,8 +1067,6 @@ export function AppDashboardPage() {
               onScenarioChange={setScenario}
               selectedRegion={region}
               onRegionChange={setRegion}
-              season={season}
-              onSeasonChange={setSeason}
             />
           </div>
 

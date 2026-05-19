@@ -167,10 +167,6 @@ export const paddyMap = {
   bbox: "102.0-117.5E, 5.0-24.5N",
   cropWindow: "3451x4342+9326+6618",
   threshold: "0.20 mg/kg",
-  seasons: [
-    { id: "winter-spring", label: { vi: "Đông-Xuân", en: "Winter-Spring" } },
-    { id: "summer-autumn", label: { vi: "Hè-Thu", en: "Summer-Autumn" } },
-  ],
   legend: [
     { label: { vi: "Thấp", en: "Low" }, range: "<0.15", color: "#5ea95a" },
     { label: { vi: "Trung bình", en: "Moderate" }, range: "0.15-0.20", color: "#e0c24a" },
