@@ -178,6 +178,11 @@ export const paddyMap = {
   ],
 };
 
+export const modelFigures = {
+  arsenicTrend: publicAsset("/images/grain/figure-5-arsenic-mean.png"),
+  shapSummary: publicAsset("/images/grain/figure-4-shap-summary.jpeg"),
+};
+
 export const modelConfiguration = [
   { label: { vi: "Mẫu ban đầu", en: "Raw samples" }, value: "1,327" },
   { label: { vi: "Mẫu giữ lại", en: "Retained samples" }, value: "946" },

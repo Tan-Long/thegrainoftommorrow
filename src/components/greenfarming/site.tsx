@@ -34,9 +34,9 @@ import {
   heroStats,
   homeHero,
   modelConfiguration,
+  modelFigures,
   navItems,
   paddyMap,
-  predictorImportance,
   projectCards,
   requiredMetrics,
   riskRegions,
@@ -63,13 +63,6 @@ type LocaleContextValue = {
 type ScenarioId = (typeof scenarioResults)[number]["id"];
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
-
-const scenarioSeries = [
-  { year: "2025", baseline: 0.21, rcp45: 0.21, rcp85: 0.21 },
-  { year: "2030", baseline: 0.219, rcp45: 0.226, rcp85: 0.235 },
-  { year: "2040", baseline: 0.235, rcp45: 0.249, rcp85: 0.275 },
-  { year: "2050", baseline: 0.246, rcp45: 0.268, rcp85: 0.304 },
-];
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("vi");
@@ -538,37 +531,42 @@ function ArsenicRiskMap({
 
 function LineChart() {
   const { locale } = useLocale();
-  const points = scenarioSeries.map((item, index) => `${60 + index * 132},${250 - item.rcp85 * 520}`);
-  const pointsRcp45 = scenarioSeries.map((item, index) => `${60 + index * 132},${250 - item.rcp45 * 520}`);
 
   return (
     <article className="science-card">
       <div className="flex items-center justify-between gap-4">
         <h3 className="text-2xl font-extrabold text-[#143d2a]">
-          {locale === "vi" ? "Đường xu hướng arsenic 2025-2050" : "Arsenic trend 2025-2050"}
+          {locale === "vi"
+            ? "Figure 5. Xu hướng arsenic 2017-2050"
+            : "Figure 5. Arsenic trend 2017-2050"}
         </h3>
         <TrendingUp className="text-[#d9a21b]" />
       </div>
-      <svg className="mt-6 h-[320px] w-full" viewBox="0 0 500 320" role="img">
-        <title>{locale === "vi" ? "Biểu đồ kịch bản arsenic" : "Arsenic scenario chart"}</title>
-        {[0, 1, 2, 3, 4].map((line) => (
-          <line key={line} x1="50" x2="470" y1={50 + line * 52} y2={50 + line * 52} className="chart-grid-line" />
-        ))}
-        <polyline className="chart-line-rice" points={pointsRcp45.join(" ")} />
-        <polyline className="chart-line-risk" points={points.join(" ")} />
-        {scenarioSeries.map((item, index) => (
-          <g key={item.year}>
-            <circle cx={60 + index * 132} cy={250 - item.rcp85 * 520} r="5" className="chart-dot-risk" />
-            <text x={42 + index * 132} y="292" className="chart-axis">
-              {item.year}
-            </text>
-          </g>
-        ))}
-      </svg>
-      <div className="flex flex-wrap gap-4 text-sm font-bold">
-        <span className="legend-risk">{locale === "vi" ? "RCP8.5" : "RCP8.5"}</span>
-        <span className="legend-rice">{locale === "vi" ? "RCP4.5" : "RCP4.5"}</span>
+      <div className="doc-figure-frame mt-6">
+        <Image
+          src={modelFigures.arsenicTrend}
+          alt={
+            locale === "vi"
+            ? "Panel mean grain arsenic trong tài liệu: nồng độ arsenic lịch sử và dự báo theo RCP4.5, RCP8.5"
+            : "Mean grain arsenic panel from the paper: historical and projected arsenic concentrations under RCP4.5 and RCP8.5"
+          }
+          width={1035}
+          height={805}
+          className="doc-figure-image"
+          loading="eager"
+        />
       </div>
+      <div className="doc-trend-legend">
+        <span className="legend-actual">{locale === "vi" ? "Actual Data (2017-2025)" : "Actual Data (2017-2025)"}</span>
+        <span className="legend-rcp45">RCP 4.5 Scenario</span>
+        <span className="legend-rcp85">RCP 8.5 Scenario</span>
+        <span className="legend-standard">WHO/FAO Standard</span>
+      </div>
+      <p className="mt-4 text-sm font-semibold leading-[1.55] text-[#5d6a62]">
+        {locale === "vi"
+          ? "Chỉ hiển thị panel nồng độ trung bình từ tài liệu, với ngưỡng WHO/FAO 0.2 mg kg-1."
+          : "Only the mean-concentration panel from the document is shown, with the WHO/FAO 0.2 mg kg-1 threshold."}
+      </p>
     </article>
   );
 }
@@ -580,27 +578,30 @@ function PredictorChart() {
     <article className="science-card">
       <div className="flex items-center justify-between gap-4">
         <h3 className="text-2xl font-extrabold text-[#143d2a]">
-          {locale === "vi" ? "Yếu tố ảnh hưởng dạng SHAP mock" : "Mock SHAP-style predictor influence"}
+          {locale === "vi"
+            ? "Figure 4. SHAP model interpretation"
+            : "Figure 4. SHAP model interpretation"}
         </h3>
         <BarChart3 className="text-[#1f6f43]" />
       </div>
-      <div className="mt-8 grid gap-4">
-        {predictorImportance.map((item) => (
-          <div key={item.score}>
-            <div className="mb-2 flex justify-between text-sm font-bold">
-              <span>{t(item.name, locale)}</span>
-              <span>{item.score}%</span>
-            </div>
-            <div className="importance-track">
-              <span className={cn("importance-fill", `importance-${item.score}`)} />
-            </div>
-          </div>
-        ))}
+      <div className="doc-figure-frame doc-figure-frame-shap mt-6">
+        <Image
+          src={modelFigures.shapSummary}
+          alt={
+            locale === "vi"
+              ? "Figure 4 trong tài liệu: biểu đồ SHAP summary cho các biến ảnh hưởng đến arsenic trong gạo"
+              : "Figure 4 from the paper: SHAP summary plot for drivers of grain arsenic"
+          }
+          width={614}
+          height={709}
+          className="doc-figure-image"
+          loading="eager"
+        />
       </div>
-      <p className="mt-6 text-sm font-semibold leading-[1.55] text-[#5d6a62]">
+      <p className="mt-4 text-sm font-semibold leading-[1.55] text-[#5d6a62]">
         {locale === "vi"
-          ? "Bảng này minh họa hướng giải thích mô hình. Khi triển khai thật, giá trị SHAP sẽ được tính theo version model và dữ liệu mới."
-          : "This panel illustrates the model explanation direction. In production, SHAP values would be computed per model version and new data."}
+          ? "Hình giữ nguyên từ tài liệu: Straw.As, Soil.Al, CO2_sqrt, Soil.S và Soil.Mn là các biến nổi bật trong SHAP summary."
+          : "Figure reproduced from the document: Straw.As, Soil.Al, CO2_sqrt, Soil.S and Soil.Mn stand out in the SHAP summary."}
       </p>
     </article>
   );

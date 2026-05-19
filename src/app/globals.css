@@ -516,6 +516,68 @@
     stroke-width: 3;
   }
 
+  .doc-figure-frame {
+    overflow: hidden;
+    border: 1px solid #e8dfc8;
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  .doc-figure-frame-shap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .doc-figure-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .doc-figure-frame-shap .doc-figure-image {
+    max-width: 460px;
+  }
+
+  .doc-trend-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 14px;
+    color: #26352b;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .doc-trend-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .doc-trend-legend span::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 4px;
+    border-radius: 9999px;
+  }
+
+  .legend-actual::before {
+    background: #2fc878;
+  }
+
+  .legend-rcp45::before {
+    background: #3498db;
+  }
+
+  .legend-rcp85::before {
+    background: #f04c3e;
+  }
+
+  .legend-standard::before {
+    background: repeating-linear-gradient(90deg, #cf3f32 0 7px, transparent 7px 11px);
+  }
+
   .chart-axis {
     fill: #6c746d;
     font-size: 13px;
