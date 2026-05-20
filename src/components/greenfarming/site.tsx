@@ -2335,6 +2335,7 @@ function ArsenicRiskMap({
   const [layersOpen, setLayersOpen] = useState(false);
   const layersMenuRef = useRef<HTMLDivElement | null>(null);
   const [activeViewMode, setActiveViewMode] = useState<"rice" | "warning">("rice");
+  const effectiveViewMode = viewMode ?? activeViewMode;
 
   const selectViewMode = (nextViewMode: "rice" | "warning") => {
     if (onViewModeChange) {
@@ -2458,7 +2459,7 @@ function ArsenicRiskMap({
             type="button"
             className="map-layer-button"
             onClick={() => setLayersOpen((value) => !value)}
-            aria-pressed={activeViewMode === "warning"}
+            aria-pressed={effectiveViewMode === "warning"}
             aria-expanded={layersOpen}
             aria-haspopup="menu"
           >
@@ -2470,8 +2471,8 @@ function ArsenicRiskMap({
               <button
                 type="button"
                 role="menuitemradio"
-                aria-checked={activeViewMode === "rice"}
-                className={cn("map-layer-option", activeViewMode === "rice" && "map-layer-option-active")}
+                aria-checked={effectiveViewMode === "rice"}
+                className={cn("map-layer-option", effectiveViewMode === "rice" && "map-layer-option-active")}
                 onClick={() => selectViewMode("rice")}
               >
                 <span>
@@ -2482,8 +2483,8 @@ function ArsenicRiskMap({
               <button
                 type="button"
                 role="menuitemradio"
-                aria-checked={activeViewMode === "warning"}
-                className={cn("map-layer-option", activeViewMode === "warning" && "map-layer-option-active")}
+                aria-checked={effectiveViewMode === "warning"}
+                className={cn("map-layer-option", effectiveViewMode === "warning" && "map-layer-option-active")}
                 onClick={() => selectViewMode("warning")}
               >
                 <span>
@@ -2541,10 +2542,10 @@ function ArsenicRiskMap({
               height={1177}
               className="vietnam-basemap-layer"
             />
-            {activeViewMode === "warning" ? (
+            {effectiveViewMode === "warning" ? (
               <ProvinceBoundaryOverlay activeScenarioId={activeScenarioId} showPalette />
             ) : null}
-            {activeViewMode === "rice" ? (
+            {effectiveViewMode === "rice" ? (
               <>
                 <PaddyRasterCanvas scenarioId={activeScenarioId} width={900} height={1177} className="paddy-raster-layer" />
                 <ProvinceBoundaryOverlay activeScenarioId={activeScenarioId} showPalette={false} />
@@ -2593,7 +2594,7 @@ function ArsenicRiskMap({
             <p className="text-xs font-black uppercase text-[#7a6a42]">
               {locale === "vi" ? "Legend mg/kg" : "Legend mg/kg"}
             </p>
-            {activeViewMode === "warning"
+            {effectiveViewMode === "warning"
               ? paddyMap.legend.map((item, index) => (
                   <div key={item.range} className="legend-row">
                     <span className={cn("legend-swatch", `legend-swatch-${index}`)} style={{ background: item.color }} />
