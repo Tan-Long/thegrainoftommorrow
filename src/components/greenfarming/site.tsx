@@ -3,7 +3,6 @@
 import {
   AlertTriangle,
   ArrowRight,
-  BarChart3,
   Bot,
   CheckCircle2,
   ChevronDown,
@@ -12,6 +11,8 @@ import {
   Layers3,
   LocateFixed,
   Menu,
+  MousePointer2,
+  MousePointerClick,
   Search,
   Send,
   ShieldCheck,
@@ -37,23 +38,31 @@ import {
   heroStats,
   homeHero,
   modelConfiguration,
-  modelFigures,
   navItems,
+  onboardingTour,
   paddyMap,
+  paddyMapProjection,
+  paddyMapSamples,
+  projectContact,
   projectCards,
   requiredMetrics,
   riskRegions,
   scenarioResults,
+  scenarioTrendSeries,
   text,
   uncertaintyBands,
 } from "@/lib/greenfarming-data";
+import { basePath } from "@/lib/public-path";
 import { cn } from "@/lib/utils";
 import type { ActionLevel, AudienceRole } from "@/lib/chat-assistant";
 import type { FeedbackField, Locale, LocalizedText } from "@/types/greenfarming";
 import {
   createContext,
+  type CSSProperties,
   type MouseEvent,
+  type PointerEvent as ReactPointerEvent,
   type ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -64,6 +73,30 @@ import {
 type LocaleContextValue = {
   locale: Locale;
   setLocale: (locale: Locale) => void;
+};
+
+type OnboardingTourAction = "scroll-dashboard" | "show-scenario-map" | "scroll-technical-chart" | "open-assistant";
+
+type OnboardingTourStep = {
+  id: string;
+  target: string;
+  fallbackTarget?: string;
+  action?: OnboardingTourAction;
+  title: LocalizedText;
+  body: LocalizedText;
+  mobileBody?: LocalizedText;
+};
+
+type OnboardingTourContextValue = {
+  startTour: () => void;
+  startRequestId: number;
+};
+
+type OnboardingTargetRect = {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
 };
 
 type AssistantGrounding = {
@@ -98,6 +131,8 @@ type ChatMessage = {
   id: string;
   from: "user" | "assistant";
   text: string;
+  fullText?: string;
+  isTyping?: boolean;
   citations: ChatCitation[];
   suggestedQuestions: string[];
   nextSteps: string[];
@@ -137,6 +172,326 @@ type HoveredProvince = {
   x: number;
   y: number;
 };
+
+type PaddyMapSample = (typeof paddyMapSamples)[keyof typeof paddyMapSamples][number];
+
+type ProjectedPaddySample = {
+  x: number;
+  y: number;
+  value: number;
+};
+
+type PaddySampleGrid = {
+  buckets: Map<string, ProjectedPaddySample[]>;
+  cellSize: number;
+  samples: ProjectedPaddySample[];
+};
+
+type PaddyMaskPixels = {
+  indexes: Uint32Array;
+  alphas: Uint8ClampedArray;
+};
+
+const paddyMaskPixelsCache = new Map<string, Promise<PaddyMaskPixels>>();
+let paddyMaskImagePromise: Promise<HTMLImageElement> | null = null;
+
+const paddyRasterColors = {
+  green: [94, 169, 90] as const,
+  yellow: [224, 194, 74] as const,
+  red: [216, 83, 43] as const,
+};
+
+const paddyInterpolationNeighborCount = 120;
+const paddyInterpolationMaxRing = 16;
+const paddyMercatorTop = mercatorY(paddyMapProjection.bbox.latMax);
+const paddyMercatorBottom = mercatorY(paddyMapProjection.bbox.latMin);
+
+function mercatorY(latitude: number) {
+  const radians = (Math.max(-85.05112878, Math.min(85.05112878, latitude)) * Math.PI) / 180;
+  return Math.log(Math.tan(Math.PI / 4 + radians / 2));
+}
+
+function inverseMercatorY(value: number) {
+  return ((Math.atan(Math.exp(value)) * 2 - Math.PI / 2) * 180) / Math.PI;
+}
+
+function projectPaddySample(sample: PaddyMapSample, width: number, height: number): ProjectedPaddySample {
+  return {
+    x:
+      ((sample.longitude - paddyMapProjection.bbox.lonMin) /
+        (paddyMapProjection.bbox.lonMax - paddyMapProjection.bbox.lonMin)) *
+      (width - 1),
+    y:
+      ((paddyMercatorTop - mercatorY(sample.latitude)) / (paddyMercatorTop - paddyMercatorBottom)) *
+      (height - 1),
+    value: sample.value,
+  };
+}
+
+function loadPaddyMaskImage(src: string) {
+  if (paddyMaskImagePromise) {
+    return paddyMaskImagePromise;
+  }
+
+  paddyMaskImagePromise = new Promise((resolve, reject) => {
+    const image = new window.Image();
+    image.decoding = "async";
+    image.onload = () => resolve(image);
+    image.onerror = () => reject(new Error(`Unable to load paddy mask: ${src}`));
+    image.src = src;
+  });
+
+  return paddyMaskImagePromise;
+}
+
+function getPaddyMaskPixels(src: string, width: number, height: number) {
+  const cacheKey = `${src}:${width}x${height}`;
+  const cached = paddyMaskPixelsCache.get(cacheKey);
+
+  if (cached) {
+    return cached;
+  }
+
+  const promise = loadPaddyMaskImage(src).then((image) => {
+    const maskWidth = image.naturalWidth || image.width;
+    const maskHeight = image.naturalHeight || image.height;
+    const maskCanvas = document.createElement("canvas");
+    const maskContext = maskCanvas.getContext("2d", { willReadFrequently: true });
+
+    if (!maskContext) {
+      return { indexes: new Uint32Array(), alphas: new Uint8ClampedArray() };
+    }
+
+    maskCanvas.width = maskWidth;
+    maskCanvas.height = maskHeight;
+    maskContext.drawImage(image, 0, 0, maskWidth, maskHeight);
+
+    const maskData = maskContext.getImageData(0, 0, maskWidth, maskHeight).data;
+    const maskXByColumn = new Int32Array(width);
+    const maskYByRow = new Int32Array(height);
+    const indexes: number[] = [];
+    const alphas: number[] = [];
+
+    for (let x = 0; x < width; x += 1) {
+      const longitude =
+        paddyMapProjection.bbox.lonMin +
+        (x / Math.max(1, width - 1)) * (paddyMapProjection.bbox.lonMax - paddyMapProjection.bbox.lonMin);
+      maskXByColumn[x] = Math.max(
+        0,
+        Math.min(
+          maskWidth - 1,
+          Math.round(
+            ((longitude - paddyMapProjection.bbox.lonMin) /
+              (paddyMapProjection.bbox.lonMax - paddyMapProjection.bbox.lonMin)) *
+              (maskWidth - 1),
+          ),
+        ),
+      );
+    }
+
+    for (let y = 0; y < height; y += 1) {
+      const projectedY =
+        paddyMercatorTop -
+        (y / Math.max(1, height - 1)) * (paddyMercatorTop - paddyMercatorBottom);
+      const latitude = inverseMercatorY(projectedY);
+      maskYByRow[y] = Math.max(
+        0,
+        Math.min(
+          maskHeight - 1,
+          Math.round(
+            ((paddyMapProjection.bbox.latMax - latitude) /
+              (paddyMapProjection.bbox.latMax - paddyMapProjection.bbox.latMin)) *
+              (maskHeight - 1),
+          ),
+        ),
+      );
+    }
+
+    for (let y = 0; y < height; y += 1) {
+      const canvasRowOffset = y * width;
+      const maskRowOffset = maskYByRow[y] * maskWidth * 4;
+
+      for (let x = 0; x < width; x += 1) {
+        const alpha = maskData[maskRowOffset + maskXByColumn[x] * 4 + 3];
+
+        if (alpha === 0) {
+          continue;
+        }
+
+        indexes.push(canvasRowOffset + x);
+        alphas.push(alpha);
+      }
+    }
+
+    return {
+      indexes: Uint32Array.from(indexes),
+      alphas: Uint8ClampedArray.from(alphas),
+    };
+  });
+
+  paddyMaskPixelsCache.set(cacheKey, promise);
+  return promise;
+}
+
+function buildPaddySampleGrid(samples: ProjectedPaddySample[], width: number): PaddySampleGrid {
+  const cellSize = Math.max(64, Math.round(width / 15));
+  const buckets = new Map<string, ProjectedPaddySample[]>();
+
+  for (const sample of samples) {
+    const key = `${Math.floor(sample.x / cellSize)},${Math.floor(sample.y / cellSize)}`;
+    const bucket = buckets.get(key);
+
+    if (bucket) {
+      bucket.push(sample);
+    } else {
+      buckets.set(key, [sample]);
+    }
+  }
+
+  return { buckets, cellSize, samples };
+}
+
+function nearbyPaddySamples(x: number, y: number, sampleGrid: PaddySampleGrid) {
+  const gridX = Math.floor(x / sampleGrid.cellSize);
+  const gridY = Math.floor(y / sampleGrid.cellSize);
+  const candidates: ProjectedPaddySample[] = [];
+
+  for (let ring = 0; ring <= paddyInterpolationMaxRing; ring += 1) {
+    for (let cellY = gridY - ring; cellY <= gridY + ring; cellY += 1) {
+      for (let cellX = gridX - ring; cellX <= gridX + ring; cellX += 1) {
+        if (ring > 0 && gridX - ring < cellX && cellX < gridX + ring && gridY - ring < cellY && cellY < gridY + ring) {
+          continue;
+        }
+
+        const bucket = sampleGrid.buckets.get(`${cellX},${cellY}`);
+
+        if (bucket) {
+          candidates.push(...bucket);
+        }
+      }
+    }
+
+    if (candidates.length >= paddyInterpolationNeighborCount) {
+      break;
+    }
+  }
+
+  const selected = candidates.length > 0 ? candidates : sampleGrid.samples;
+  return [...selected]
+    .sort((left, right) => (x - left.x) ** 2 + (y - left.y) ** 2 - ((x - right.x) ** 2 + (y - right.y) ** 2))
+    .slice(0, paddyInterpolationNeighborCount);
+}
+
+function interpolatePaddyValue(x: number, y: number, sampleGrid: PaddySampleGrid) {
+  let weightedSum = 0;
+  let weightTotal = 0;
+
+  for (const sample of nearbyPaddySamples(x, y, sampleGrid)) {
+    const distanceSq = (x - sample.x) ** 2 + (y - sample.y) ** 2;
+
+    if (distanceSq < 0.0001) {
+      return sample.value;
+    }
+
+    const weight = 1 / Math.max(1, distanceSq ** 0.65);
+    weightedSum += weight * sample.value;
+    weightTotal += weight;
+  }
+
+  return weightedSum / weightTotal;
+}
+
+function paddyColorForValue(value: number) {
+  const mixColor = (from: readonly [number, number, number], to: readonly [number, number, number], ratio: number) => {
+    const clampedRatio = Math.max(0, Math.min(1, ratio));
+
+    return [
+      Math.round(from[0] + (to[0] - from[0]) * clampedRatio),
+      Math.round(from[1] + (to[1] - from[1]) * clampedRatio),
+      Math.round(from[2] + (to[2] - from[2]) * clampedRatio),
+    ] as const;
+  };
+
+  if (value <= 0.2) {
+    return mixColor([69, 143, 82], paddyRasterColors.green, value / 0.2);
+  }
+
+  if (value <= 0.35) {
+    return mixColor(paddyRasterColors.green, paddyRasterColors.yellow, (value - 0.2) / 0.15);
+  }
+
+  return mixColor(paddyRasterColors.yellow, paddyRasterColors.red, (value - 0.35) / 0.2);
+}
+
+function PaddyRasterCanvas({
+  scenarioId,
+  className,
+  width = paddyMapProjection.width,
+  height = paddyMapProjection.height,
+}: {
+  scenarioId: ScenarioId;
+  className?: string;
+  width?: number;
+  height?: number;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d", { willReadFrequently: true });
+
+    if (!canvas || !context) {
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    context.clearRect(0, 0, width, height);
+
+    getPaddyMaskPixels(paddyMap.mask, width, height)
+      .then((maskPixels) => {
+        if (cancelled) {
+          return;
+        }
+
+        const sampleSets: Record<string, PaddyMapSample[]> = paddyMapSamples;
+        const rawSamples = sampleSets[scenarioId] ?? paddyMapSamples.baseline;
+        const sampleGrid = buildPaddySampleGrid(
+          rawSamples.map((sample) => projectPaddySample(sample, width, height)),
+          width,
+        );
+        const imageData = context.createImageData(width, height);
+
+        for (let index = 0; index < maskPixels.indexes.length; index += 1) {
+          const pixelIndex = maskPixels.indexes[index];
+          const x = pixelIndex % width;
+          const y = Math.floor(pixelIndex / width);
+          const value = interpolatePaddyValue(x, y, sampleGrid);
+          const [red, green, blue] = paddyColorForValue(value);
+          const offset = pixelIndex * 4;
+
+          imageData.data[offset] = red;
+          imageData.data[offset + 1] = green;
+          imageData.data[offset + 2] = blue;
+          imageData.data[offset + 3] = Math.min(214, Math.max(126, maskPixels.alphas[index]));
+        }
+
+        context.putImageData(imageData, 0, 0);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          context.clearRect(0, 0, width, height);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [height, scenarioId, width]);
+
+  return <canvas ref={canvasRef} width={width} height={height} className={className} aria-hidden="true" />;
+}
 
 const assistantRoles: AudienceRole[] = ["scientist", "policymaker", "farmer", "local"];
 
@@ -214,6 +569,7 @@ const actionLevelLabels: Record<ActionLevel, LocalizedText> = {
 };
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
+const OnboardingTourContext = createContext<OnboardingTourContextValue | null>(null);
 const defaultAssistantGrounding: AssistantGrounding = {
   scenarioId: "baseline",
   regionName: riskRegions[0].name,
@@ -241,6 +597,24 @@ function useLocale() {
   const context = useContext(LocaleContext);
   if (!context) {
     throw new Error("useLocale must be used inside LanguageProvider");
+  }
+  return context;
+}
+
+function OnboardingTourProvider({ children }: { children: ReactNode }) {
+  const [startRequestId, setStartRequestId] = useState(0);
+  const startTour = useCallback(() => {
+    setStartRequestId((value) => value + 1);
+  }, []);
+  const value = useMemo(() => ({ startTour, startRequestId }), [startTour, startRequestId]);
+
+  return <OnboardingTourContext.Provider value={value}>{children}</OnboardingTourContext.Provider>;
+}
+
+function useOnboardingTour() {
+  const context = useContext(OnboardingTourContext);
+  if (!context) {
+    throw new Error("useOnboardingTour must be used inside OnboardingTourProvider");
   }
   return context;
 }
@@ -410,32 +784,530 @@ function AssistantRoleIcon({ role }: { role: AudienceRole }) {
   return <LocateFixed size={15} />;
 }
 
+const onboardingSteps = onboardingTour.steps as readonly OnboardingTourStep[];
+
+function focusableElements(container: HTMLElement) {
+  const selectors = [
+    "a[href]",
+    "button:not([disabled])",
+    "textarea:not([disabled])",
+    "input:not([disabled])",
+    "select:not([disabled])",
+    "[tabindex]:not([tabindex='-1'])",
+  ].join(",");
+
+  return Array.from(container.querySelectorAll<HTMLElement>(selectors)).filter((element) => {
+    const style = window.getComputedStyle(element);
+    return style.display !== "none" && style.visibility !== "hidden";
+  });
+}
+
+function OnboardingTargetCue({
+  stepId,
+  locale,
+  isMobile,
+  targetRect,
+  viewport,
+}: {
+  stepId: string;
+  locale: Locale;
+  isMobile: boolean;
+  targetRect: OnboardingTargetRect | null;
+  viewport: { width: number; height: number };
+}) {
+  if (!targetRect) {
+    return null;
+  }
+
+  if (stepId === "scenario-chooser") {
+    const cueStyle = {
+      "--onboarding-cue-top": `${targetRect.top + Math.min(targetRect.height - 46, Math.max(48, targetRect.height * (isMobile ? 0.62 : 0.58)))}px`,
+      "--onboarding-cue-left": `${targetRect.left + Math.min(targetRect.width - 132, Math.max(42, targetRect.width * 0.58))}px`,
+    } as CSSProperties;
+
+    return (
+      <div className="onboarding-target-cue onboarding-target-cue-scenario" style={cueStyle} aria-hidden="true">
+        <span className="onboarding-target-pointer onboarding-target-pointer-click">
+          <MousePointerClick size={26} />
+        </span>
+        <span>{isMobile ? (locale === "vi" ? "Chạm kịch bản" : "Tap scenario") : locale === "vi" ? "Click kịch bản" : "Click scenario"}</span>
+      </div>
+    );
+  }
+
+  if (stepId === "province-values") {
+    const cueStyle = {
+      "--onboarding-cue-top": `${targetRect.top + Math.min(targetRect.height - 92, Math.max(64, targetRect.height * (isMobile ? 0.34 : 0.42)))}px`,
+      "--onboarding-cue-left": `${targetRect.left + Math.min(targetRect.width - 120, Math.max(48, targetRect.width * 0.42))}px`,
+    } as CSSProperties;
+
+    return (
+      <div className="onboarding-target-cue onboarding-target-cue-map" style={cueStyle} aria-hidden="true">
+        <span className="onboarding-target-pointer onboarding-target-pointer-hover">
+          <MousePointer2 size={28} />
+        </span>
+        <span>{isMobile ? (locale === "vi" ? "Chạm vào tỉnh" : "Tap province") : locale === "vi" ? "Rê chuột trên bản đồ" : "Hover the map"}</span>
+        <strong>0.284 mg/kg</strong>
+      </div>
+    );
+  }
+
+  if (stepId === "technical-chart" || stepId === "scenario-values") {
+    const maxLeft = Math.max(14, viewport.width - (isMobile ? 158 : 236));
+    const cueStyle = {
+      "--onboarding-cue-top": `${Math.max(14, targetRect.top - (isMobile ? 52 : 58))}px`,
+      "--onboarding-cue-left": `${Math.min(maxLeft, Math.max(14, targetRect.left + 16))}px`,
+    } as CSSProperties;
+
+    return (
+      <div className="onboarding-target-cue onboarding-target-cue-chart" style={cueStyle} aria-hidden="true">
+        <span className="onboarding-target-pointer onboarding-target-pointer-hover">
+          <MousePointer2 size={28} />
+        </span>
+        <span>{isMobile ? (locale === "vi" ? "Chạm điểm" : "Tap point") : locale === "vi" ? "Rê chuột điểm dữ liệu" : "Hover data point"}</span>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+function OnboardingTour() {
+  const pathname = usePathname();
+  const { locale } = useLocale();
+  const { startRequestId } = useOnboardingTour();
+  const [active, setActive] = useState(false);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [targetRect, setTargetRect] = useState<OnboardingTargetRect | null>(null);
+  const [viewport, setViewport] = useState({ width: 0, height: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  const autoStartCheckedRef = useRef(false);
+  const currentStep = onboardingSteps[stepIndex] ?? onboardingSteps[0];
+  const isLastStep = stepIndex === onboardingSteps.length - 1;
+  const isChartStep = currentStep.id === "technical-chart" || currentStep.id === "scenario-values";
+
+  const beginTour = useCallback(() => {
+    previousFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setStepIndex(0);
+    setActive(true);
+  }, []);
+
+  const completeTour = useCallback(() => {
+    try {
+      window.localStorage.setItem(onboardingTour.storageKey, "true");
+    } catch {
+      // Browsers can deny storage; closing the active guide is still useful.
+    }
+
+    setActive(false);
+    setStepIndex(0);
+    window.setTimeout(() => previousFocusRef.current?.focus({ preventScroll: true }), 0);
+  }, []);
+
+  const updateViewport = useCallback(() => {
+    const nextViewport = { width: window.innerWidth, height: window.innerHeight };
+    setViewport((current) =>
+      current.width === nextViewport.width && current.height === nextViewport.height ? current : nextViewport,
+    );
+    setIsMobile(window.matchMedia("(max-width: 639px)").matches);
+  }, []);
+
+  const findTarget = useCallback((step: OnboardingTourStep) => {
+    const target = document.querySelector<Element>(`[data-onboarding-target="${step.target}"]`);
+    if (target && target.getClientRects().length > 0) {
+      return target;
+    }
+
+    if (step.fallbackTarget) {
+      const fallback = document.querySelector<Element>(`[data-onboarding-target="${step.fallbackTarget}"]`);
+      if (fallback && fallback.getClientRects().length > 0) {
+        return fallback;
+      }
+    }
+
+    return null;
+  }, []);
+
+  const measureTarget = useCallback(() => {
+    updateViewport();
+    const target = findTarget(currentStep);
+
+    if (!target) {
+      setTargetRect(null);
+      return;
+    }
+
+    const rect = target.getBoundingClientRect();
+    const padding = window.matchMedia("(max-width: 639px)").matches ? 6 : 8;
+    const top = Math.max(6, rect.top - padding);
+    const left = Math.max(6, rect.left - padding);
+    setTargetRect({
+      top,
+      left,
+      width: Math.min(window.innerWidth - left - 6, rect.width + padding * 2),
+      height: Math.min(window.innerHeight - top - 6, rect.height + padding * 2),
+    });
+  }, [currentStep, findTarget, updateViewport]);
+
+  useEffect(() => {
+    if (startRequestId > 0) {
+      const timer = window.setTimeout(beginTour, 0);
+      return () => window.clearTimeout(timer);
+    }
+  }, [beginTour, startRequestId]);
+
+  useEffect(() => {
+    if (pathname !== "/" || autoStartCheckedRef.current) {
+      return;
+    }
+
+    autoStartCheckedRef.current = true;
+
+    try {
+      const manualStartPending = window.sessionStorage.getItem(onboardingTour.pendingManualStartKey) === "true";
+      if (manualStartPending) {
+        window.sessionStorage.removeItem(onboardingTour.pendingManualStartKey);
+      }
+
+      const shouldStart = manualStartPending || window.localStorage.getItem(onboardingTour.storageKey) !== "true";
+      if (!shouldStart) {
+        return;
+      }
+    } catch {
+      // Treat storage failures like a first visit.
+    }
+
+    const timer = window.setTimeout(beginTour, 0);
+    return () => window.clearTimeout(timer);
+  }, [beginTour, pathname]);
+
+  useEffect(() => {
+    if (!active) {
+      return;
+    }
+
+    if (currentStep.action === "open-assistant") {
+      window.dispatchEvent(new Event(onboardingTour.openAssistantEvent));
+    }
+
+    const target = findTarget(currentStep);
+    const scrollTarget =
+      currentStep.action === "scroll-dashboard"
+        ? document.getElementById("dashboard")
+        : currentStep.action === "show-scenario-map"
+          ? document.querySelector<HTMLElement>('[data-onboarding-target="risk-map"]') ?? target
+        : currentStep.action === "scroll-technical-chart"
+          ? findTarget(currentStep)
+          : target;
+
+    if (currentStep.action === "scroll-dashboard" && window.location.hash !== "#dashboard") {
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#dashboard`);
+    }
+
+    const scrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+
+    if (isChartStep) {
+      const chartCard = document.querySelector<Element>('[data-onboarding-target="technical-chart"]');
+      const desiredTop = window.matchMedia("(max-width: 639px)").matches ? 54 : 310;
+      const chartTop = chartCard?.getBoundingClientRect().top ?? scrollTarget?.getBoundingClientRect().top;
+
+      if (typeof chartTop === "number") {
+        window.scrollTo({
+          top: Math.max(0, window.scrollY + chartTop - desiredTop),
+          behavior: scrollBehavior,
+        });
+      }
+    } else {
+      scrollTarget?.scrollIntoView({
+        behavior: scrollBehavior,
+        block: currentStep.action === "scroll-dashboard" || currentStep.action === "show-scenario-map" ? "start" : "center",
+        inline: "nearest",
+      });
+    }
+
+    const timers = [40, 220, 520, 900].map((delay) => window.setTimeout(measureTarget, delay));
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
+  }, [active, currentStep, findTarget, isChartStep, measureTarget]);
+
+  useEffect(() => {
+    if (!active) {
+      return;
+    }
+
+    const isInsideTourPanel = (target: EventTarget | null) =>
+      target instanceof Element && Boolean(target.closest(".onboarding-panel"));
+    const preventBackgroundScroll = (event: WheelEvent | TouchEvent) => {
+      if (isInsideTourPanel(event.target)) {
+        return;
+      }
+
+      event.preventDefault();
+    };
+    const preventScrollKeys = (event: KeyboardEvent) => {
+      const target = event.target;
+      const isEditableTarget =
+        target instanceof HTMLElement &&
+        (target.isContentEditable || ["INPUT", "SELECT", "TEXTAREA", "BUTTON", "A"].includes(target.tagName));
+      const scrollKeys = new Set(["ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp", "End", "Home", "PageDown", "PageUp", " "]);
+
+      if (!scrollKeys.has(event.key) || isEditableTarget || isInsideTourPanel(target)) {
+        return;
+      }
+
+      event.preventDefault();
+    };
+
+    document.documentElement.classList.add("onboarding-scroll-lock");
+    document.body.classList.add("onboarding-scroll-lock");
+    document.addEventListener("wheel", preventBackgroundScroll, { passive: false });
+    document.addEventListener("touchmove", preventBackgroundScroll, { passive: false });
+    document.addEventListener("keydown", preventScrollKeys, true);
+
+    return () => {
+      document.documentElement.classList.remove("onboarding-scroll-lock");
+      document.body.classList.remove("onboarding-scroll-lock");
+      document.removeEventListener("wheel", preventBackgroundScroll);
+      document.removeEventListener("touchmove", preventBackgroundScroll);
+      document.removeEventListener("keydown", preventScrollKeys, true);
+    };
+  }, [active]);
+
+  useEffect(() => {
+    if (!active) {
+      return;
+    }
+
+    const handleViewportChange = () => measureTarget();
+    const initialMeasureTimer = window.setTimeout(measureTarget, 0);
+    window.addEventListener("resize", handleViewportChange);
+    window.addEventListener("scroll", handleViewportChange, true);
+
+    return () => {
+      window.clearTimeout(initialMeasureTimer);
+      window.removeEventListener("resize", handleViewportChange);
+      window.removeEventListener("scroll", handleViewportChange, true);
+    };
+  }, [active, measureTarget]);
+
+  useEffect(() => {
+    if (!active) {
+      return;
+    }
+
+    const focusTimer = window.setTimeout(() => panelRef.current?.focus({ preventScroll: true }), 80);
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        completeTour();
+        return;
+      }
+
+      if (event.key !== "Tab" || !panelRef.current) {
+        return;
+      }
+
+      const focusable = focusableElements(panelRef.current);
+      if (focusable.length === 0) {
+        event.preventDefault();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.clearTimeout(focusTimer);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [active, completeTour]);
+
+  const panelStyle = useMemo(() => {
+    if (!targetRect || isMobile || viewport.width === 0 || viewport.height === 0) {
+      return undefined;
+    }
+
+    const panelWidth = 390;
+    const estimatedPanelHeight = 280;
+    const gap = 18;
+    const margin = 16;
+
+    if (isChartStep) {
+      const left = Math.min(
+        Math.max(margin, targetRect.left - panelWidth - gap),
+        viewport.width - panelWidth - margin,
+      );
+
+      return {
+        "--onboarding-panel-left": `${left}px`,
+        "--onboarding-panel-top": `${margin}px`,
+      } as CSSProperties;
+    }
+
+    const canPlaceRight = targetRect.left + targetRect.width + gap + panelWidth <= viewport.width - margin;
+    const canPlaceLeft = targetRect.left - gap - panelWidth >= margin;
+    const left = canPlaceRight
+      ? targetRect.left + targetRect.width + gap
+      : canPlaceLeft
+        ? targetRect.left - gap - panelWidth
+        : Math.min(
+            Math.max(margin, targetRect.left + targetRect.width / 2 - panelWidth / 2),
+            viewport.width - panelWidth - margin,
+          );
+    const below = targetRect.top + targetRect.height + gap;
+    const above = targetRect.top - gap - estimatedPanelHeight;
+    const top =
+      below + estimatedPanelHeight <= viewport.height - margin
+        ? below
+        : above >= margin
+          ? above
+          : Math.min(
+              Math.max(margin, targetRect.top + targetRect.height / 2 - estimatedPanelHeight / 2),
+              viewport.height - estimatedPanelHeight - margin,
+            );
+
+    return {
+      "--onboarding-panel-left": `${left}px`,
+      "--onboarding-panel-top": `${top}px`,
+    } as CSSProperties;
+  }, [isChartStep, isMobile, targetRect, viewport]);
+
+  const spotlightStyle = targetRect
+    ? ({
+        "--onboarding-target-top": `${targetRect.top}px`,
+        "--onboarding-target-left": `${targetRect.left}px`,
+        "--onboarding-target-width": `${targetRect.width}px`,
+        "--onboarding-target-height": `${targetRect.height}px`,
+      } as CSSProperties)
+    : undefined;
+
+  if (!active) {
+    return null;
+  }
+
+  const body = isMobile && currentStep.mobileBody ? currentStep.mobileBody : currentStep.body;
+
+  return (
+    <section className="onboarding-tour-layer" aria-live="polite">
+      {targetRect ? (
+        <div className="onboarding-spotlight" style={spotlightStyle} aria-hidden="true" />
+      ) : (
+        <div className="onboarding-scrim" aria-hidden="true" />
+      )}
+      <OnboardingTargetCue
+        stepId={currentStep.id}
+        locale={locale}
+        isMobile={isMobile}
+        targetRect={targetRect}
+        viewport={viewport}
+      />
+      <div
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="onboarding-tour-title"
+        aria-describedby="onboarding-tour-body"
+        className={cn("onboarding-panel", !targetRect && "onboarding-panel-centered")}
+        style={panelStyle}
+        tabIndex={-1}
+      >
+        <div className="onboarding-panel-header">
+          <span className="onboarding-step-count">
+            {t(onboardingTour.controls.progress, locale)} {stepIndex + 1}/{onboardingSteps.length}
+          </span>
+          <button
+            type="button"
+            className="onboarding-close-button"
+            onClick={completeTour}
+            aria-label={t(onboardingTour.controls.close, locale)}
+          >
+            <X size={16} />
+          </button>
+        </div>
+        <h2 id="onboarding-tour-title">{t(currentStep.title, locale)}</h2>
+        <p id="onboarding-tour-body">{t(body, locale)}</p>
+        <div className="onboarding-progress-dots" aria-hidden="true">
+          {onboardingSteps.map((step, index) => (
+            <span key={step.id} className={cn(index <= stepIndex && "onboarding-progress-dot-active")} />
+          ))}
+        </div>
+        <div className="onboarding-actions">
+          <button
+            type="button"
+            className="onboarding-link-button"
+            onClick={completeTour}
+            aria-label={t(onboardingTour.controls.skip, locale)}
+          >
+            {t(onboardingTour.controls.skip, locale)}
+          </button>
+          <div>
+            <button
+              type="button"
+              className="onboarding-secondary-button"
+              onClick={() => setStepIndex((index) => Math.max(0, index - 1))}
+              disabled={stepIndex === 0}
+              aria-label={t(onboardingTour.controls.back, locale)}
+            >
+              {t(onboardingTour.controls.back, locale)}
+            </button>
+            <button
+              type="button"
+              className="onboarding-primary-button"
+              onClick={() => {
+                if (isLastStep) {
+                  completeTour();
+                } else {
+                  setStepIndex((index) => Math.min(onboardingSteps.length - 1, index + 1));
+                }
+              }}
+              aria-label={t(isLastStep ? onboardingTour.controls.finish : onboardingTour.controls.next, locale)}
+            >
+              {t(isLastStep ? onboardingTour.controls.finish : onboardingTour.controls.next, locale)}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <LanguageProvider>
       <AssistantGroundingProvider>
-        <div className="min-h-screen bg-[#fbfaf5] text-[#34403a]">
-          <Header />
-          {children}
-          <Footer />
-          <GlobalAIAssistant />
-        </div>
+        <OnboardingTourProvider>
+          <div className="min-h-screen bg-[#fbfaf5] text-[#34403a]">
+            <Header />
+            {children}
+            <Footer />
+            <GlobalAIAssistant />
+            <OnboardingTour />
+          </div>
+        </OnboardingTourProvider>
       </AssistantGroundingProvider>
     </LanguageProvider>
   );
 }
 
 function GlobalAIAssistant() {
-  const pathname = usePathname();
   const { locale } = useLocale();
-  const { grounding } = useAssistantGrounding();
-  const effectiveGrounding = pathname === "/app" ? grounding : defaultAssistantGrounding;
 
   return (
     <AIAssistantPopup
       locale={locale}
-      scenarioId={effectiveGrounding.scenarioId}
-      regionName={effectiveGrounding.regionName}
+      scenarioId={defaultAssistantGrounding.scenarioId}
+      regionName={defaultAssistantGrounding.regionName}
     />
   );
 }
@@ -443,7 +1315,24 @@ function GlobalAIAssistant() {
 function Header() {
   const pathname = usePathname();
   const { locale, setLocale } = useLocale();
+  const { startTour } = useOnboardingTour();
   const [open, setOpen] = useState(false);
+  const resolveNavHref = (href: string) => (href.startsWith("#") && pathname !== "/" ? `/${href}` : href);
+  const handleOpenGuide = () => {
+    setOpen(false);
+
+    if (pathname !== "/") {
+      try {
+        window.sessionStorage.setItem(onboardingTour.pendingManualStartKey, "true");
+      } catch {
+        // If session storage is unavailable, navigating home is still the useful fallback.
+      }
+      window.location.href = `${basePath}/#dashboard`;
+      return;
+    }
+
+    startTour();
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#e8dfc8] bg-[#fffdf7]/95 backdrop-blur">
@@ -463,21 +1352,33 @@ function Header() {
         </Link>
 
         <nav className="ml-auto hidden items-center gap-5 text-sm font-bold text-[#4a514b] xl:flex">
-          {navItems.map((item) => (
+          {navItems.map((item) => {
+            const href = resolveNavHref(item.href);
+            return (
             <Link
               key={item.href}
-              href={item.href}
+              href={href}
               className={cn(
                 "transition-colors hover:text-[#1f6f43]",
-                pathname === item.href && "text-[#1f6f43]",
+                pathname === href && "text-[#1f6f43]",
               )}
             >
               {t(item.label, locale)}
             </Link>
-          ))}
+            );
+          })}
         </nav>
 
         <div className="ml-auto hidden items-center gap-2 xl:ml-4 xl:flex">
+          <button
+            type="button"
+            className="guide-button"
+            onClick={handleOpenGuide}
+            aria-label={t(onboardingTour.controls.reopen, locale)}
+          >
+            <Sparkles size={16} />
+            <span>{t(onboardingTour.controls.reopen, locale)}</span>
+          </button>
           <button
             className={cn("lang-button", locale === "vi" && "lang-button-active")}
             onClick={() => setLocale("vi")}
@@ -504,16 +1405,28 @@ function Header() {
       {open ? (
         <div className="border-t border-[#e8dfc8] bg-[#fffdf7] xl:hidden">
           <nav className="site-container grid gap-4 py-5">
-            {navItems.map((item) => (
+            {navItems.map((item) => {
+              const href = resolveNavHref(item.href);
+              return (
               <Link
                 key={item.href}
-                href={item.href}
+                href={href}
                 className="text-base font-bold text-[#34403a]"
                 onClick={() => setOpen(false)}
               >
                 {t(item.label, locale)}
               </Link>
-            ))}
+              );
+            })}
+            <button
+              type="button"
+              className="guide-button guide-button-mobile"
+              onClick={handleOpenGuide}
+              aria-label={t(onboardingTour.controls.reopen, locale)}
+            >
+              <Sparkles size={16} />
+              <span>{t(onboardingTour.controls.reopen, locale)}</span>
+            </button>
             <div className="flex gap-2 pt-2">
               <button
                 className={cn("lang-button", locale === "vi" && "lang-button-active")}
@@ -540,9 +1453,9 @@ export function HomePage() {
 
   return (
     <main>
-      <section className="grain-hero landing-hero">
+      <section className="grain-hero landing-hero" data-onboarding-target="project-intro">
         <div className="grain-field-visual" aria-hidden="true">
-          <Image src={scenarioResults[2].image} alt="" width={900} height={1177} className="hero-paddy-raster" />
+          <PaddyRasterCanvas scenarioId="rcp85" className="hero-paddy-raster" />
         </div>
         <div className="site-container relative z-10 grid min-h-[660px] items-center gap-10 py-16 lg:grid-cols-[1fr_430px]">
           <div>
@@ -560,7 +1473,7 @@ export function HomePage() {
               <Link href="#dashboard" className="primary-cta">
                 {locale === "vi" ? "Xem dashboard" : "Explore the dashboard"} <ArrowRight size={20} />
               </Link>
-              <Link href="#why-it-matters" className="secondary-cta">
+              <Link href="/#why-it-matters" className="secondary-cta">
                 {locale === "vi" ? "Vì sao quan trọng" : "Why it matters"}
               </Link>
             </div>
@@ -604,14 +1517,7 @@ function HeroPanel() {
           className="landing-mini-map-layer"
           priority
         />
-        <Image
-          src={scenarioResults[2].image}
-          alt={locale === "vi" ? "Lớp pixel lúa RCP8.5" : "RCP8.5 paddy pixel layer"}
-          width={900}
-          height={1177}
-          className="landing-mini-map-layer landing-mini-raster-layer"
-          priority
-        />
+        <PaddyRasterCanvas scenarioId="rcp85" className="landing-mini-map-layer landing-mini-raster-layer" />
         <Image
           src={paddyMap.boundaries}
           alt=""
@@ -633,7 +1539,7 @@ function HeroPanel() {
       </div>
       <div className="mt-6 grid gap-3">
         {heroStats.map((stat) => (
-          <div key={stat.value} className="stat-card">
+          <div key={`${stat.value}-${t(stat.label, locale)}`} className="stat-card">
             <span className="text-3xl font-extrabold text-[#1f6f43]">{stat.value}</span>
             <span>
               <span className="block font-extrabold text-[#26352b]">{t(stat.label, locale)}</span>
@@ -662,7 +1568,7 @@ function LandingMetricsStrip() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {requiredMetrics.map((metric) => (
-            <article key={metric.value} className="metric-card">
+            <article key={`${metric.value}-${t(metric.label, locale)}`} className="metric-card">
               <p className="text-sm font-bold uppercase text-[#7a6a42]">{t(metric.label, locale)}</p>
               <p className="mt-3 text-2xl font-extrabold text-[#143d2a]">{metric.value}</p>
             </article>
@@ -845,7 +1751,7 @@ function LandingDashboardSection() {
   const [viewMode, setViewMode] = useState<"rice" | "warning">("rice");
 
   return (
-    <section id="dashboard" className="landing-dashboard-section scroll-mt-24 bg-[#f3f7ea] py-20">
+    <section id="dashboard" className="landing-dashboard-section scroll-mt-24 bg-[#f3f7ea] py-20" data-onboarding-target="dashboard">
       <div className="site-container grid gap-10 lg:grid-cols-[0.92fr_1.08fr]">
         <div className="landing-dashboard-copy">
           <p className="eyebrow">{locale === "vi" ? "Dashboard" : "Dashboard"}</p>
@@ -870,11 +1776,6 @@ function LandingDashboardSection() {
                 <strong>{item}</strong>
               </div>
             ))}
-          </div>
-          <div className="dashboard-section-actions mt-6">
-            <Link href="/app" className="secondary-cta">
-              {locale === "vi" ? "Mở dashboard đầy đủ" : "Open full dashboard"}
-            </Link>
           </div>
         </div>
         <div className="grid content-start gap-5">
@@ -913,6 +1814,10 @@ function LandingDashboardSection() {
                   <p className="mt-2 text-sm font-medium leading-[1.5] text-[#5d6a62]">
                     {t(result.description, locale)}
                   </p>
+                  <div className="scenario-mini-metrics">
+                    <span>Max {result.max} mg/kg</span>
+                    <span>{result.increase}</span>
+                  </div>
                 </div>
               </article>
             ))}
@@ -926,8 +1831,351 @@ function LandingDashboardSection() {
   );
 }
 
+function scenarioUncertainty(scenarioId: ScenarioId) {
+  return uncertaintyBands.find((item) => item.scenario === scenarioId) ?? uncertaintyBands[0];
+}
+
 function regionValue(region: (typeof riskRegions)[number], scenario: ScenarioId) {
   return scenario === "baseline" ? region.baseline : scenario === "rcp45" ? region.rcp45 : region.rcp85;
+}
+
+function normalizeSearch(value: string) {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
+function shortScenarioLabel(scenarioId: ScenarioId) {
+  if (scenarioId === "baseline") {
+    return "Baseline";
+  }
+
+  if (scenarioId === "rcp45") {
+    return "RCP4.5";
+  }
+
+  return "RCP8.5";
+}
+
+function ScenarioChooser({
+  activeScenarioId,
+  onScenarioChange,
+  locale,
+  className,
+}: {
+  activeScenarioId: ScenarioId;
+  onScenarioChange: (scenario: ScenarioId) => void;
+  locale: Locale;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn("scenario-choice-panel", className)}
+      role="radiogroup"
+      aria-label={locale === "vi" ? "Chọn kịch bản khí hậu" : "Choose climate scenario"}
+      data-onboarding-target="scenario-chooser"
+    >
+      <div className="scenario-choice-heading">
+        <span>{locale === "vi" ? "Kịch bản" : "Scenario"}</span>
+        <strong>{locale === "vi" ? "Chọn 1 trong 3 kịch bản" : "Choose 1 of 3 scenarios"}</strong>
+      </div>
+      <div className="scenario-choice-grid">
+        {scenarioResults.map((result) => {
+          const active = result.id === activeScenarioId;
+
+          return (
+            <button
+              key={result.id}
+              type="button"
+              className={cn("scenario-choice-card", active && "scenario-choice-card-active")}
+              aria-pressed={active}
+              onClick={() => onScenarioChange(result.id)}
+            >
+              <span className="scenario-choice-label">{t(result.label, locale)}</span>
+              <span className="scenario-choice-short-label">{shortScenarioLabel(result.id)}</span>
+              <span className="scenario-choice-co2">
+                CO2 <strong>{result.co2}</strong> ppm
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function ScenarioComparison({
+  activeScenarioId,
+  selectedRegionName,
+  locale,
+}: {
+  activeScenarioId: ScenarioId;
+  selectedRegionName?: string;
+  locale: Locale;
+}) {
+  const selectedRegion = selectedRegionName ? riskRegions.find((item) => item.name === selectedRegionName) : undefined;
+  const regionLabel = selectedRegion ? (locale === "vi" ? selectedRegion.viName : selectedRegion.name) : undefined;
+
+  return (
+    <article className="dashboard-panel scenario-comparison-card">
+      <div className="scenario-comparison-header">
+        <div>
+          <p className="eyebrow">{locale === "vi" ? "So sánh kịch bản" : "Scenario comparison"}</p>
+          <h2>{locale === "vi" ? "Nhìn nhanh khác biệt giữa 3 kịch bản" : "Quick comparison across 3 scenarios"}</h2>
+        </div>
+        {regionLabel ? (
+          <span>{locale === "vi" ? `Vùng đang xem: ${regionLabel}` : `Selected region: ${regionLabel}`}</span>
+        ) : null}
+      </div>
+      <div className="scenario-comparison-grid">
+        {scenarioResults.map((result) => {
+          const uncertainty = scenarioUncertainty(result.id);
+          const active = result.id === activeScenarioId;
+
+          return (
+            <div key={result.id} className={cn("scenario-comparison-item", active && "scenario-comparison-item-active")}>
+              <div className="scenario-comparison-title">
+                <strong>{t(result.label, locale)}</strong>
+                <span>{t(result.level, locale)}</span>
+              </div>
+              <dl>
+                <div>
+                  <dt>{locale === "vi" ? "TB quốc gia" : "National mean"}</dt>
+                  <dd>{result.value} mg/kg</dd>
+                </div>
+                {selectedRegion ? (
+                  <div>
+                    <dt>{regionLabel}</dt>
+                    <dd>{regionValue(selectedRegion, result.id)} mg/kg</dd>
+                  </div>
+                ) : null}
+                <div>
+                  <dt>Max</dt>
+                  <dd>{result.max} mg/kg</dd>
+                </div>
+                <div>
+                  <dt>{locale === "vi" ? "Dải p10-p90" : "p10-p90 band"}</dt>
+                  <dd>{uncertainty.p10}-{uncertainty.p90} mg/kg</dd>
+                </div>
+                <div>
+                  <dt>{locale === "vi" ? "Vượt ngưỡng" : "Exceedance"}</dt>
+                  <dd>{uncertainty.exceedance}</dd>
+                </div>
+              </dl>
+            </div>
+          );
+        })}
+      </div>
+    </article>
+  );
+}
+
+function ArsenicScenarioChart({ locale }: { locale: Locale }) {
+  const [hoveredPoint, setHoveredPoint] = useState<{
+    seriesId: string;
+    label: LocalizedText;
+    year: number;
+    mean: number;
+    min: number;
+    max: number;
+    x: number;
+    y: number;
+  } | null>(null);
+  const threshold = Number.parseFloat(paddyMap.threshold);
+  const actualSeries = scenarioTrendSeries.find((series) => series.id === "baseline") ?? scenarioTrendSeries[0];
+  const rcp45Series = scenarioTrendSeries.find((series) => series.id === "rcp45") ?? scenarioTrendSeries[1];
+  const rcp85Series = scenarioTrendSeries.find((series) => series.id === "rcp85") ?? scenarioTrendSeries[2];
+  const allSeries = [actualSeries, rcp45Series, rcp85Series];
+  const allPoints = allSeries.flatMap((series) => series.points);
+  const minYear = Math.min(2017, ...allPoints.map((point) => point.year));
+  const maxYear = Math.max(2050, ...allPoints.map((point) => point.year));
+  const yMax = Math.max(0.46, ...allPoints.flatMap((point) => [point.mean, point.p10, point.p90]), threshold) * 1.12;
+  const chart = { x0: 76, x1: 816, y0: 46, y1: 330 };
+  const xScale = (year: number) => chart.x0 + ((year - minYear) / (maxYear - minYear)) * (chart.x1 - chart.x0);
+  const yScale = (value: number) => chart.y1 - (value / yMax) * (chart.y1 - chart.y0);
+  const xTicks = [2017, 2020, 2025, 2030, 2035, 2040, 2045, 2050].filter((year) => year >= minYear && year <= maxYear);
+  const yTicks = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6].filter((tick) => tick <= yMax);
+  const linePoints = (points: typeof actualSeries.points) =>
+    points.map((point) => `${xScale(point.year)},${yScale(point.mean)}`).join(" ");
+  const tooltipX = hoveredPoint ? Math.min(Math.max(hoveredPoint.x - 92, chart.x0 + 8), chart.x1 - 184) : 0;
+  const tooltipY = hoveredPoint ? Math.max(hoveredPoint.y - 104, chart.y0 + 8) : 0;
+  const formatMgKg = (value: number) => value.toFixed(3).replace(/\.?0+$/, "");
+  const showTooltip = (series: typeof actualSeries, point: typeof actualSeries.points[number]) => {
+    setHoveredPoint({
+      seriesId: series.id,
+      label: series.label,
+      year: point.year,
+      mean: point.mean,
+      min: point.min,
+      max: point.max,
+      x: xScale(point.year),
+      y: yScale(point.mean),
+    });
+  };
+  const ribbonPoints = (points: typeof actualSeries.points) => {
+    if (points.length < 2) {
+      return "";
+    }
+
+    const upper = points.map((point) => `${xScale(point.year)},${yScale(point.p90)}`).join(" ");
+    const lower = [...points]
+      .reverse()
+      .map((point) => `${xScale(point.year)},${yScale(point.p10)}`)
+      .join(" ");
+
+    return `${upper} ${lower}`;
+  };
+  const summarySeries = allSeries.map((series) => ({
+    series,
+    point: series.points.at(-1) ?? series.points[0],
+  }));
+
+  return (
+    <div
+      className="tech-scenario-chart-card"
+      aria-label={locale === "vi" ? "Biểu đồ Actual Data và hai kịch bản RCP" : "Actual data and RCP scenario chart"}
+      data-onboarding-target="technical-chart"
+    >
+      <div className="tech-scenario-chart-header">
+        <div>
+          <p className="eyebrow">{locale === "vi" ? "Technical evidence" : "Technical evidence"}</p>
+          <h3>{locale === "vi" ? "Actual Data và dự báo kịch bản khí hậu" : "Actual Data and climate-scenario projections"}</h3>
+        </div>
+        <span>{locale === "vi" ? "Ngưỡng WHO/FAO" : "WHO/FAO threshold"}: {paddyMap.threshold}</span>
+      </div>
+      <svg className="tech-scenario-chart" viewBox="0 0 880 410" role="img">
+        <title>{locale === "vi" ? "Actual Data, RCP 4.5 và RCP 8.5 theo năm" : "Actual Data, RCP 4.5 and RCP 8.5 by year"}</title>
+        <defs>
+          <linearGradient id="actualLineGradient" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor="#5ea95a" />
+            <stop offset="100%" stopColor="#22c55e" />
+          </linearGradient>
+          <linearGradient id="rcp45LineGradient" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor="#d7a52f" />
+            <stop offset="100%" stopColor="#f3c84b" />
+          </linearGradient>
+          <linearGradient id="rcp85LineGradient" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor="#d8532b" />
+            <stop offset="100%" stopColor="#ff7a45" />
+          </linearGradient>
+        </defs>
+        <rect className="tech-scenario-plot-bg" x={chart.x0} y={chart.y0} width={chart.x1 - chart.x0} height={chart.y1 - chart.y0} rx="18" />
+        {yTicks.map((tick) => (
+          <g key={`scenario-y-${tick}`} className="tech-scenario-gridline">
+            <line x1={chart.x0} x2={chart.x1} y1={yScale(tick)} y2={yScale(tick)} />
+            <text x={chart.x0 - 14} y={yScale(tick) + 5}>{tick.toFixed(2).replace(/0$/, "")}</text>
+          </g>
+        ))}
+        {xTicks.map((year) => (
+          <g key={`scenario-x-${year}`} className="tech-scenario-x-tick">
+            <line x1={xScale(year)} x2={xScale(year)} y1={chart.y0} y2={chart.y1} />
+            <text x={xScale(year)} y={chart.y1 + 30}>{year}</text>
+          </g>
+        ))}
+        <line className="tech-scenario-threshold" x1={chart.x0} x2={chart.x1} y1={yScale(threshold)} y2={yScale(threshold)} />
+        <line className="tech-scenario-now" x1={xScale(2025)} x2={xScale(2025)} y1={chart.y0} y2={chart.y1} />
+        <text className="tech-scenario-now-label" x={xScale(2025) + 10} y={chart.y0 + 22}>2025</text>
+        <text className="tech-scenario-axis-title" x={(chart.x0 + chart.x1) / 2} y="392">Year</text>
+        <text className="tech-scenario-axis-title" transform={`translate(22 ${(chart.y0 + chart.y1) / 2}) rotate(-90)`}>Mean Grain As (mg kg⁻¹)</text>
+        <text className="tech-scenario-threshold-label" x={chart.x1 - 152} y={yScale(threshold) - 10}>{paddyMap.threshold}</text>
+
+        {actualSeries.points.length > 1 ? (
+          <polygon className="tech-scenario-ribbon tech-scenario-ribbon-actual" points={ribbonPoints(actualSeries.points)} />
+        ) : null}
+        <polygon className="tech-scenario-ribbon tech-scenario-ribbon-rcp45" points={ribbonPoints(rcp45Series.points)} />
+        <polygon className="tech-scenario-ribbon tech-scenario-ribbon-rcp85" points={ribbonPoints(rcp85Series.points)} />
+
+        <polyline className="tech-scenario-line tech-scenario-line-actual" points={linePoints(actualSeries.points)} />
+        {actualSeries.points.map((point) => (
+          <circle
+            key={`actual-${point.year}`}
+            className="tech-scenario-marker tech-scenario-marker-actual tech-scenario-marker-hover"
+            cx={xScale(point.year)}
+            cy={yScale(point.mean)}
+            r="7"
+            onMouseEnter={() => showTooltip(actualSeries, point)}
+            onFocus={() => showTooltip(actualSeries, point)}
+            onMouseLeave={() => setHoveredPoint(null)}
+            onBlur={() => setHoveredPoint(null)}
+            tabIndex={0}
+          />
+        ))}
+        <polyline className="tech-scenario-line tech-scenario-line-rcp45" points={linePoints(rcp45Series.points)} />
+        {rcp45Series.points.map((point) => (
+          <rect
+            key={`rcp45-${point.year}`}
+            className="tech-scenario-marker-rect tech-scenario-marker-rcp45 tech-scenario-marker-hover"
+            x={xScale(point.year) - 6.5}
+            y={yScale(point.mean) - 6.5}
+            width="13"
+            height="13"
+            rx="2.5"
+            onMouseEnter={() => showTooltip(rcp45Series, point)}
+            onFocus={() => showTooltip(rcp45Series, point)}
+            onMouseLeave={() => setHoveredPoint(null)}
+            onBlur={() => setHoveredPoint(null)}
+            tabIndex={0}
+          />
+        ))}
+        <polyline className="tech-scenario-line tech-scenario-line-rcp85" points={linePoints(rcp85Series.points)} />
+        {rcp85Series.points.map((point) => (
+          <circle
+            key={`rcp85-${point.year}`}
+            className="tech-scenario-marker tech-scenario-marker-rcp85 tech-scenario-marker-hover"
+            cx={xScale(point.year)}
+            cy={yScale(point.mean)}
+            r="7"
+            onMouseEnter={() => showTooltip(rcp85Series, point)}
+            onFocus={() => showTooltip(rcp85Series, point)}
+            onMouseLeave={() => setHoveredPoint(null)}
+            onBlur={() => setHoveredPoint(null)}
+            tabIndex={0}
+          />
+        ))}
+        {allSeries.flatMap((series) =>
+          series.points.map((point) => (
+            <circle
+              key={`hit-${series.id}-${point.year}`}
+              className="tech-scenario-hit-target"
+              data-onboarding-target={series.id === "baseline" && point.year === 2025 ? "technical-chart-hover" : undefined}
+              cx={xScale(point.year)}
+              cy={yScale(point.mean)}
+              r="15"
+              onMouseEnter={() => showTooltip(series, point)}
+              onMouseLeave={() => setHoveredPoint(null)}
+            />
+          )),
+        )}
+        {hoveredPoint ? (
+          <g className="tech-scenario-tooltip" transform={`translate(${tooltipX} ${tooltipY})`} pointerEvents="none">
+            <rect width="184" height="90" rx="14" />
+            <text className="tech-scenario-tooltip-title" x="14" y="24">
+              {t(hoveredPoint.label, locale)}
+            </text>
+            <text x="14" y="44">Year {hoveredPoint.year}</text>
+            <text x="14" y="62">Mean {formatMgKg(hoveredPoint.mean)} mg/kg</text>
+            <text x="14" y="80">Min {formatMgKg(hoveredPoint.min)} · Max {formatMgKg(hoveredPoint.max)}</text>
+            <circle className={`tech-scenario-tooltip-dot tech-scenario-tooltip-dot-${hoveredPoint.seriesId}`} cx="166" cy="22" r="6" />
+          </g>
+        ) : null}
+      </svg>
+      <div className="tech-scenario-legend">
+        <span><i className="tech-scenario-legend-actual" />Actual Data (2017-2025)</span>
+        <span><i className="tech-scenario-legend-rcp45" />RCP 4.5 Scenario</span>
+        <span><i className="tech-scenario-legend-rcp85" />RCP 8.5 Scenario</span>
+        <span><i className="tech-scenario-legend-threshold" />WHO/FAO Standard</span>
+      </div>
+      <div className="tech-chart-summary-grid">
+        {summarySeries.map(({ series, point }) => (
+          <div key={series.id}>
+            <span>{t(series.label, locale)}</span>
+            <strong>{point.year}: {point.mean.toFixed(3).replace(/\.?0+$/, "")} mg/kg</strong>
+            <em>
+              p10-p90 {point.p10.toFixed(3).replace(/\.?0+$/, "")}-{point.p90.toFixed(3).replace(/\.?0+$/, "")} · {locale === "vi" ? "Vượt ngưỡng" : "Exceedance"} {Math.round(point.exceedancePercent)}%
+            </em>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function ProvinceBoundaryOverlay({
@@ -1065,43 +2313,19 @@ function ArsenicRiskMap({
   onScenarioChange,
   selectedRegion,
   onRegionChange,
-  viewMode,
-  onViewModeChange,
 }: {
   compact?: boolean;
   scenario?: ScenarioId;
   onScenarioChange?: (scenario: ScenarioId) => void;
   selectedRegion?: string;
   onRegionChange?: (region: string) => void;
-  viewMode?: "rice" | "warning";
-  onViewModeChange?: (nextViewMode: "rice" | "warning") => void;
 }) {
   const { locale } = useLocale();
   const [localScenario, setLocalScenario] = useState<ScenarioId>("rcp85");
   const [localRegion, setLocalRegion] = useState(riskRegions[0].name);
-  const [localViewMode, setLocalViewMode] = useState<"rice" | "warning">("warning");
-  const [layersOpen, setLayersOpen] = useState(false);
-  const layersMenuRef = useRef<HTMLDivElement>(null);
   const activeScenarioId = scenario ?? localScenario;
   const activeRegionName = selectedRegion ?? localRegion;
   const activeScenario = scenarioResults.find((item) => item.id === activeScenarioId) ?? scenarioResults[0];
-  const activeViewMode = viewMode ?? localViewMode;
-
-  useEffect(() => {
-    if (!layersOpen) {
-      return;
-    }
-
-    const handlePointerDown = (event: PointerEvent) => {
-      if (layersMenuRef.current && !layersMenuRef.current.contains(event.target as Node)) {
-        setLayersOpen(false);
-      }
-    };
-
-    document.addEventListener("pointerdown", handlePointerDown);
-
-    return () => document.removeEventListener("pointerdown", handlePointerDown);
-  }, [layersOpen]);
 
   const updateScenario = (nextScenario: ScenarioId) => {
     if (onScenarioChange) {
@@ -1119,16 +2343,6 @@ function ArsenicRiskMap({
     }
   };
 
-  const selectViewMode = (nextViewMode: "rice" | "warning") => {
-    if (onViewModeChange) {
-      onViewModeChange(nextViewMode);
-    } else {
-      setLocalViewMode(nextViewMode);
-    }
-
-    setLayersOpen(false);
-  };
-
   return (
     <div className={cn("risk-map-card paddy-map-card", compact && "risk-map-card-compact")}>
       <div className="map-toolbar">
@@ -1142,60 +2356,50 @@ function ArsenicRiskMap({
             ))}
           </select>
         </label>
-        <div className="map-layer-menu" ref={layersMenuRef}>
-          <button
-            type="button"
-            className="map-layer-button"
-            onClick={() => setLayersOpen((value) => !value)}
-            aria-pressed={activeViewMode === "warning"}
-            aria-expanded={layersOpen}
-            aria-haspopup="menu"
-          >
-            <Layers3 size={17} />
-            {locale === "vi" ? "Lớp" : "Layers"}
-          </button>
-          {layersOpen ? (
-            <div className="map-layer-dropdown" role="menu" aria-label={locale === "vi" ? "Chọn lớp hiển thị" : "Choose layer view"}>
-              <button
-                type="button"
-                role="menuitemradio"
-                aria-checked={activeViewMode === "rice"}
-                className={cn("map-layer-option", activeViewMode === "rice" && "map-layer-option-active")}
-                onClick={() => selectViewMode("rice")}
-              >
-                <span>
-                  <strong>{locale === "vi" ? "Khu vực trồng lúa" : "Rice growing area"}</strong>
-                  <small>{locale === "vi" ? "Chỉ hiển thị ảnh PNG" : "Show PNG only"}</small>
-                </span>
-              </button>
-              <button
-                type="button"
-                role="menuitemradio"
-                aria-checked={activeViewMode === "warning"}
-                className={cn("map-layer-option", activeViewMode === "warning" && "map-layer-option-active")}
-                onClick={() => selectViewMode("warning")}
-              >
-                <span>
-                  <strong>{locale === "vi" ? "Vùng cảnh báo" : "Warning zone"}</strong>
-                  <small>{locale === "vi" ? "Hiển thị palette" : "Show palette"}</small>
-                </span>
-              </button>
-            </div>
-          ) : null}
-        </div>
+        <button type="button" className="map-layer-button">
+          <Layers3 size={17} />
+          {locale === "vi" ? "Lớp" : "Layers"}
+        </button>
       </div>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_240px]">
-        <div className="leaflet-map-shell">
+        <div
+          ref={mapShellRef}
+          className={cn(
+            "leaflet-map-shell",
+            zoomIndex > 0 && "leaflet-map-shell-zoomed",
+            dragStart && "leaflet-map-shell-dragging",
+          )}
+          onPointerDown={handleMapPointerDown}
+          onPointerMove={handleMapPointerMove}
+          onPointerUp={handleMapPointerEnd}
+          onPointerCancel={handleMapPointerEnd}
+          onDragStart={(event) => event.preventDefault()}
+          data-onboarding-target="risk-map-canvas"
+        >
           <div className="leaflet-label">Leaflet</div>
-          <div className="leaflet-controls" aria-hidden="true">
-            <button type="button">+</button>
-            <button type="button">-</button>
+          <div className="leaflet-controls">
+            <button
+              type="button"
+              aria-label={locale === "vi" ? "Phóng to bản đồ" : "Zoom map in"}
+              disabled={zoomIndex === zoomLevels.length - 1}
+              onClick={() => updateZoom("in")}
+            >
+              +
+            </button>
+            <button
+              type="button"
+              aria-label={locale === "vi" ? "Thu nhỏ bản đồ" : "Zoom map out"}
+              disabled={zoomIndex === 0}
+              onClick={() => updateZoom("out")}
+            >
+              -
+            </button>
           </div>
-          <button type="button" className="leaflet-locate" aria-label="Locate">
-            <LocateFixed size={16} />
-          </button>
-          <div className="vietnam-map-canvas">
+          <div
+            className="vietnam-map-canvas"
+            style={{ transform: `translate(${panOffset.x}px, ${panOffset.y}px) scale(${activeZoomScale})` }}
+          >
             <Image
               src={paddyMap.basemap}
               alt={locale === "vi" ? "Nền bản đồ Việt Nam" : "Vietnam basemap"}
@@ -1203,21 +2407,16 @@ function ArsenicRiskMap({
               height={1177}
               className="vietnam-basemap-layer"
             />
-            {activeViewMode === "warning" ? (
-              <ProvinceBoundaryOverlay activeScenarioId={activeScenarioId} showPalette />
-            ) : null}
-            {activeViewMode === "rice" ? (
-              <Image
-                src={activeScenario.image}
-                alt={locale === "vi" ? "Lớp pixel lúa Việt Nam" : "Vietnam paddy pixel layer"}
-                width={900}
-                height={1177}
-                className="paddy-raster-layer"
-                style={{ pointerEvents: "none" }}
-              />
-            ) : null}
-            {activeViewMode === "rice" ? <ProvinceBoundaryOverlay activeScenarioId={activeScenarioId} showPalette={false} /> : null}
+            <Image
+              src={activeScenario.image}
+              alt={locale === "vi" ? "Lớp pixel lúa Việt Nam" : "Vietnam paddy pixel layer"}
+              width={900}
+              height={1177}
+              className="paddy-raster-layer"
+            />
+            <ProvinceBoundaryOverlay activeScenarioId={activeScenarioId} />
           </div>
+          <div className="map-zoom-indicator">{zoomLevels[zoomIndex]}</div>
           <div className="map-scale">500 km</div>
         </div>
 
@@ -1296,8 +2495,8 @@ function TechnicalDetailsSection() {
             </h2>
             <p className="mt-5 max-w-[760px] text-lg font-medium leading-[1.65] text-[#4c5a50]">
               {locale === "vi"
-                ? "Phần này giữ lại biểu đồ xu hướng, SHAP và cấu hình mô hình để thẩm định. Các thuật ngữ kỹ thuật được đặt sau lớp cảnh báo sớm để không lấn át thông điệp sức khỏe và hành động."
-                : "This section keeps the trend chart, SHAP and model configuration for review. Technical terms sit behind the early-warning story so they do not dominate the health and action message."}
+                ? "Phần này giữ lại biểu đồ xu hướng Actual Data và các kịch bản khí hậu để thẩm định nhanh đến năm 2050."
+                : "This section keeps the Actual Data trend chart and climate scenarios for a quick review through 2050."}
             </p>
           </div>
           <div className="technical-fact-grid">
@@ -1314,35 +2513,6 @@ function TechnicalDetailsSection() {
           </div>
         </div>
         <LineChart />
-        <details className="technical-accordion">
-          <summary>
-            <span>
-              <span className="eyebrow">
-                {locale === "vi" ? "Technical details" : "Technical details"}
-              </span>
-              <strong>
-                {locale === "vi"
-                  ? "Chi tiết mô hình, SHAP và validation"
-                  : "Model, SHAP and validation details"}
-              </strong>
-            </span>
-            <ChevronDown className="technical-chevron" />
-          </summary>
-          <div className="technical-accordion-body">
-            <PredictorChart />
-            <article className="science-card">
-              <h3 className="text-2xl font-extrabold text-[#143d2a]">
-                {locale === "vi" ? "Model configuration" : "Model configuration"}
-              </h3>
-              <p className="mt-3 text-sm font-semibold leading-[1.55] text-[#5d6a62]">
-                {locale === "vi"
-                  ? "Các tham số kỹ thuật được giữ lại để thẩm định, nhưng không phải thông điệp chính của demo cảnh báo sớm."
-                  : "Technical parameters are retained for review, but they are not the main message of the early-warning demo."}
-              </p>
-              <ModelConfigurationRows />
-            </article>
-          </div>
-        </details>
       </div>
     </section>
   );
@@ -1362,17 +2532,7 @@ function LineChart() {
         <TrendingUp className="text-[#d9a21b]" />
       </div>
       <div className="doc-figure-frame mt-6">
-        <Image
-          src={modelFigures.arsenicTrend}
-          alt={
-            locale === "vi"
-            ? "Panel mean grain arsenic trong tài liệu: nồng độ arsenic lịch sử và dự báo theo RCP4.5, RCP8.5"
-            : "Mean grain arsenic panel from the paper: historical and projected arsenic concentrations under RCP4.5 and RCP8.5"
-          }
-          width={1035}
-          height={805}
-          className="doc-figure-image"
-        />
+        <ArsenicScenarioChart locale={locale} />
       </div>
       <div className="doc-trend-legend">
         <span className="legend-actual">{locale === "vi" ? "Actual Data (2017-2025)" : "Actual Data (2017-2025)"}</span>
@@ -1384,41 +2544,6 @@ function LineChart() {
         {locale === "vi"
           ? "Chỉ hiển thị panel nồng độ trung bình từ tài liệu; đường 0.20 mg kg-1 được dùng như ngưỡng tham chiếu cảnh báo, không phải chứng nhận an toàn."
           : "Only the mean-concentration panel from the document is shown; the 0.20 mg kg-1 line is used as a reference warning threshold, not a safety certification."}
-      </p>
-    </article>
-  );
-}
-
-function PredictorChart() {
-  const { locale } = useLocale();
-
-  return (
-    <article className="science-card">
-      <div className="flex items-center justify-between gap-4">
-        <h3 className="text-2xl font-extrabold text-[#143d2a]">
-          {locale === "vi"
-            ? "Figure 4. SHAP model interpretation"
-            : "Figure 4. SHAP model interpretation"}
-        </h3>
-        <BarChart3 className="text-[#1f6f43]" />
-      </div>
-      <div className="doc-figure-frame doc-figure-frame-shap mt-6">
-        <Image
-          src={modelFigures.shapSummary}
-          alt={
-            locale === "vi"
-              ? "Figure 4 trong tài liệu: biểu đồ SHAP summary cho các biến ảnh hưởng đến arsenic trong gạo"
-              : "Figure 4 from the paper: SHAP summary plot for drivers of grain arsenic"
-          }
-          width={614}
-          height={709}
-          className="doc-figure-image"
-        />
-      </div>
-      <p className="mt-4 text-sm font-semibold leading-[1.55] text-[#5d6a62]">
-        {locale === "vi"
-          ? "Hình giữ nguyên từ tài liệu: Straw.As, Soil.Al, CO2_sqrt, Soil.S và Soil.Mn là các biến nổi bật trong SHAP summary."
-          : "Figure reproduced from the document: Straw.As, Soil.Al, CO2_sqrt, Soil.S and Soil.Mn stand out in the SHAP summary."}
       </p>
     </article>
   );
@@ -1437,7 +2562,7 @@ function LandingFinalCta() {
             : "Open the dashboard to inspect the map, scenarios and province-level popups."}
         </h2>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/app" className="primary-cta">
+          <Link href="#dashboard" className="primary-cta">
             {t(commonText.dashboard, locale)} <ArrowRight size={20} />
           </Link>
           <Link href="/frequently-asked-questions" className="secondary-cta">
@@ -1485,7 +2610,7 @@ export function AppDashboardPage() {
   const activeScenario = scenarioResults.find((item) => item.id === scenario) ?? scenarioResults[0];
   const activeRegion = riskRegions.find((item) => item.name === region) ?? riskRegions[0];
   const activeValue = regionValue(activeRegion, scenario);
-  const activeUncertainty = uncertaintyBands.find((item) => item.scenario === scenario) ?? uncertaintyBands[0];
+  const activeUncertainty = scenarioUncertainty(scenario);
 
   useEffect(() => {
     setGrounding({ scenarioId: scenario, regionName: region });
@@ -1494,23 +2619,15 @@ export function AppDashboardPage() {
   return (
     <main className="bg-[#f5f8ed] py-10">
       <section className="site-container">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow">{locale === "vi" ? "Product demo" : "Product demo"}</p>
             <h1 className="mt-2 text-4xl font-extrabold text-[#143d2a]">
               {locale === "vi" ? "Dashboard ưu tiên lấy mẫu arsenic" : "Arsenic sampling-priority dashboard"}
             </h1>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <select className="dashboard-select" value={scenario} onChange={(event) => setScenario(event.target.value as ScenarioId)}>
-              {scenarioResults.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {t(item.label, locale)}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
+        <ScenarioChooser activeScenarioId={scenario} onScenarioChange={setScenario} locale={locale} className="mb-6" />
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="grid content-start gap-6">
@@ -1521,11 +2638,13 @@ export function AppDashboardPage() {
                 <Metric title={locale === "vi" ? "Ngưỡng tham chiếu" : "Reference threshold"} value={paddyMap.threshold} icon={<ShieldCheck />} />
               </div>
             </article>
+            <ScenarioComparison activeScenarioId={scenario} selectedRegionName={region} locale={locale} />
             <ArsenicRiskMap
               scenario={scenario}
               onScenarioChange={setScenario}
               selectedRegion={region}
               onRegionChange={setRegion}
+              hideScenarioChooser
             />
           </div>
 
@@ -1641,6 +2760,13 @@ function AIAssistantPopup({
   const [waitStage, setWaitStage] = useState<"thinking" | "slow" | "waiting">("thinking");
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+    const handleOpenAssistant = () => setIsOpen(true);
+    window.addEventListener(onboardingTour.openAssistantEvent, handleOpenAssistant);
+
+    return () => window.removeEventListener(onboardingTour.openAssistantEvent, handleOpenAssistant);
+  }, []);
+
   const activeScenario = scenarioResults.find((item) => item.id === scenarioId) ?? scenarioResults[0];
   const activeRegion = riskRegions.find((item) => item.name === regionName) ?? riskRegions[0];
   const [defaultGroundTruth, setDefaultGroundTruth] = useState<GroundTruthCard>(() => ({
@@ -1679,6 +2805,42 @@ function AIAssistantPopup({
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ block: "end" });
   }, [messages, isSubmitting]);
+
+  useEffect(() => {
+    const typingEntry = messages.find(
+      (entry) =>
+        entry.from === "assistant" &&
+        entry.isTyping &&
+        typeof entry.fullText === "string" &&
+        entry.text.length < entry.fullText.length,
+    );
+
+    if (!typingEntry || typeof typingEntry.fullText !== "string") {
+      return;
+    }
+
+    const remaining = typingEntry.fullText.slice(typingEntry.text.length);
+    const nextChunk = remaining.match(/^\S+\s*/)?.[0] ?? remaining.slice(0, 1);
+    const delay = Math.min(70, 22 + nextChunk.length * 2);
+    const timer = window.setTimeout(() => {
+      setMessages((prev) =>
+        prev.map((entry) => {
+          if (entry.id !== typingEntry.id || typeof entry.fullText !== "string") {
+            return entry;
+          }
+
+          const nextText = entry.fullText.slice(0, Math.min(entry.fullText.length, entry.text.length + nextChunk.length));
+          return {
+            ...entry,
+            text: nextText,
+            isTyping: nextText.length < entry.fullText.length,
+          };
+        }),
+      );
+    }, delay);
+
+    return () => window.clearTimeout(timer);
+  }, [messages]);
 
   useEffect(() => {
     if (!isSubmitting) {
@@ -1775,7 +2937,7 @@ function AIAssistantPopup({
         source: locale === "vi" ? item.source.vi : item.source.en,
       }));
       const groundTruth = payload.groundTruth ?? activeGroundTruth;
-      const suggested = (payload.suggestedQuestions ?? fallbackQuestions).slice(0, 4);
+      const suggested = (payload.suggestedQuestions ?? fallbackQuestions).slice(0, 3);
       const nextSteps = (payload.nextSteps ?? []).slice(0, 4);
 
       setDefaultGroundTruth(groundTruth);
@@ -1784,7 +2946,9 @@ function AIAssistantPopup({
         {
           id: `assistant-${Date.now()}`,
           from: "assistant",
-          text: payload.answer,
+          text: "",
+          fullText: payload.answer,
+          isTyping: true,
           citations,
           suggestedQuestions: suggested,
           nextSteps,
@@ -1824,6 +2988,17 @@ function AIAssistantPopup({
     void handleAsk(preset);
   };
 
+  const handleAudienceRoleChange = (nextRole: AudienceRole) => {
+    if (isSubmitting || nextRole === audienceRole) {
+      return;
+    }
+
+    setAudienceRole(nextRole);
+    setMessages([]);
+    setQuestion("");
+    setWaitStage("thinking");
+  };
+
   const openCitation = (messageId: string, citationId: string) => {
     const target = document.getElementById(`citation-${messageId}-${citationId.toUpperCase()}`);
     if (!target) {
@@ -1834,7 +3009,12 @@ function AIAssistantPopup({
       target.open = true;
     }
 
-    target.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    const citationList = target.closest(".ai-assistant-citation-list");
+    if (citationList instanceof HTMLDetailsElement) {
+      citationList.open = true;
+    }
+
+    window.requestAnimationFrame(() => target.scrollIntoView({ behavior: "smooth", block: "nearest" }));
     const summary = target.querySelector("summary");
     if (summary instanceof HTMLElement) {
       summary.focus({ preventScroll: true });
@@ -1863,6 +3043,7 @@ function AIAssistantPopup({
           className="ai-assistant-trigger"
           onClick={() => setIsOpen(true)}
           aria-label={locale === "vi" ? "Mở trợ lý AI" : "Open AI assistant"}
+          data-onboarding-target="assistant-trigger"
         >
           <span className="ai-assistant-trigger-icon">
             <Bot size={20} />
@@ -1875,7 +3056,7 @@ function AIAssistantPopup({
       ) : null}
 
       {isOpen ? (
-        <article className="ai-assistant-panel">
+        <article className="ai-assistant-panel" data-onboarding-target="assistant-panel">
           <header className="ai-assistant-header">
             <div className="ai-assistant-title-row">
               <span className="ai-assistant-panel-icon">
@@ -1897,14 +3078,19 @@ function AIAssistantPopup({
             </div>
           </header>
 
-          <div className="ai-assistant-role-selector" aria-label={locale === "vi" ? "Vai trò trả lời" : "Answer role"}>
+          <div
+            className="ai-assistant-role-selector"
+            aria-label={locale === "vi" ? "Vai trò trả lời" : "Answer role"}
+            data-onboarding-target="assistant-roles"
+          >
             {assistantRoles.map((role) => (
               <button
                 key={role}
                 type="button"
                 className={cn("ai-assistant-role-button", audienceRole === role && "ai-assistant-role-active")}
-                onClick={() => setAudienceRole(role)}
+                onClick={() => handleAudienceRoleChange(role)}
                 aria-pressed={audienceRole === role}
+                disabled={isSubmitting}
               >
                 <AssistantRoleIcon role={role} />
                 <span>{t(assistantRoleLabels[role], locale)}</span>
@@ -1917,13 +3103,25 @@ function AIAssistantPopup({
               <article className="ai-assistant-message ai-assistant-message-assistant">
                 <span className="ai-assistant-message-author">{locale === "vi" ? "Trợ lý" : "Assistant"}</span>
                 <div className="ai-assistant-bubble">
-                  <MarkdownText
-                    text={
-                      locale === "vi"
-                        ? `Vai trò hiện tại: ${activeRoleLabel}. Tôi sẽ trả lời dựa trên dữ liệu dự án và nói rõ khi cần xét nghiệm lab hoặc chuyên gia địa phương.`
-                        : `Current role: ${activeRoleLabel}. I will answer from the project data and flag where lab testing or local expert confirmation is needed.`
-                    }
-                  />
+                  <div className="ai-assistant-intro-card">
+                    <div className="ai-assistant-intro-heading">
+                      <span className="ai-assistant-intro-role-icon">
+                        <AssistantRoleIcon role={audienceRole} />
+                      </span>
+                      <div>
+                        <strong>
+                          {locale === "vi"
+                            ? `Vai trò hiện tại: ${activeRoleLabel}`
+                            : `Current role: ${activeRoleLabel}`}
+                        </strong>
+                        <p>
+                          {locale === "vi"
+                            ? "Tôi sẽ trả lời dựa trên dữ liệu dự án, citation nội bộ và tài liệu khoa học liên quan."
+                            : "I will answer from project data, local citations, and relevant scientific references."}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </article>
             ) : (
@@ -1941,13 +3139,16 @@ function AIAssistantPopup({
                           : undefined
                       }
                     />
-                    {entry.from === "assistant" && (entry.roleLabel || entry.actionLevel) ? (
+                    {entry.from === "assistant" && entry.isTyping ? (
+                      <span className="ai-assistant-type-cursor" aria-hidden="true" />
+                    ) : null}
+                    {entry.from === "assistant" && !entry.isTyping && (entry.roleLabel || entry.actionLevel) ? (
                       <div className="ai-assistant-response-meta">
                         {entry.roleLabel ? <span>{entry.roleLabel}</span> : null}
                         {entry.actionLevel ? <span>{t(actionLevelLabels[entry.actionLevel], locale)}</span> : null}
                       </div>
                     ) : null}
-                    {entry.nextSteps.length > 0 ? (
+                    {!entry.isTyping && entry.nextSteps.length > 0 ? (
                       <div className="ai-assistant-next-steps">
                         <strong>{locale === "vi" ? "Bước tiếp theo" : "Next steps"}</strong>
                         <ul>
@@ -1957,20 +3158,44 @@ function AIAssistantPopup({
                         </ul>
                       </div>
                     ) : null}
-                    {entry.limitations ? <p className="ai-assistant-limitations">{entry.limitations}</p> : null}
-                    {entry.citations.length > 0 ? (
-                      <div className="mt-3 space-y-2">
-                        {entry.citations.map((citation) => (
-                          <details
-                            key={citation.id}
-                            id={`citation-${entry.id}-${citation.id.toUpperCase()}`}
-                            className="ai-assistant-citation"
-                          >
-                            <summary tabIndex={0}>{`[${citation.id}] ${citation.title}`}</summary>
-                            <p className="mt-2 text-xs text-[#1f2937]">{citation.excerpt}</p>
-                            <p className="mt-1 text-xs text-[#6b7280]">{citation.source}</p>
-                          </details>
-                        ))}
+                    {!entry.isTyping && entry.limitations ? <p className="ai-assistant-limitations">{entry.limitations}</p> : null}
+                    {!entry.isTyping && entry.citations.length > 0 ? (
+                      <details className="ai-assistant-citation-list mt-3">
+                        <summary>
+                          {locale === "vi"
+                            ? `Xem nguồn trích dẫn (${entry.citations.length})`
+                            : `View citations (${entry.citations.length})`}
+                        </summary>
+                        <div className="mt-3 space-y-2">
+                          {entry.citations.map((citation) => (
+                            <details
+                              key={citation.id}
+                              id={`citation-${entry.id}-${citation.id.toUpperCase()}`}
+                              className="ai-assistant-citation"
+                            >
+                              <summary tabIndex={0}>{`[${citation.id}] ${citation.title}`}</summary>
+                              <p className="mt-2 text-xs text-[#1f2937]">{citation.excerpt}</p>
+                              <p className="mt-1 text-xs text-[#6b7280]">{citation.source}</p>
+                            </details>
+                          ))}
+                        </div>
+                      </details>
+                    ) : null}
+                    {!entry.isTyping && entry.from === "assistant" && entry.suggestedQuestions.length > 0 ? (
+                      <div className="ai-assistant-related-questions">
+                        <strong>{locale === "vi" ? "Câu hỏi liên quan" : "Related questions"}</strong>
+                        <div>
+                          {entry.suggestedQuestions.slice(0, 3).map((suggestion) => (
+                            <button
+                              key={suggestion}
+                              type="button"
+                              onClick={() => sendPresetQuestion(suggestion)}
+                              disabled={isSubmitting}
+                            >
+                              {suggestion}
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     ) : null}
                   </div>
@@ -1989,19 +3214,21 @@ function AIAssistantPopup({
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="ai-assistant-suggestions">
-            {suggestedQuestions.map((preset) => (
-              <button
-                key={preset}
-                type="button"
-                className="ai-assistant-suggestion"
-                onClick={() => sendPresetQuestion(preset)}
-                disabled={isSubmitting}
-              >
-                {preset}
-              </button>
-            ))}
-          </div>
+          {messages.length === 0 ? (
+            <div className="ai-assistant-suggestions">
+              {suggestedQuestions.map((preset) => (
+                <button
+                  key={preset}
+                  type="button"
+                  className="ai-assistant-suggestion"
+                  onClick={() => sendPresetQuestion(preset)}
+                  disabled={isSubmitting}
+                >
+                  {preset}
+                </button>
+              ))}
+            </div>
+          ) : null}
 
           <form
             className="ai-assistant-input-row"
@@ -2061,6 +3288,42 @@ export function AboutPage() {
             </article>
           ))}
         </div>
+        <article className="dashboard-panel mt-8">
+          <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+            <div>
+              <p className="eyebrow">{locale === "vi" ? "Đơn vị phụ trách" : "Lab ownership"}</p>
+              <h2 className="mt-2 text-3xl font-extrabold text-[#143d2a]">
+                {t(projectContact.lab, locale)}
+              </h2>
+              <p className="mt-3 font-semibold leading-[1.6] text-[#4c5a50]">
+                {t(projectContact.institution, locale)}
+              </p>
+              <p className="mt-3 font-medium leading-[1.65] text-[#4c5a50]">
+                {t(projectContact.dataNotice, locale)}
+              </p>
+            </div>
+            <div className="rounded-3xl border border-[#e8dfc8] bg-[#fffdf7] p-6">
+              <p className="text-sm font-black uppercase tracking-[0.16em] text-[#d9a21b]">
+                {locale === "vi" ? "Liên hệ dự án" : "Project contact"}
+              </p>
+              <h3 className="mt-3 text-2xl font-extrabold text-[#143d2a]">{projectContact.name}</h3>
+              <p className="mt-1 font-semibold text-[#1f6f43]">
+                {t(projectContact.role, locale)}, {t(projectContact.lab, locale)}
+              </p>
+              <p className="mt-4 font-medium leading-[1.6] text-[#4c5a50]">
+                {t(projectContact.contactPurpose, locale)}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a className="source-link" href={`mailto:${projectContact.email}`}>
+                  {projectContact.email}
+                </a>
+                <a className="source-link" href={projectContact.github} target="_blank" rel="noreferrer">
+                  {projectContact.githubLabel}
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
       </section>
     </main>
   );
@@ -2122,6 +3385,14 @@ export function FeedbackPage() {
         <h1 className="mt-2 text-4xl font-extrabold text-[#143d2a]">
           {locale === "vi" ? "Góp ý cho hệ thống cảnh báo arsenic" : "Feedback for the arsenic early-warning system"}
         </h1>
+        <div className="mt-5 rounded-2xl border border-[#d9e8d6] bg-white p-4 text-sm font-semibold leading-[1.6] text-[#4c5a50]">
+          <p>
+            {locale === "vi"
+              ? `Dự án demo thuộc ${projectContact.lab.vi}. Liên hệ: ${projectContact.name} - ${projectContact.email}.`
+              : `This demo is under ${projectContact.lab.en}. Contact: ${projectContact.name} - ${projectContact.email}.`}
+          </p>
+          <p className="mt-2 text-[#6f5a2e]">{t(projectContact.dataNotice, locale)}</p>
+        </div>
         <div className="mt-6 rounded-lg border border-[#e8dfc8] bg-white p-5">
           <div className="stepper">
             {feedbackSteps.map((item, index) => (
@@ -2296,14 +3567,30 @@ function Footer() {
 
   return (
     <footer className="border-t border-[#e8dfc8] bg-[#143d2a] py-10 text-white">
-      <div className="site-container flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="site-container grid gap-6 md:grid-cols-[1fr_1.1fr_0.9fr] md:items-start">
         <div>
           <p className="text-xl font-extrabold">{t(brand.name, locale)}</p>
           <p className="mt-1 text-sm font-medium text-[#dce8d9]">{t(brand.tagline, locale)}</p>
+          <p className="mt-3 text-sm font-semibold text-[#dce8d9]">
+            {t(projectContact.lab, locale)}
+          </p>
+          <p className="mt-1 text-xs font-medium leading-[1.45] text-[#b8d2c0]">
+            {t(projectContact.institution, locale)}
+          </p>
         </div>
         <p className="max-w-[520px] text-sm font-medium leading-[1.5] text-[#dce8d9]">
           {t(brand.disclaimer, locale)}
         </p>
+        <div className="text-sm font-medium leading-[1.55] text-[#dce8d9]">
+          <p className="font-extrabold text-white">{locale === "vi" ? "Liên hệ dự án" : "Project contact"}</p>
+          <p className="mt-1">{projectContact.name}</p>
+          <a className="mt-2 block font-bold text-[#f6d77a]" href={`mailto:${projectContact.email}`}>
+            {projectContact.email}
+          </a>
+          <a className="mt-1 block font-bold text-[#f6d77a]" href={projectContact.github} target="_blank" rel="noreferrer">
+            {projectContact.githubLabel}
+          </a>
+        </div>
       </div>
     </footer>
   );

@@ -5,6 +5,8 @@ import type {
   NavItem,
 } from "@/types/greenfarming";
 import { publicAsset } from "@/lib/public-path";
+import dashboardData from "@/lib/dashboard-data.generated.json";
+import paddyMapMetadata from "../../public/images/grain/paddy-map-metadata.json";
 
 export const assets = {
   logo: publicAsset("/images/greenfarming/logo.svg"),
@@ -25,12 +27,39 @@ export const brand = {
   },
 };
 
+export const projectContact = {
+  name: "Nguyen Huu Tan Long",
+  email: "tanlong04.work@gmail.com",
+  github: "https://github.com/Tan-Long",
+  githubLabel: "github.com/Tan-Long",
+  role: {
+    vi: "Research Assistant",
+    en: "Research Assistant",
+  },
+  lab: {
+    vi: "SoilTECH Lab",
+    en: "SoilTECH Lab",
+  },
+  institution: {
+    vi: "Khoa Môi trường, Trường Đại học Khoa học Tự nhiên, ĐHQGHN",
+    en: "Faculty of Environmental Sciences, Hanoi University of Science, VNU",
+  },
+  contactPurpose: {
+    vi: "Liên hệ về góp ý dashboard, phương pháp mô hình hoặc câu hỏi truy cập dữ liệu.",
+    en: "Contact for dashboard feedback, model-method questions, or data-access questions.",
+  },
+  dataNotice: {
+    vi: "Lab data không chia sẻ công khai; website chỉ trình bày kết quả tổng hợp/hiển thị phục vụ demo và thảo luận khoa học.",
+    en: "Lab data are not publicly shared; the website presents aggregated/displayed outputs for demo and scientific discussion only.",
+  },
+};
+
 export const navItems: NavItem[] = [
   { href: "/", label: { vi: "Trang chủ", en: "Home" } },
-  { href: "/#why-it-matters", label: { vi: "Vì sao quan trọng", en: "Why it matters" } },
-  { href: "/#dashboard", label: { vi: "Dashboard", en: "Dashboard" } },
-  { href: "/#impact", label: { vi: "Tác động", en: "Impact" } },
-  { href: "/#technical", label: { vi: "Kỹ thuật", en: "Technical" } },
+  { href: "#why-it-matters", label: { vi: "Vì sao quan trọng", en: "Why it matters" } },
+  { href: "#dashboard", label: { vi: "Dashboard", en: "Dashboard" } },
+  { href: "#impact", label: { vi: "Tác động", en: "Impact" } },
+  { href: "#technical", label: { vi: "Kỹ thuật", en: "Technical" } },
   { href: "/frequently-asked-questions", label: { vi: "FAQ", en: "FAQ" } },
 ];
 
@@ -45,6 +74,135 @@ export const commonText = {
   back: { vi: "Quay lại", en: "Back" },
   submit: { vi: "Gửi đánh giá", en: "Submit feedback" },
 };
+
+export const onboardingTour = {
+  storageKey: "grain-onboarding-complete",
+  pendingManualStartKey: "grain-onboarding-manual-start",
+  openAssistantEvent: "grain-open-ai-assistant",
+  controls: {
+    back: { vi: "Quay lại", en: "Back" },
+    close: { vi: "Đóng hướng dẫn", en: "Close guide" },
+    finish: { vi: "Hoàn tất", en: "Finish" },
+    next: { vi: "Tiếp theo", en: "Next" },
+    progress: { vi: "Bước", en: "Step" },
+    reopen: { vi: "Mở hướng dẫn", en: "Open guide" },
+    skip: { vi: "Bỏ qua", en: "Skip" },
+  },
+  steps: [
+    {
+      id: "project-intro",
+      target: "project-intro",
+      title: {
+        vi: "Bắt đầu với dự án",
+        en: "Start with the project",
+      },
+      body: {
+        vi: "Đây là bản demo Hạt Gạo Ngày Mai: một hệ thống cảnh báo sớm dùng AI để đọc tín hiệu rủi ro arsenic trong gạo Việt Nam và ưu tiên nơi cần lấy mẫu.",
+        en: "This is The Grain of Tomorrow demo: an AI early-warning system for reading arsenic risk signals in Vietnamese rice and prioritizing where to sample.",
+      },
+    },
+    {
+      id: "dashboard",
+      target: "dashboard",
+      action: "scroll-dashboard",
+      title: {
+        vi: "Đi tới dashboard",
+        en: "Go to the dashboard",
+      },
+      body: {
+        vi: "Dashboard nằm ngay trên trang chủ tại /#dashboard. Tại đây bạn có thể đọc bản đồ, kịch bản khí hậu và thông tin ưu tiên lấy mẫu.",
+        en: "The dashboard lives on the homepage at /#dashboard. Here you can inspect the map, climate scenarios, and sampling-priority information.",
+      },
+    },
+    {
+      id: "scenario-chooser",
+      target: "scenario-chooser",
+      action: "show-scenario-map",
+      title: {
+        vi: "Chọn kịch bản khí hậu",
+        en: "Choose climate scenarios",
+      },
+      body: {
+        vi: "Chọn Baseline, RCP4.5 hoặc RCP8.5 rồi nhìn ngay bản đồ phía dưới để thấy lớp rủi ro thay đổi theo từng kịch bản.",
+        en: "Choose Baseline, RCP4.5, or RCP8.5, then watch the map below update so the scenario differences are visible.",
+      },
+    },
+    {
+      id: "province-values",
+      target: "risk-map-canvas",
+      title: {
+        vi: "Kiểm tra giá trị theo tỉnh",
+        en: "Inspect province values",
+      },
+      body: {
+        vi: "Trên desktop, rê chuột qua ranh giới tỉnh để xem giá trị theo Baseline, RCP4.5 và RCP8.5.",
+        en: "On desktop, hover over province boundaries to view Baseline, RCP4.5, and RCP8.5 values.",
+      },
+      mobileBody: {
+        vi: "Trên mobile, chạm vào tỉnh hoặc dùng danh sách vùng bên cạnh bản đồ để xem giá trị.",
+        en: "On mobile, tap a province or use the region list beside the map to view values.",
+      },
+    },
+    {
+      id: "technical-chart",
+      target: "technical-chart-hover",
+      fallbackTarget: "technical-chart",
+      action: "scroll-technical-chart",
+      title: {
+        vi: "Mở biểu đồ Actual Data",
+        en: "Open the Actual Data chart",
+      },
+      body: {
+        vi: "Phần kỹ thuật giữ biểu đồ Actual Data và dự báo theo kịch bản khí hậu để bạn thẩm định xu hướng đến năm 2050.",
+        en: "The technical section keeps the Actual Data and climate-scenario projection chart so you can review trends to 2050.",
+      },
+    },
+    {
+      id: "scenario-values",
+      target: "technical-chart-hover",
+      fallbackTarget: "technical-chart",
+      title: {
+        vi: "Đọc giá trị kịch bản",
+        en: "Inspect scenario values",
+      },
+      body: {
+        vi: "Rê chuột hoặc focus vào các điểm trên biểu đồ để xem năm, trung bình, min/max và dải bất định p10-p90.",
+        en: "Hover or focus points in the chart to view year, mean, min/max, and the p10-p90 uncertainty band.",
+      },
+      mobileBody: {
+        vi: "Trên mobile, dùng phần tóm tắt dưới biểu đồ để so sánh Actual Data, RCP4.5 và RCP8.5.",
+        en: "On mobile, use the summary below the chart to compare Actual Data, RCP4.5, and RCP8.5.",
+      },
+    },
+    {
+      id: "assistant-open",
+      target: "assistant-trigger",
+      fallbackTarget: "assistant-panel",
+      action: "open-assistant",
+      title: {
+        vi: "Mở chatbot",
+        en: "Open the chatbot",
+      },
+      body: {
+        vi: "Trợ lý AI mở tự động ở bước này. Bạn có thể hỏi bằng ngôn ngữ tự nhiên về arsenic, ngưỡng cảnh báo và ưu tiên lấy mẫu.",
+        en: "The AI assistant opens automatically in this step. You can ask natural-language questions about arsenic, warning thresholds, and sampling priority.",
+      },
+    },
+    {
+      id: "assistant-roles",
+      target: "assistant-roles",
+      action: "open-assistant",
+      title: {
+        vi: "Chọn vai trò trả lời",
+        en: "Choose the answer role",
+      },
+      body: {
+        vi: "Bốn vai trò đổi cách trả lời: nhà khoa học tập trung bằng chứng, chính sách tập trung ưu tiên nguồn lực, nông dân dùng ngôn ngữ thực hành, địa phương/HTX tập trung phối hợp lấy mẫu.",
+        en: "The four roles change the answer style: scientist focuses on evidence, policymaker on resource priority, farmer on practical wording, and local/co-op on sampling coordination.",
+      },
+    },
+  ],
+} as const;
 
 export const homeHero = {
   eyebrow: { vi: "Landing demo cảnh báo arsenic", en: "Arsenic early-warning landing demo" },
@@ -61,7 +219,7 @@ export const homeHero = {
 
 export const heroStats = [
   {
-    value: "1,327",
+    value: dashboardData.modelCounts.actualRows.toLocaleString("en-US"),
     label: { vi: "mẫu gạo", en: "rice samples" },
     detail: { vi: "Bộ dữ liệu 2017-2025", en: "Dataset from 2017-2025" },
   },
@@ -71,102 +229,116 @@ export const heroStats = [
     detail: { vi: "Cơ sở suy luận không gian", en: "Spatial inference basis" },
   },
   {
-    value: "18,920",
+    value: dashboardData.modelCounts.futureRows.toLocaleString("en-US"),
     label: { vi: "điểm dự báo", en: "projections" },
     detail: { vi: "RCP4.5/RCP8.5 đến 2050", en: "RCP4.5/RCP8.5 to 2050" },
   },
 ];
 
 export const requiredMetrics = [
-  { label: { vi: "Mẫu gạo 2017-2025", en: "Rice samples 2017-2025" }, value: "1,327" },
-  { label: { vi: "Vị trí mô hình", en: "Model locations" }, value: "946" },
-  { label: { vi: "Điểm dự báo", en: "Projection instances" }, value: "18,920" },
+  { label: { vi: "Mẫu gạo 2017-2025", en: "Rice samples 2017-2025" }, value: dashboardData.modelCounts.actualRows.toLocaleString("en-US") },
+  { label: { vi: "Vị trí mô hình", en: "Model locations" }, value: dashboardData.modelCounts.locations.toLocaleString("en-US") },
+  { label: { vi: "Điểm dự báo", en: "Projection instances" }, value: dashboardData.modelCounts.futureRows.toLocaleString("en-US") },
   { label: { vi: "Kịch bản đến", en: "Scenario horizon" }, value: "2050" },
 ];
 
-export const scenarioResults = [
-  {
-    id: "baseline",
-    label: { vi: "Baseline 2025", en: "Baseline 2025" },
-    value: "0.21",
-    max: "0.34",
-    co2: "424.32",
-    increase: "0%",
-    image: publicAsset("/images/grain/paddy-baseline-2025-preview.png"),
-    unit: "mg/kg",
+const formatNumber = (value: number, fractionDigits = 3) => value.toFixed(fractionDigits).replace(/\.?0+$/, "");
+
+const scenarioText: Record<string, { level: LocalizedText; description: LocalizedText }> = {
+  baseline: {
     level: { vi: "Mốc hiện tại", en: "Current baseline" },
     description: {
-      vi: "Giá trị nền dùng để so sánh các kịch bản khí hậu.",
-      en: "Baseline value used to compare climate scenarios.",
+      vi: "Dữ liệu thực tế 2017-2025 từ data/baseline.xlsx.",
+      en: "Actual 2017-2025 data from data/baseline.xlsx.",
     },
   },
-  {
-    id: "rcp45",
-    label: { vi: "RCP4.5 2050", en: "RCP4.5 2050" },
-    value: "0.268",
-    max: "0.383",
-    co2: "526",
-    increase: "+29.3%",
-    image: publicAsset("/images/grain/paddy-rcp45-2050-preview.png"),
-    unit: "mg/kg",
+  rcp45: {
     level: { vi: "Tăng vừa", en: "Moderate increase" },
     description: {
-      vi: "Kịch bản phát thải trung bình cho thấy rủi ro tăng đáng kể.",
-      en: "The medium-emissions scenario indicates a meaningful risk increase.",
+      vi: "Kịch bản RCP4.5 lấy từ data/future.xlsx tại năm 2050.",
+      en: "RCP4.5 scenario from data/future.xlsx at year 2050.",
     },
   },
-  {
-    id: "rcp85",
-    label: { vi: "RCP8.5 2050", en: "RCP8.5 2050" },
-    value: "0.304",
-    max: "0.427",
-    co2: "628",
-    increase: "+35.3%",
-    image: publicAsset("/images/grain/paddy-rcp85-2050-preview.png"),
-    unit: "mg/kg",
+  rcp85: {
     level: { vi: "Ưu tiên cảnh báo", en: "Warning priority" },
     description: {
-      vi: "Kịch bản khí hậu khắc nghiệt hơn, dùng để xác định vùng cần lấy mẫu sớm.",
-      en: "The higher-warming scenario helps identify areas that need earlier sampling.",
+      vi: "Kịch bản RCP8.5 lấy từ data/future.xlsx tại năm 2050.",
+      en: "RCP8.5 scenario from data/future.xlsx at year 2050.",
     },
   },
-];
+};
 
-export const riskRegions = [
-  {
-    name: "North",
-    viName: "Miền Bắc",
-    baseline: "0.224",
-    rcp45: "0.283",
-    rcp85: "0.329",
-    priority: { vi: "Rất cao", en: "Very high" },
-  },
-  {
-    name: "Central",
-    viName: "Miền Trung",
-    baseline: "0.205",
-    rcp45: "0.269",
-    rcp85: "0.316",
-    priority: { vi: "Cao", en: "High" },
-  },
-  {
-    name: "South",
-    viName: "Miền Nam",
-    baseline: "0.190",
-    rcp45: "0.251",
-    rcp85: "0.292",
-    priority: { vi: "Trung bình", en: "Medium" },
-  },
-];
+const scenarioMetadataById = (scenarioId: string) =>
+  paddyMapMetadata.scenarios.find((scenario) => scenario.id === scenarioId) ?? paddyMapMetadata.scenarios[0];
+
+const actualScenario = {
+  id: "baseline",
+  label: dashboardData.actual.label,
+  targetYear: dashboardData.actual.displayYear,
+  stats: dashboardData.actual,
+};
+
+const futureScenarioList = [
+  dashboardData.future.scenarios.rcp45,
+  dashboardData.future.scenarios.rcp85,
+] as const;
+
+const scenarioDataList = [
+  actualScenario,
+  ...futureScenarioList.map((scenario) => ({
+    id: scenario.id,
+    label: scenario.label,
+    targetYear: scenario.targetYear,
+    stats: scenario.target,
+  })),
+] as const;
+
+export const scenarioResults = scenarioDataList.map((scenario) => {
+  const localizedText = scenarioText[scenario.id] ?? scenarioText.baseline;
+  const metadata = scenarioMetadataById(scenario.id);
+  const increasePercent =
+    scenario.id === "baseline"
+      ? 0
+      : ((scenario.stats.mean - dashboardData.actual.mean) / dashboardData.actual.mean) * 100;
+
+  return {
+    id: scenario.id,
+    label: { vi: scenario.label, en: scenario.label },
+    value: formatNumber(scenario.stats.mean),
+    max: formatNumber(scenario.stats.max),
+    co2: formatNumber(metadata.co2Ppm, 2),
+    increase: `${increasePercent > 0 ? "+" : ""}${formatNumber(increasePercent, 1)}%`,
+    unit: "mg/kg",
+    level: localizedText.level,
+    description: localizedText.description,
+  };
+});
+
+export const paddyMapSamples = dashboardData.mapSamples;
+
+export const paddyMapProjection = {
+  bbox: paddyMapMetadata.bbox,
+  width: paddyMapMetadata.displayRasterDimensions.width,
+  height: paddyMapMetadata.displayRasterDimensions.height,
+};
+
+export const riskRegions = dashboardData.regions.map((region) => ({
+  name: region.name,
+  viName: region.viName,
+  baseline: formatNumber(region.baseline.mean),
+  rcp45: formatNumber(region.rcp45.mean),
+  rcp85: formatNumber(region.rcp85.mean),
+  priority: region.priority,
+}));
 
 export const paddyMap = {
   basemap: publicAsset("/images/grain/vietnam-basemap.jpg"),
   boundaries: publicAsset("/images/grain/vietnam-boundaries.svg"),
   metadata: publicAsset("/images/grain/paddy-map-metadata.json"),
   mask: publicAsset("/images/grain/paddy-mask-vietnam.png"),
-  bbox: "102.0-117.5E, 5.0-24.5N",
-  cropWindow: "3451x4342+9326+6618",
-  threshold: "0.20 mg/kg",
+  bbox: `${formatNumber(paddyMapMetadata.bbox.lonMin, 1)}-${formatNumber(paddyMapMetadata.bbox.lonMax, 1)}E, ${formatNumber(paddyMapMetadata.bbox.latMin, 1)}-${formatNumber(paddyMapMetadata.bbox.latMax, 1)}N`,
+  cropWindow: `${paddyMapMetadata.cropWindow.width}x${paddyMapMetadata.cropWindow.height}+${paddyMapMetadata.cropWindow.x}+${paddyMapMetadata.cropWindow.y}`,
+  threshold: `${dashboardData.thresholdMgKg.toFixed(2)} mg/kg`,
   legend: [
     { label: { vi: "Thấp", en: "Low" }, range: "<0.20", color: "#dcefe0" },
     { label: { vi: "Cận ngưỡng", en: "Near threshold" }, range: "0.20-0.23", color: "#eef6d0" },
@@ -181,28 +353,120 @@ export const modelFigures = {
   shapSummary: publicAsset("/images/grain/figure-4-shap-summary.jpeg"),
 };
 
+const modelSampleCounts = {
+  raw: dashboardData.modelCounts.actualRows,
+  retained: dashboardData.modelCounts.locations,
+  cleaned: dashboardData.modelCounts.actualRows,
+  predictors: 24,
+  timeSteps: dashboardData.modelCounts.timeSteps,
+};
+
+const projectedScenarioCount = dashboardData.modelCounts.futureScenarios;
+const projectionInstanceCount = dashboardData.modelCounts.projectionInstances;
+const scenarioCo2Values = paddyMapMetadata.scenarios.map((scenario) => scenario.co2Ppm);
+const scenarioMeanValues = scenarioDataList.map((scenario) => scenario.stats.mean);
+const scenarioMaxValues = scenarioDataList.map((scenario) => scenario.stats.max);
+const scenarioLabels = scenarioDataList.map((scenario) => scenario.label).join(", ");
+
 export const modelConfiguration = [
-  { label: { vi: "Mẫu ban đầu", en: "Raw samples" }, value: "1,327" },
-  { label: { vi: "Mẫu giữ lại", en: "Retained samples" }, value: "946" },
-  { label: { vi: "Dataset sạch", en: "Cleaned model dataset" }, value: "881" },
-  { label: { vi: "Biến dự báo", en: "Predictors" }, value: "24" },
+  { label: { vi: "Mẫu ban đầu", en: "Raw samples" }, value: modelSampleCounts.raw.toLocaleString("en-US") },
+  { label: { vi: "Mẫu giữ lại", en: "Retained samples" }, value: modelSampleCounts.retained.toLocaleString("en-US") },
+  { label: { vi: "Dataset sạch", en: "Cleaned model dataset" }, value: modelSampleCounts.cleaned.toLocaleString("en-US") },
+  { label: { vi: "Biến dự báo", en: "Predictors" }, value: String(modelSampleCounts.predictors) },
   { label: { vi: "Mô hình", en: "Model" }, value: "Gaussian Process Regression" },
   { label: { vi: "Kernel", en: "Kernel" }, value: "Matérn nu=0.5 + RBF + white noise + dot product" },
-  { label: { vi: "CO2 transform", en: "CO2 transform" }, value: "(CO2 - 424.32)" },
+  { label: { vi: "Nguồn kịch bản", en: "Scenario source" }, value: scenarioLabels },
+  {
+    label: { vi: "Dải CO2", en: "CO2 range" },
+    value: `${formatNumber(Math.min(...scenarioCo2Values), 2)}-${formatNumber(Math.max(...scenarioCo2Values), 2)} ppm`,
+  },
+  {
+    label: { vi: "Dải trung bình quốc gia", en: "National mean range" },
+    value: `${formatNumber(Math.min(...scenarioMeanValues))}-${formatNumber(Math.max(...scenarioMeanValues))} mg/kg`,
+  },
+  {
+    label: { vi: "Dải giá trị max", en: "Maximum range" },
+    value: `${formatNumber(Math.min(...scenarioMaxValues))}-${formatNumber(Math.max(...scenarioMaxValues))} mg/kg`,
+  },
+  { label: { vi: "Ngưỡng cảnh báo", en: "Warning threshold" }, value: paddyMap.threshold },
+  { label: { vi: "Nguồn baseline", en: "Baseline source" }, value: dashboardData.sources.baseline },
+  { label: { vi: "Nguồn future", en: "Future source" }, value: dashboardData.sources.future },
+  { label: { vi: "CO2 transform", en: "CO2 transform" }, value: `(CO2 - ${formatNumber(scenarioMetadataById("baseline").co2Ppm, 2)})` },
   { label: { vi: "Target / features", en: "Target / features" }, value: "log(1 + x), z-score, normalize_y=true" },
   { label: { vi: "Optuna", en: "Optuna" }, value: "30 trials, alpha/noise 0.01-1.0" },
   { label: { vi: "Validation", en: "Validation" }, value: "5-fold CV R2 = 0.365 +/- 0.071" },
   { label: { vi: "Test", en: "Test" }, value: "R2 = 0.3546, RMSE = 0.0743" },
   { label: { vi: "Train", en: "Train" }, value: "R2 = 0.9033, RMSE = 0.0292" },
-  { label: { vi: "Projection", en: "Projection" }, value: "18,920 = 946 locations x 10 time steps x 2 scenarios" },
+  {
+    label: { vi: "Projection", en: "Projection" },
+    value: `${projectionInstanceCount.toLocaleString("en-US")} = ${modelSampleCounts.retained.toLocaleString("en-US")} locations x ${modelSampleCounts.timeSteps} time steps x ${projectedScenarioCount} scenarios`,
+  },
+  {
+    label: { vi: "Tổng hợp vùng", en: "Regional aggregation" },
+    value: "North/Central/South means are aggregated directly from Excel rows by latitude band.",
+  },
   { label: { vi: "Ensemble", en: "Ensemble" }, value: "50 bootstrap GPR runs, median, p10/p90" },
-  { label: { vi: "Exceedance", en: "Exceedance" }, value: "50-run Random Forest classifier, P(Grain As > 0.2 mg/kg)" },
+  {
+    label: { vi: "Exceedance", en: "Exceedance" },
+    value: `Estimated from p10/p50/p90 against ${paddyMap.threshold}`,
+  },
 ];
 
-export const uncertaintyBands = [
-  { scenario: "baseline", p10: "0.16", p50: "0.21", p90: "0.29", exceedance: "54%" },
-  { scenario: "rcp45", p10: "0.21", p50: "0.268", p90: "0.35", exceedance: "72%" },
-  { scenario: "rcp85", p10: "0.24", p50: "0.304", p90: "0.39", exceedance: "83%" },
+const interpolatePercentile = (value: number, p10: number, p50: number, p90: number) => {
+  if (value <= p10) {
+    return 10;
+  }
+
+  if (value >= p90) {
+    return 90;
+  }
+
+  if (value <= p50) {
+    return 10 + ((value - p10) / (p50 - p10)) * 40;
+  }
+
+  return 50 + ((value - p50) / (p90 - p50)) * 40;
+};
+
+export const uncertaintyBands = scenarioDataList.map((scenario) => ({
+  scenario: scenario.id,
+  p10: formatNumber(scenario.stats.p10),
+  p50: formatNumber(scenario.stats.median),
+  p90: formatNumber(scenario.stats.p90),
+  exceedance: `${Math.round(scenario.stats.exceedancePercent)}%`,
+}));
+
+export const scenarioTrendSeries = [
+  {
+    id: "baseline",
+    label: { vi: "Actual Data", en: "Actual Data" },
+    color: "#5ea95a",
+    points: dashboardData.actual.years.map((point) => ({
+      year: point.year,
+      mean: point.mean,
+      min: point.min,
+      max: point.max,
+      p10: point.p10,
+      p90: point.p90,
+      exceedancePercent: point.exceedancePercent,
+    })),
+  },
+  ...futureScenarioList.map((scenario) => ({
+    id: scenario.id,
+    label: { vi: scenario.label, en: scenario.label },
+    color: scenario.id === "rcp45" ? "#e0a72d" : "#d8532b",
+    points: scenario.years.map((point) => ({
+      year: point.year,
+      mean: point.mean,
+      min: point.min,
+      max: point.max,
+      p10: point.p10,
+      p90: point.p90,
+      ciLower: point.ciLowerMean,
+      ciUpper: point.ciUpperMean,
+      exceedancePercent: point.exceedancePercent,
+    })),
+  })),
 ];
 
 export const predictorImportance = [
