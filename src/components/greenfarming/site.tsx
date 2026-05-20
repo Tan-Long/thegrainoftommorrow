@@ -1779,26 +1779,7 @@ function LandingDashboardSection() {
           </div>
         </div>
         <div className="grid content-start gap-5">
-          <div className="dashboard-view-tabs" role="tablist" aria-label={locale === "vi" ? "Chế độ bản đồ" : "Map view mode"}>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={viewMode === "rice"}
-              className={cn("dashboard-view-tab", viewMode === "rice" && "dashboard-view-tab-active")}
-              onClick={() => setViewMode("rice")}
-            >
-              {locale === "vi" ? "Khu vực trồng lúa" : "Rice growing area"}
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={viewMode === "warning"}
-              className={cn("dashboard-view-tab", viewMode === "warning" && "dashboard-view-tab-active")}
-              onClick={() => setViewMode("warning")}
-            >
-              {locale === "vi" ? "Vùng cảnh báo" : "Warning zone"}
-            </button>
-          </div>
+          {/* Dashboard view tabs removed for compact landing layout */}
           <ArsenicRiskMap compact viewMode={viewMode} onViewModeChange={setViewMode} />
           <div className="landing-scenario-stack">
             {scenarioResults.map((result) => (

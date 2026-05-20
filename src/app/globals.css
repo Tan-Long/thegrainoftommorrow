@@ -2059,8 +2059,10 @@
     padding: 18px;
   }
 
+  /* Keep layer button visible in compact mode: show it to the right of the scenario selector */
   .risk-map-card-compact .map-toolbar {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
   }
 
   .risk-map-card-compact .map-layer-button {
@@ -2072,7 +2074,8 @@
   }
 
   .risk-map-card-compact .map-sidebar {
-    display: none;
+    display: block;
+    margin-top: 12px;
   }
 
   .risk-map-card-compact .vietnam-map-canvas {
