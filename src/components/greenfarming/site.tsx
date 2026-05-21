@@ -2376,6 +2376,7 @@ function ArsenicRiskMap({
   selectedRegion,
   onRegionChange,
   hideScenarioChooser = false,
+  initialShowPalette = false,
 }: {
   compact?: boolean;
   scenario?: ScenarioId;
@@ -2383,6 +2384,7 @@ function ArsenicRiskMap({
   selectedRegion?: string;
   onRegionChange?: (region: string) => void;
   hideScenarioChooser?: boolean;
+  initialShowPalette?: boolean;
 }) {
   const { locale } = useLocale();
   const [localScenario, setLocalScenario] = useState<ScenarioId>("rcp85");
@@ -2390,7 +2392,7 @@ function ArsenicRiskMap({
   const [zoomIndex, setZoomIndex] = useState(0);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   const [hoveredProvince, setHoveredProvince] = useState<HoveredProvince | null>(null);
-  const [showPaletteLayer, setShowPaletteLayer] = useState(true);
+  const [showPaletteLayer, setShowPaletteLayer] = useState<boolean>(initialShowPalette ?? true);
   const [dragStart, setDragStart] = useState<{
     pointerId: number;
     startX: number;
@@ -2519,8 +2521,12 @@ function ArsenicRiskMap({
           onClick={() => setShowPaletteLayer((current) => !current)}
         >
           <Layers3 size={17} />
-          {locale === "vi" ? "Layers" : "Layers"}
+          {locale === "vi" ? "Hiện vùng lúa / vùng cảnh báo" : "Show paddy areas / Warning zones"}
         </button>
+
+        <p className="toolbar-disclaimer text-[11px] font-medium text-[#5d6a62]">
+          This dashboard is an early-warning and sampling-priority demo; it does not replace laboratory testing or official food-safety decisions.
+        </p>
       </div>
 
       <div className="map-content-grid mt-5 grid gap-5">
@@ -2577,18 +2583,7 @@ function ArsenicRiskMap({
               showPaletteLayer={showPaletteLayer}
             />
           </div>
-          {showPaletteLayer ? (
-            <div className="map-color-legend">
-              <p className="map-color-legend-title">{locale === "vi" ? "Nồng độ asen (mg/kg As)" : "Arsenic concentration (mg/kg As)"}</p>
-              {paddyMap.legend.map((item) => (
-                <div key={item.range} className="map-color-legend-item">
-                  <span className="map-color-legend-swatch" style={{ background: item.color }} />
-                  <span className="map-color-legend-label">{t(item.label, locale)}</span>
-                  <span className="map-color-legend-range">{item.range}</span>
-                </div>
-              ))}
-            </div>
-          ) : null}
+          {/* legend removed from inside map shell; rendered below map container instead */}
           {hoveredProvince ? (
             <div
               className="province-hover-popup"
@@ -2673,26 +2668,24 @@ function ArsenicRiskMap({
               );
             })}
           </div>
-          <div className="map-legend">
-            <p className="text-xs font-black uppercase text-[#7a6a42]">
-              {locale === "vi" ? "Nồng độ asen (mg/kg As)" : "Arsenic concentration (mg/kg As)"}
-            </p>
-            {paddyMap.legend.map((item) => (
-              <div key={item.range} className="legend-row">
-                <span className="legend-swatch" style={{ background: item.color }} />
-                <span>{t(item.label, locale)}</span>
-                <span>{item.range}</span>
-              </div>
-            ))}
-            <p className="mt-2 text-xs font-bold text-[#735d13]">
-              {locale === "vi" ? "Ngưỡng tham chiếu cảnh báo" : "Reference warning threshold"}: {paddyMap.threshold}
-            </p>
-          </div>
+          {/* Sidebar legend removed; main legend shown below map */}
         </aside>
       </div>
       <div className="mt-4 flex flex-wrap items-center gap-3 text-xs font-bold text-[#5d6a62]">
         <span className="inline-flex items-center gap-2"><SlidersHorizontal size={15} /> {t(activeScenario.label, locale)}</span>
         <span>{t(brand.disclaimer, locale)}</span>
+      </div>
+      {/* Legend rendered fully below the map */}
+      <div className="map-legend-bottom">
+        {paddyMap.legend.map((item) => (
+          <div key={item.range} className="legend-row">
+            <span className="legend-swatch" style={{ background: item.color }} />
+            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <span style={{ fontWeight: 800 }}>{t(item.label, locale)}</span>
+              <span className="legend-range text-xs text-[#5d6a62]">{item.range}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
