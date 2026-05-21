@@ -558,6 +558,65 @@
     transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
   }
 
+  .layer-choice-panel {
+    border: 1px solid #dfe8d6;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f7fbef 100%);
+    padding: 14px;
+    box-shadow: 0 16px 36px rgba(20, 61, 42, 0.08);
+  }
+
+  .layer-choice-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: #7a6a42;
+    font-size: 11px;
+    font-weight: 950;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .layer-choice-grid {
+    display: grid;
+    gap: 8px;
+  }
+
+  .layer-choice-card {
+    min-height: 44px;
+    border: 1px solid #dfe8d6;
+    border-radius: 12px;
+    background: #fffdf7;
+    color: #1f6f43;
+    cursor: pointer;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 950;
+    transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease, background-color 150ms ease;
+  }
+
+  .layer-choice-card:hover,
+  .layer-choice-card-active {
+    border-color: #143d2a;
+    box-shadow: 0 12px 24px rgba(20, 61, 42, 0.18);
+    transform: translateY(-1px);
+  }
+
+  .layer-choice-card-active {
+    background: linear-gradient(135deg, #143d2a 0%, #1f6f43 100%);
+    color: #fffdf7;
+  }
+
+  .dashboard-control-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+    gap: 14px;
+    align-items: start;
+  }
+
   .scenario-choice-card:hover,
   .scenario-choice-card-active {
     border-color: #143d2a;
@@ -1742,6 +1801,41 @@
     align-items: end;
   }
 
+  .map-status-strip {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+  }
+
+  .map-status-item {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+    border: 1px solid #dfe8d6;
+    border-radius: 10px;
+    background: #fffdf7;
+    padding: 10px 12px;
+  }
+
+  .map-status-item span {
+    color: #7a6a42;
+    font-size: 10px;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
+
+  .map-status-item strong {
+    overflow: hidden;
+    color: #143d2a;
+    font-size: 14px;
+    font-weight: 950;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .map-toolbar label {
     display: grid;
     gap: 5px;
@@ -1887,12 +1981,84 @@
     justify-content: center;
     gap: 8px;
     color: #1f6f43;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 3;
+    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
   }
 
-  .map-layer-button-active {
-    border-color: #1f6f43;
-    background: #ecf7ef;
-    box-shadow: 0 0 0 1px rgba(31, 111, 67, 0.16), 0 10px 20px -16px rgba(31, 111, 67, 0.4);
+  .map-layer-button:hover {
+    background: #f3fbe8;
+    border-color: #9fcb96;
+    color: #145c37;
+    box-shadow: 0 6px 18px rgba(31, 111, 67, 0.12);
+    transform: translateY(-1px);
+  }
+
+  .map-layer-button:focus-visible {
+    outline: 2px solid #1f6f43;
+    outline-offset: 2px;
+  }
+
+  .map-layer-menu {
+    position: relative;
+  }
+
+  .map-layer-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 20;
+    min-width: 220px;
+    overflow: hidden;
+    border: 1px solid #d8e3c6;
+    border-radius: 12px;
+    background: #fffdf7;
+    box-shadow: 0 18px 32px rgba(27, 58, 36, 0.16);
+  }
+
+  .map-layer-option {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 10px;
+    border: 0;
+    border-bottom: 1px solid #edf3e3;
+    background: transparent;
+    color: #26352b;
+    cursor: pointer;
+    padding: 12px 14px;
+    text-align: left;
+    transition: background-color 160ms ease, color 160ms ease;
+  }
+
+  .map-layer-option:last-child {
+    border-bottom: 0;
+  }
+
+  .map-layer-option:hover,
+  .map-layer-option:focus-visible {
+    background: #eef7e7;
+  }
+
+  .map-layer-option-active {
+    background: #e4f3dd;
+    color: #145c37;
+  }
+
+  .map-layer-option strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .map-layer-option small {
+    display: block;
+    margin-top: 2px;
+    color: #6b765d;
+    font-size: 11px;
+    font-weight: 700;
   }
 
   .leaflet-map-shell {
@@ -1953,76 +2119,6 @@
     pointer-events: auto;
   }
 
-  .palette-layer-off .province-line-layer path {
-    stroke: rgba(191, 197, 102, 0.526);
-    stroke-width: 0.55;
-    filter: none;
-  }
-
-  .palette-layer-off .country-line-layer path {
-    stroke: rgba(255, 255, 255, 0.46);
-    stroke-width: 1;
-    filter: none;
-  }
-
-  .map-color-legend {
-    position: absolute;
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    z-index: 6;
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.68);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px);
-    padding: 10px 12px;
-    box-shadow: 0 14px 28px rgba(20, 61, 42, 0.18);
-  }
-
-  .map-color-legend-title {
-    grid-column: 1 / -1;
-    margin: 0 0 2px;
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #7a6a42;
-  }
-
-  .map-color-legend-item {
-    display: grid;
-    gap: 4px;
-    justify-items: center;
-    text-align: center;
-    font-size: 11px;
-    font-weight: 800;
-    color: #26352b;
-  }
-
-  .map-color-legend-swatch {
-    width: 100%;
-    min-height: 10px;
-    border-radius: 9999px;
-    border: 1px solid rgba(20, 61, 42, 0.12);
-  }
-
-  .map-color-legend-label {
-    line-height: 1.1;
-  }
-
-  .map-color-legend-range {
-    font-size: 10px;
-    font-weight: 700;
-    color: #7a6a42;
-  }
-
-  .province-fill-layer-hidden {
-    display: none;
-  }
-
   .country-shadow-layer path,
   .country-line-layer path,
   .province-line-layer path,
@@ -2050,7 +2146,7 @@
 
   .province-line-layer path {
     fill: none;
-    stroke: rgba(255, 255, 255, 0.95);
+    stroke: rgba(255, 244, 191, 0.52);
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 0.35;
@@ -2223,7 +2319,68 @@
   .map-sidebar {
     display: grid;
     align-content: start;
-    gap: 14px;
+    gap: 10px;
+  }
+
+  .map-summary-card {
+    display: grid;
+    gap: 8px;
+    border: 1px solid #dfe8d6;
+    border-radius: 8px;
+    background: #fffdf7;
+    padding: 9px;
+  }
+
+  .map-summary-main {
+    display: grid;
+    gap: 3px;
+  }
+
+  .map-summary-main span {
+    color: #7a6a42;
+    font-size: 10px;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
+
+  .map-summary-main strong {
+    color: #143d2a;
+    font-size: 21px;
+    font-weight: 950;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .map-summary-main small {
+    color: #5d6a62;
+    font-size: 10px;
+    font-weight: 900;
+  }
+
+  .map-summary-chips {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .map-summary-chips span {
+    border-radius: 999px;
+    background: #f3f7ea;
+    overflow: hidden;
+    padding: 5px 6px;
+    color: #735d13;
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .map-region-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
   }
 
   .map-region-button {
@@ -2259,32 +2416,92 @@
     border-radius: 9999px;
   }
 
+  .legend-gradient {
+    margin-top: 10px;
+    display: grid;
+    gap: 8px;
+  }
+
+  .legend-gradient-band {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    height: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(20, 61, 42, 0.14);
+    border-radius: 9999px;
+  }
+
+  .legend-gradient-3 .legend-gradient-band {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .legend-gradient-segment {
+    display: block;
+    min-width: 0;
+  }
+
+  .legend-gradient-values {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  .legend-gradient-3 .legend-gradient-values {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .legend-gradient-value {
+    min-width: 0;
+    color: #26352b;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .legend-gradient-value strong,
+  .legend-gradient-value span {
+    display: block;
+  }
+
+  .legend-gradient-value strong {
+    color: #1f6f43;
+    font-size: 10px;
+    font-weight: 900;
+  }
+
+  .legend-gradient-value span {
+    margin-top: 2px;
+    color: #5d6a62;
+    font-size: 9px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
   .legend-swatch-0 {
-    background: #1b8555;
+    background: #5ea95a;
   }
 
   .legend-swatch-1 {
-    background: #4fa654;
+    background: #e0c24a;
   }
 
   .legend-swatch-2 {
-    background: #b7d149;
+    background: #d8532b;
   }
 
   .legend-swatch-3 {
-    background: #f2b83a;
-  }
-
-  .legend-swatch-4 {
-    background: #e66e2f;
+    background: #d8532b;
   }
 
   .risk-map-card-compact {
     padding: 18px;
   }
 
+  /* Keep layer button visible in compact mode: show it to the right of the scenario selector */
   .risk-map-card-compact .map-toolbar {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
   }
 
   .risk-map-card-compact .map-layer-button {
@@ -2304,7 +2521,8 @@
   }
 
   .risk-map-card-compact .map-sidebar {
-    display: none;
+    display: block;
+    margin-top: 12px;
   }
 
   .risk-map-card-compact .vietnam-map-canvas {
@@ -2355,12 +2573,37 @@
 
   .region-row {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 16px;
-    align-items: center;
+    gap: 3px;
+    align-items: start;
     border-radius: 8px;
     background: #fbf7e8;
-    padding: 12px 14px;
+    padding: 8px 6px;
+    text-align: center;
+  }
+
+  .region-row-name {
+    overflow: hidden;
+    color: #26352b;
+    font-size: 11px;
+    font-weight: 950;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .region-row-priority {
+    overflow: hidden;
+    color: #7a6a42;
+    font-size: 10px;
+    font-weight: 850;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .region-row-value {
+    color: #143d2a;
+    font-size: 14px;
+    font-weight: 950;
+    text-align: center;
   }
 
   .chart-grid-line {
@@ -3044,6 +3287,22 @@
 
   .map-legend span:nth-child(12) {
     background: #62a9d2;
+  }
+
+  /* Ensure the sidebar legend shows correctly in compact (landing) layout
+     where a global absolute-style .map-legend exists for the overlay. */
+  .risk-map-card-compact .map-legend {
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    display: block !important;
+    width: auto !important;
+    color: inherit !important;
+    text-align: left !important;
+    background: #fbf7e8 !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+    overflow: visible !important;
   }
 
   .province {
@@ -4400,6 +4659,12 @@
   height: 12px;
 }
 
+.paddy-map-card .map-legend .legend-gradient-segment,
+.paddy-map-card .map-legend .legend-gradient-value strong,
+.paddy-map-card .map-legend .legend-gradient-value span {
+  display: block;
+}
+
 @media (min-width: 1024px) {
   .map-content-grid {
     grid-template-columns: minmax(0, 1fr) 240px;
@@ -4707,6 +4972,10 @@
     gap: 6px;
   }
 
+  .dashboard-control-row {
+    grid-template-columns: 1fr;
+  }
+
   .scenario-choice-card {
     min-height: 72px;
     gap: 4px;
@@ -4731,12 +5000,12 @@
     padding: 10px;
   }
 
-  .landing-dashboard-map-feature .risk-map-card-compact .map-active-scenario-pill {
-    display: none;
+  .landing-dashboard-map-feature .risk-map-card-compact .map-toolbar {
+    display: grid;
   }
 
   .landing-dashboard-map-feature .risk-map-card-compact .map-content-grid {
-    margin-top: 0;
+    margin-top: 12px;
   }
 
   .dashboard-map-feature .leaflet-map-shell {
