@@ -248,22 +248,22 @@ const scenarioText: Record<string, { level: LocalizedText; description: Localize
   baseline: {
     level: { vi: "Mốc hiện tại", en: "Current baseline" },
     description: {
-      vi: "Dữ liệu thực tế 2017-2025 từ data/baseline.xlsx.",
-      en: "Actual 2017-2025 data from data/baseline.xlsx.",
+      vi: "Dữ liệu thực tế 2017-2025 dùng làm mốc hiện tại của dashboard.",
+      en: "Actual 2017-2025 data used as the dashboard baseline.",
     },
   },
   rcp45: {
     level: { vi: "Tăng vừa", en: "Moderate increase" },
     description: {
-      vi: "Kịch bản RCP4.5 lấy từ data/future.xlsx tại năm 2050.",
-      en: "RCP4.5 scenario from data/future.xlsx at year 2050.",
+      vi: "Kịch bản RCP4.5 năm 2050 dùng để so sánh mức tăng vừa.",
+      en: "RCP4.5 scenario at 2050 used for the moderate-increase comparison.",
     },
   },
   rcp85: {
     level: { vi: "Ưu tiên cảnh báo", en: "Warning priority" },
     description: {
-      vi: "Kịch bản RCP8.5 lấy từ data/future.xlsx tại năm 2050.",
-      en: "RCP8.5 scenario from data/future.xlsx at year 2050.",
+      vi: "Kịch bản RCP8.5 năm 2050 dùng để nhận diện vùng ưu tiên cảnh báo.",
+      en: "RCP8.5 scenario at 2050 used to identify warning-priority areas.",
     },
   },
 };
@@ -387,8 +387,6 @@ export const modelConfiguration = [
     value: `${formatNumber(Math.min(...scenarioMaxValues))}-${formatNumber(Math.max(...scenarioMaxValues))} mg/kg`,
   },
   { label: { vi: "Ngưỡng cảnh báo", en: "Warning threshold" }, value: paddyMap.threshold },
-  { label: { vi: "Nguồn baseline", en: "Baseline source" }, value: dashboardData.sources.baseline },
-  { label: { vi: "Nguồn future", en: "Future source" }, value: dashboardData.sources.future },
   { label: { vi: "CO2 transform", en: "CO2 transform" }, value: `(CO2 - ${formatNumber(scenarioMetadataById("baseline").co2Ppm, 2)})` },
   { label: { vi: "Target / features", en: "Target / features" }, value: "log(1 + x), z-score, normalize_y=true" },
   { label: { vi: "Optuna", en: "Optuna" }, value: "30 trials, alpha/noise 0.01-1.0" },

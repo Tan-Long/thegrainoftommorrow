@@ -168,8 +168,8 @@ baseline_stats = stats(baseline_rows)
 future_stats = stats(future_rows)
 output = {
   "sources": {
-    "baseline": "data/baseline.xlsx",
-    "future": "data/future.xlsx",
+    "baseline": "Actual field dataset 2017-2025",
+    "future": "RCP4.5/RCP8.5 projection dataset to 2050",
     "baselineHasYear": any("year" in row for row in baseline_rows),
   },
   "thresholdMgKg": THRESHOLD,

@@ -1,7 +1,7 @@
 {
   "sources": {
-    "baseline": "data/baseline.xlsx",
-    "future": "data/future.xlsx",
+    "baseline": "Actual field dataset 2017-2025",
+    "future": "RCP4.5/RCP8.5 projection dataset to 2050",
     "baselineHasYear": true
   },
   "thresholdMgKg": 0.2,
