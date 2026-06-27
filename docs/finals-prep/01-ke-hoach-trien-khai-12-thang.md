@@ -94,7 +94,27 @@ Nguyên tắc:
 - Sponsor không được can thiệp dữ liệu, model, màu rủi ro hoặc khuyến nghị.
 - Không đặt quảng cáo trong bản đồ rủi ro, chatbot hoặc báo cáo kỹ thuật.
 
-### 3. Báo cáo dữ liệu theo chiến dịch
+### 3. Export/Procurement Risk Layer
+
+Đây là hướng áp dụng phù hợp cho doanh nghiệp xuất khẩu, nhà máy chế biến, doanh nghiệp đặt vùng nguyên liệu hoặc bộ phận thu mua của công ty lớn.
+
+Giá giả định để kiểm chứng: **50-120 triệu VND/năm/doanh nghiệp**, tùy số vùng nguyên liệu, số báo cáo và mức tích hợp dữ liệu.
+
+Giá trị chính:
+
+- Trước mùa vụ: xác định vùng nguyên liệu nào cần ưu tiên lấy mẫu.
+- Trước thu mua: đánh dấu lô/vùng cần lab verification trước khi đưa vào chuỗi cung ứng.
+- Trước xuất khẩu/chế biến: tạo báo cáo nội bộ về trạng thái dữ liệu, vùng rủi ro, kết quả lab đã có và điểm còn bất định.
+- Với nhà máy/KCN chế biến thực phẩm: hỗ trợ kiểm soát đầu vào, giảm rủi ro lô nguyên liệu không đạt yêu cầu sau khi đã nhập kho.
+- Với công ty lớn: hỗ trợ responsible sourcing, ESG và quản trị rủi ro thương hiệu.
+
+Guardrail:
+
+- Không ghi là "đạt chuẩn xuất khẩu" nếu chưa có lab và hồ sơ chính thức.
+- Không thay thế quy trình QA/QC, kiểm nghiệm hoặc chứng nhận của doanh nghiệp.
+- Không công khai tọa độ hộ dân/ruộng; chỉ dùng dữ liệu vùng nguyên liệu ở mức phù hợp.
+
+### 4. Báo cáo dữ liệu theo chiến dịch
 
 Giá tham khảo: **2-5 triệu VND/báo cáo**, tùy phạm vi.
 
@@ -104,7 +124,7 @@ Phù hợp khi doanh nghiệp/địa phương cần:
 - Báo cáo trước mùa vụ.
 - Báo cáo sau khi có dữ liệu lab xác nhận.
 
-### 4. Affiliate/CSR có kiểm soát
+### 5. Affiliate/CSR có kiểm soát
 
 Chỉ đặt ở toolkit, không đặt trong bản đồ hoặc kết luận rủi ro.
 
@@ -115,12 +135,26 @@ Ví dụ sản phẩm/đối tác có thể cân nhắc sau khi xác minh:
 - Dịch vụ xét nghiệm mẫu.
 - Vật tư canh tác bền vững.
 
+### 6. Đối tác bảo hiểm nông nghiệp/khí hậu
+
+Có thể đưa vào roadmap dưới dạng đối tác tiềm năng, không nên đưa thành nguồn thu chính trong 12 tháng đầu.
+
+Cách định vị phù hợp:
+
+- Hệ thống cung cấp lớp dữ liệu rủi ro vùng trồng, kịch bản khí hậu, bất định và lịch sử cảnh báo.
+- Doanh nghiệp bảo hiểm hoặc tổ chức tài chính có thể dùng dữ liệu tổng hợp để hiểu rủi ro vùng, thiết kế truyền thông hoặc nghiên cứu sản phẩm bảo hiểm theo chỉ số.
+- Dự án không bán bảo hiểm, không tư vấn hợp đồng bảo hiểm và không xác định điều kiện bồi thường.
+- Với rủi ro arsenic, bảo hiểm nông nghiệp hiện không phải cơ chế trực tiếp; hướng phù hợp hơn là bảo hiểm thiên tai/khí hậu hoặc CSR giảm rủi ro sản xuất.
+
+Lý do chỉ để ở roadmap: thị trường bảo hiểm nông nghiệp Việt Nam còn nhỏ, phụ thuộc nhiều vào hỗ trợ nhà nước, sản phẩm phức tạp và cần doanh nghiệp bảo hiểm/tái bảo hiểm có năng lực. Nếu đưa vào pitch, nên nói là "cơ hội hợp tác dài hạn" thay vì "mô hình doanh thu đã chắc chắn".
+
 ## Ma trận người dùng và người hưởng lợi
 
 | Nhóm | Vai trò | Lợi ích chính | Có trả tiền không? |
 |---|---|---|---|
 | HTX lớn | Người dùng trực tiếp | Theo dõi vùng nguyên liệu, ưu tiên lấy mẫu, giảm rủi ro sau thu hoạch | Có thể trả Partner Pro |
 | Doanh nghiệp thu mua/xuất khẩu | Người dùng trực tiếp | Quản trị chất lượng đầu vào, chuẩn bị hồ sơ vùng trồng | Có thể trả Partner Pro |
+| Nhà máy chế biến/công ty lớn | Người dùng trả phí B2B | Sàng lọc rủi ro vùng nguyên liệu trước khi nhập kho, xuất khẩu hoặc đưa vào sản xuất | Có thể trả gói Export/Procurement |
 | Địa phương/khuyến nông | Người dùng trực tiếp | Phân bổ nguồn lực giám sát, truyền thông đúng nơi | Có thể qua ngân sách/tài trợ |
 | Nhà khoa học/lab | Đối tác xác nhận | Xem bất định, SHAP, đề xuất điểm lấy mẫu bổ sung | Không chính, có thể là partner |
 | Nông dân | Người hưởng lợi trung tâm | Nhận cảnh báo qua HTX/khuyến nông, tránh bị đánh đồng rủi ro khi chưa có dữ liệu | Không phải nhóm trả tiền chính |
@@ -144,4 +178,3 @@ Ví dụ sản phẩm/đối tác có thể cân nhắc sau khi xác minh:
 - 300-500 người dùng pilot tiếp cận dashboard/toolkit.
 - Ít nhất 3 báo cáo vùng nguyên liệu mẫu.
 - Ít nhất 1 quy trình lab-verification được thiết kế với đối tác.
-

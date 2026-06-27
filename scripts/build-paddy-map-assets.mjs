@@ -75,7 +75,7 @@ const scenarios = [
     previewFile: "paddy-baseline-2025-preview.png",
     color: "#5ea95a",
     co2Ppm: 424.32,
-    nationalMeanMgKg: 0.21,
+    nationalMeanMgKg: 0.210,
     maxMgKg: 0.34,
     increasePercent: 0,
   },
@@ -88,7 +88,7 @@ const scenarios = [
     co2Ppm: 526,
     nationalMeanMgKg: 0.268,
     maxMgKg: 0.383,
-    increasePercent: 29.3,
+    increasePercent: 27.6,
   },
   {
     id: "rcp85",
@@ -99,7 +99,7 @@ const scenarios = [
     co2Ppm: 628,
     nationalMeanMgKg: 0.304,
     maxMgKg: 0.427,
-    increasePercent: 35.3,
+    increasePercent: 44.8,
   },
 ];
 

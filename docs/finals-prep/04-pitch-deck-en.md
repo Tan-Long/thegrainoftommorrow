@@ -12,21 +12,22 @@
 - Helps test the right places first.
 
 **Speaker note:**  
-The Grain of Tomorrow starts with arsenic risk in rice, but the broader goal is to help rice-growing areas manage environmental and food-chain risks with data and AI.
+The Grain of Tomorrow starts with arsenic risk in rice as the first measurable use case, but the broader goal is to become a risk-metrics layer for rice-growing areas and sourcing chains.
 
 ## Slide 2 - The Problem
 
-**Headline:** Some growing-area risks cannot be seen by eye.
+**Headline:** Climate change makes past data insufficient.
 
 **On-slide:**
 
 - Rice is a daily staple.
-- Environmental risks may accumulate over time.
+- Some environmental risks accumulate over time and cannot be seen by eye.
+- Temperature, CO2, extreme rainfall/flooding and water conditions in paddy fields can change soil biogeochemistry.
 - Sampling resources are limited.
 - Decision-makers need to know where to check first.
 
 **Speaker note:**  
-We are not trying to create fear around rice. We are solving a practical monitoring problem: when testing resources are limited, where should we prioritize sampling?
+We are not trying to create fear around rice. Past data tells us where signals have appeared before, but climate change can alter field conditions. We are solving a practical monitoring problem: when testing resources are limited, where should we prioritize sampling?
 
 ## Slide 3 - Why Arsenic?
 
@@ -36,6 +37,7 @@ We are not trying to create fear around rice. We are solving a practical monitor
 
 - Invisible to consumers and farmers.
 - Related to soil, irrigation water and cultivation conditions.
+- Potentially affected by changes in climate and paddy-water conditions.
 - Relevant to sourcing-area trust and export quality management.
 
 **Speaker note:**  
@@ -53,7 +55,7 @@ If people ask why they should care when they have eaten rice for years, the answ
 - Toolkit for sampling and risk communication.
 
 **Speaker note:**  
-The system does not certify whether an area is safe or unsafe. It gives an early signal so cooperatives, buyers and local agencies can decide where to test first.
+The system does not certify whether an area is safe or unsafe. It combines existing sample data with soil, water, growing-area and climate-scenario variables to create a sampling-priority signal. In short: AI does not replace labs; AI helps choose where labs should test first.
 
 ## Slide 5 - Prototype Workflow
 
@@ -62,13 +64,13 @@ The system does not certify whether an area is safe or unsafe. It gives an early
 **On-slide workflow:**
 
 1. Select a scenario and rice-growing area.
-2. View risk signals and uncertainty bands.
+2. View current/future risk signals and uncertainty bands.
 3. Ask the chatbot for role-specific explanations.
 4. Export Partner Pro sourcing-area reports.
 5. Use lab testing for official confirmation.
 
 **Speaker note:**  
-The prototype is not just a map. It connects the dashboard, chatbot, toolkit and Partner Pro reporting flow.
+The prototype is not just a map. It connects climate scenarios, the dashboard, chatbot, toolkit, Partner Pro reporting and lab confirmation.
 
 ## Slide 6 - Technology
 
@@ -91,8 +93,9 @@ We do not hide uncertainty. Uncertainty is exactly why the system recommends add
 **On-slide:**
 
 - Direct users: cooperatives, buyers/exporters, extension officers, researchers and labs.
+- Deeper B2B use case: processors and large procurement teams managing sourcing-area input risk.
 - Beneficiaries: farmers, cooperatives, local agencies and consumers.
-- Payers/sponsors: Partner Pro organizations, regional sponsors and CSR/ESG programs.
+- Payers/sponsors: Partner Pro organizations, Export/Procurement Risk Layer, regional sponsors and CSR/ESG programs.
 
 **Speaker note:**  
 Farmers are central beneficiaries, but they are not the primary paying customer and should not be forced to use a complex dashboard directly.
@@ -119,6 +122,7 @@ Even when farmers have limited access to technology, the system can still suppor
 - 12-month operating budget: 75M VND.
 - Partner Pro: 15M VND/year/organization.
 - Break-even: 5 organizations x 15M VND = 75M VND.
+- Export/procurement B2B plan: 50-120M VND/year/company.
 - Regional sponsorship: 50M VND/year.
 
 **Speaker note:**  
@@ -133,7 +137,7 @@ The public version remains free for social impact. Paid value comes from sourcin
 - Months 1-2: stakeholder interviews and pilot-area validation.
 - Months 3-5: dashboard and toolkit pilot with 5-10 partners.
 - Months 6-8: standardize Pro reports and optimize API cost.
-- Months 9-12: convert Partner Pro users and expand indicators.
+- Months 9-12: convert Partner Pro users and prepare a multi-metric roadmap beyond arsenic.
 
 **Speaker note:**  
 We are not claiming to become a national system immediately. The first realistic scope is a Red River Delta pilot.
@@ -164,4 +168,3 @@ The social impact is not about replacing people. It is about helping stakeholder
 
 **Speaker note:**  
 After the competition, the priority is not rapid expansion. It is real-world validation, partner onboarding and sustaining the first 12 months.
-

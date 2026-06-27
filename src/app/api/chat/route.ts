@@ -308,7 +308,7 @@ function clampQuestions(locale: "en" | "vi", audienceRole: AudienceRole, questio
 }
 
 function parseLocale(value: unknown): "en" | "vi" {
-  return value === "vi" ? "vi" : "en";
+  return value === "en" ? "en" : "vi";
 }
 
 function detectVietnameseMessage(message: string) {
