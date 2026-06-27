@@ -362,8 +362,8 @@ const PROJECT_CORPUS_CHUNKS: CorpusChunk[] = [
       vi: "Tổng quan kịch bản và giá trị dự báo",
     },
     excerpt: {
-      en: "Scenarios compare Baseline 2025, RCP4.5 2050 and RCP8.5 2050. The reference threshold used for dashboard interpretation is 0.20 mg/kg. Baseline national mean is around 0.21 mg/kg (max 0.34); RCP4.5 is around 0.268 mg/kg (max 0.383); RCP8.5 is around 0.304 mg/kg (max 0.427).",
-      vi: "Kịch bản so sánh Baseline 2025, RCP4.5 2050 và RCP8.5 2050. Ngưỡng tham chiếu dùng trong diễn giải dashboard là 0.20 mg/kg. Baseline có trung bình khoảng 0.21 mg/kg (đỉnh 0.34), RCP4.5 khoảng 0.268 mg/kg (đỉnh 0.383), và RCP8.5 khoảng 0.304 mg/kg (đỉnh 0.427).",
+      en: "Scenarios compare Baseline 2025, RCP4.5 2050 and RCP8.5 2050. The reference threshold used for dashboard interpretation is 0.20 mg/kg. Baseline national mean is around 0.210 mg/kg (max 0.34); RCP4.5 is around 0.268 mg/kg (max 0.383); RCP8.5 is around 0.304 mg/kg (max 0.427).",
+      vi: "Kịch bản so sánh Baseline 2025, RCP4.5 2050 và RCP8.5 2050. Ngưỡng tham chiếu dùng trong diễn giải dashboard là 0.20 mg/kg. Baseline có trung bình khoảng 0.210 mg/kg (đỉnh 0.34), RCP4.5 khoảng 0.268 mg/kg (đỉnh 0.383), và RCP8.5 khoảng 0.304 mg/kg (đỉnh 0.427).",
     },
     source: {
       en: "Project scenario metadata and dashboard configuration",
@@ -381,7 +381,7 @@ const PROJECT_CORPUS_CHUNKS: CorpusChunk[] = [
       "national",
       "scenario",
       "scenario",
-      "0.21",
+      "0.210",
       "0.268",
       "0.304",
       "0.34",

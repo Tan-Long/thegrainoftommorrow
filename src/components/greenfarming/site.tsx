@@ -584,7 +584,7 @@ const defaultAssistantGrounding: AssistantGrounding = {
 const AssistantGroundingContext = createContext<AssistantGroundingContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const [locale, setLocaleState] = useState<Locale>("vi");
 
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -1456,7 +1456,7 @@ function Header() {
         </div>
 
         <button
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? (locale === "vi" ? "Đóng menu" : "Close menu") : locale === "vi" ? "Mở menu" : "Open menu"}
           className="ml-auto flex h-10 w-10 items-center justify-center rounded-md border border-[#e8dfc8] text-[#1f6f43] xl:hidden"
           onClick={() => setOpen((value) => !value)}
         >
@@ -1535,7 +1535,10 @@ export function HomePage() {
       </section>
       <LandingMetricsStrip />
       <HealthRiskSection />
+      <ClimateWarningFlowSection />
       <LandingDashboardSection />
+      <ToolkitAndAccessSection />
+      <PilotSustainabilitySection />
       <StakeholderImpactSection />
       <TechnicalDetailsSection />
       <LandingFinalCta />
@@ -1721,6 +1724,192 @@ function HealthRiskSection() {
   );
 }
 
+function ClimateWarningFlowSection() {
+  const { locale } = useLocale();
+  const [activeLevel, setActiveLevel] = useState(2);
+  const climateSteps = [
+    {
+      icon: <TrendingUp size={22} />,
+      title: { vi: "Điều kiện ruộng thay đổi", en: "Field conditions shift" },
+      body: {
+        vi: "Nhiệt độ, CO2, mưa cực đoan và ngập úng có thể làm thay đổi quá trình hóa học trong đất lúa.",
+        en: "Temperature, CO2, extreme rainfall and flooding can alter paddy-soil biogeochemistry.",
+      },
+    },
+    {
+      icon: <Database size={22} />,
+      title: { vi: "Dữ liệu quá khứ không còn đủ", en: "Past data is not enough" },
+      body: {
+        vi: "Một vùng từng ít rủi ro vẫn cần được theo dõi lại khi điều kiện đất - nước và mùa vụ thay đổi.",
+        en: "An area with low past signals still needs renewed monitoring when soil, water and seasonal conditions change.",
+      },
+    },
+    {
+      icon: <FlaskConical size={22} />,
+      title: { vi: "Cần ưu tiên lấy mẫu", en: "Sampling must be prioritized" },
+      body: {
+        vi: "AI không kết luận thay lab; AI giúp chọn nơi nên đưa nguồn lực xét nghiệm đến trước.",
+        en: "AI does not replace labs; it helps decide where limited testing resources should go first.",
+      },
+    },
+  ];
+  const warningLevels = [
+    {
+      level: "0",
+      tone: { vi: "Thông tin nền", en: "Context" },
+      title: { vi: "Giáo dục rủi ro", en: "Risk literacy" },
+      trigger: {
+        vi: "Dùng cho khu vực chưa có tín hiệu nổi bật hoặc khi cần giải thích arsenic là rủi ro tích lũy.",
+        en: "Used where there is no standout signal yet, or when explaining arsenic as a cumulative risk.",
+      },
+      action: {
+        vi: "Cung cấp FAQ, checklist cơ bản và nhắc rằng mọi kết luận cần dữ liệu xác nhận.",
+        en: "Provide FAQ, basic checklists and a reminder that conclusions require verification data.",
+      },
+      channel: { vi: "Public dashboard, poster, toolkit", en: "Public dashboard, poster, toolkit" },
+    },
+    {
+      level: "1",
+      tone: { vi: "Theo dõi", en: "Monitor" },
+      title: { vi: "Tín hiệu cần quan sát", en: "Signal to watch" },
+      trigger: {
+        vi: "Khi kịch bản khí hậu, mùa vụ hoặc độ bất định cho thấy khu vực cần được theo dõi kỹ hơn.",
+        en: "When climate scenarios, seasonality or uncertainty suggest the area deserves closer monitoring.",
+      },
+      action: {
+        vi: "Lưu khu vực quan tâm, theo dõi theo mùa vụ và chuẩn bị trao đổi với HTX/khuyến nông.",
+        en: "Save the area, track seasonal changes and prepare discussion with co-ops or extension staff.",
+      },
+      channel: { vi: "Registered Free, Zalo nhóm, checklist", en: "Registered Free, group chat, checklist" },
+    },
+    {
+      level: "2",
+      tone: { vi: "Ưu tiên lấy mẫu", en: "Sampling priority" },
+      title: { vi: "Cần kiểm tra trước", en: "Test here first" },
+      trigger: {
+        vi: "Khi tín hiệu dự báo cao hơn, gần ngưỡng tham chiếu hoặc dải bất định đủ lớn để không nên bỏ qua.",
+        en: "When prediction signals are higher, near the reference threshold, or uncertainty is large enough to act on.",
+      },
+      action: {
+        vi: "Lập danh sách điểm lấy mẫu, xuất báo cáo vùng nguyên liệu và ghi rõ trạng thái lab chưa xác nhận.",
+        en: "Create a sampling list, export sourcing-area reports and mark the lab status as unverified.",
+      },
+      channel: { vi: "Partner Pro report, HTX, doanh nghiệp", en: "Partner Pro report, co-ops, buyers" },
+    },
+    {
+      level: "3",
+      tone: { vi: "Xác nhận trước khi công bố", en: "Verify before public alert" },
+      title: { vi: "Không truyền thông rộng khi chưa có lab", en: "No broad alert without lab data" },
+      trigger: {
+        vi: "Khi khu vực có tín hiệu cao nhưng chưa có kết quả phòng lab đủ tin cậy.",
+        en: "When an area has a high signal but no sufficiently reliable lab result yet.",
+      },
+      action: {
+        vi: "Chuyển sang quy trình lấy mẫu/lab, truyền thông nội bộ trước và chỉ công bố rộng khi có xác nhận phù hợp.",
+        en: "Move to sampling/lab workflow, communicate internally first and broaden messaging only with suitable confirmation.",
+      },
+      channel: { vi: "Lab, địa phương, HTX", en: "Labs, local agencies, co-ops" },
+    },
+  ];
+  const activeWarning = warningLevels[activeLevel] ?? warningLevels[0];
+
+  return (
+    <section id="warning-flow" className="climate-warning-section scroll-mt-24 bg-[#f3f7ea] py-20">
+      <div className="site-container">
+        <div className="climate-warning-header">
+          <div>
+            <p className="eyebrow">{locale === "vi" ? "Luồng cảnh báo" : "Warning flow"}</p>
+            <h2 className="section-title mt-3">
+              {locale === "vi"
+                ? "Từ biến đổi khí hậu đến cảnh báo hành động"
+                : "From climate change to action-grade warnings"}
+            </h2>
+          </div>
+          <p>
+            {locale === "vi"
+              ? "Điểm cần chứng minh trong demo là rủi ro không đứng yên: khi điều kiện ruộng thay đổi, hệ thống phải chuyển dữ liệu thành mức cảnh báo và hành động phù hợp."
+              : "The demo needs to show that risk is not static: when paddy conditions change, the system turns data into warning levels and appropriate actions."}
+          </p>
+        </div>
+
+        <div className="climate-causal-grid mt-8">
+          {climateSteps.map((step, index) => (
+            <article key={t(step.title, locale)} className="climate-causal-card">
+              <span className="climate-causal-index">{String(index + 1).padStart(2, "0")}</span>
+              <span className="impact-icon">{step.icon}</span>
+              <h3>{t(step.title, locale)}</h3>
+              <p>{t(step.body, locale)}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="warning-ladder-panel mt-8">
+          <div className="warning-ladder-copy">
+            <p className="eyebrow">{locale === "vi" ? "Cách báo nguy hiểm" : "How warnings are communicated"}</p>
+            <h3>
+              {locale === "vi"
+                ? "Không báo động một mức cho tất cả"
+                : "Not one alarm level for every case"}
+            </h3>
+            <p>
+              {locale === "vi"
+                ? "Hệ thống nên báo theo cấp độ, kênh nhận tin và hành động tiếp theo. Cấp cao nhất vẫn không thay thế phòng lab; nó chỉ kích hoạt quy trình xác nhận và truyền thông thận trọng."
+                : "The system should communicate by level, channel and next action. The highest level still does not replace labs; it triggers verification and careful communication."}
+            </p>
+            <div className="warning-source-row">
+              <a href="https://www.nature.com/articles/s41467-019-12946-4" target="_blank" rel="noreferrer">
+                Nature Communications 2019
+              </a>
+              <a href="https://pure.johnshopkins.edu/en/publications/impact-of-climate-change-on-arsenic-concentrations-in-paddy-rice-/" target="_blank" rel="noreferrer">
+                Lancet Planetary Health 2025
+              </a>
+            </div>
+          </div>
+
+          <div className="warning-ladder-control" role="group" aria-label={locale === "vi" ? "Chọn cấp cảnh báo" : "Choose warning level"}>
+            {warningLevels.map((level, index) => (
+              <button
+                key={level.level}
+                type="button"
+                className={cn("warning-level-button", activeLevel === index && "warning-level-button-active")}
+                aria-pressed={activeLevel === index}
+                onClick={() => setActiveLevel(index)}
+              >
+                <span>{level.level}</span>
+                <strong>{t(level.tone, locale)}</strong>
+              </button>
+            ))}
+          </div>
+
+          <article className="warning-detail-card" aria-live="polite">
+            <div className="warning-detail-heading">
+              <span>{activeWarning.level}</span>
+              <div>
+                <p>{t(activeWarning.tone, locale)}</p>
+                <h4>{t(activeWarning.title, locale)}</h4>
+              </div>
+            </div>
+            <dl className="warning-detail-list">
+              <div>
+                <dt>{locale === "vi" ? "Khi nào dùng" : "When to use"}</dt>
+                <dd>{t(activeWarning.trigger, locale)}</dd>
+              </div>
+              <div>
+                <dt>{locale === "vi" ? "Hành động" : "Action"}</dt>
+                <dd>{t(activeWarning.action, locale)}</dd>
+              </div>
+              <div>
+                <dt>{locale === "vi" ? "Kênh phù hợp" : "Best channel"}</dt>
+                <dd>{t(activeWarning.channel, locale)}</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function StakeholderImpactSection() {
   const { locale } = useLocale();
   const groups = [
@@ -1800,6 +1989,10 @@ function LandingDashboardSection() {
   const [scenario, setScenario] = useState<ScenarioId>("rcp85");
   const [region, setRegion] = useState(riskRegions[0].name);
   const [viewMode, setViewMode] = useState<"rice" | "warning">("rice");
+  const activeScenario = scenarioResults.find((item) => item.id === scenario) ?? scenarioResults[0];
+  const activeRegion = riskRegions.find((item) => item.name === region) ?? riskRegions[0];
+  const activeValue = regionValue(activeRegion, scenario);
+  const activeUncertainty = scenarioUncertainty(scenario);
 
   return (
     <section id="dashboard" className="landing-dashboard-section scroll-mt-24 bg-[#f3f7ea] py-20" data-onboarding-target="dashboard">
@@ -1849,6 +2042,15 @@ function LandingDashboardSection() {
           <p className="landing-dashboard-notice rounded-md bg-[#ecf7ef] p-4 text-sm font-semibold leading-[1.5] text-[#1f6f43]">
             {t(commonText.modelNotice, locale)}
           </p>
+          <div className="landing-dashboard-pro-panel">
+            <PartnerProMockPanel
+              locale={locale}
+              scenarioLabel={t(activeScenario.label, locale)}
+              regionLabel={locale === "vi" ? activeRegion.viName : activeRegion.name}
+              regionValue={`${activeValue} mg/kg`}
+              uncertainty={activeUncertainty}
+            />
+          </div>
         </div>
 
         <div className="landing-scenario-stack mt-5">
@@ -1871,6 +2073,252 @@ function LandingDashboardSection() {
                 </div>
               </div>
             </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ToolkitAndAccessSection() {
+  const { locale } = useLocale();
+  const toolkitItems = [
+    {
+      icon: <ShieldCheck size={22} />,
+      title: { vi: "Không bắt nông dân tự đọc AI", en: "No forced AI self-service for farmers" },
+      body: {
+        vi: "Thông tin đi qua HTX, cán bộ khuyến nông, Zalo nhóm, workshop và checklist mùa vụ.",
+        en: "Information reaches farmers through cooperatives, extension staff, Zalo groups, workshops and seasonal checklists.",
+      },
+    },
+    {
+      icon: <CheckCircle2 size={22} />,
+      title: { vi: "Checklist hỏi đúng người", en: "Checklist for asking the right person" },
+      body: {
+        vi: "Nên lấy mẫu ở đâu, ai xác nhận, dữ liệu nào cần ghi lại và khi nào cần phòng lab.",
+        en: "Where to sample, who verifies, what data to record and when laboratory confirmation is needed.",
+      },
+    },
+    {
+      icon: <FlaskConical size={22} />,
+      title: { vi: "Lab là bước xác nhận", en: "Lab remains the confirmation step" },
+      body: {
+        vi: "Toolkit luôn nhắc rằng dashboard chỉ ưu tiên lấy mẫu, không cấp chứng nhận an toàn thực phẩm.",
+        en: "The toolkit always states that the dashboard prioritizes sampling and does not certify food safety.",
+      },
+    },
+  ];
+  const tiers = [
+    {
+      title: { vi: "Public Free", en: "Public Free" },
+      audience: { vi: "Người dân, cộng đồng", en: "Citizens, community" },
+      quota: { vi: "3-5 câu/ngày", en: "3-5 questions/day" },
+      features: [
+        { vi: "Bản đồ tổng quan cấp vùng/tỉnh", en: "Region/province-level overview map" },
+        { vi: "FAQ và toolkit cơ bản", en: "FAQ and basic toolkit" },
+        { vi: "Không có dữ liệu nhạy cảm", en: "No sensitive location data" },
+      ],
+    },
+    {
+      title: { vi: "Registered Free", en: "Registered Free" },
+      audience: { vi: "HTX nhỏ, nông dân qua assisted access", en: "Small co-ops, assisted farmer access" },
+      quota: { vi: "20-50 câu/tháng", en: "20-50 questions/month" },
+      features: [
+        { vi: "Lưu khu vực quan tâm", en: "Save areas of interest" },
+        { vi: "Nhận cảnh báo tổng quan", en: "Receive overview alerts" },
+        { vi: "Mẫu checklist mùa vụ", en: "Seasonal checklist templates" },
+      ],
+    },
+    {
+      title: { vi: "Partner Pro", en: "Partner Pro" },
+      audience: { vi: "HTX lớn, DN thu mua/xuất khẩu, địa phương", en: "Large co-ops, buyers/exporters, local agencies" },
+      quota: { vi: "300-1.000 câu/tháng/tổ chức", en: "300-1,000 questions/month/org" },
+      highlight: { vi: "15 triệu VND/năm", en: "15M VND/year" },
+      features: [
+        { vi: "Báo cáo PDF/CSV vùng nguyên liệu", en: "PDF/CSV sourcing-area reports" },
+        { vi: "Trạng thái cần lấy mẫu/lab chưa xác nhận", en: "Sampling-needed/lab-unverified statuses" },
+        { vi: "Hỗ trợ kỹ thuật pilot", en: "Pilot technical support" },
+      ],
+    },
+    {
+      title: { vi: "Research/Admin", en: "Research/Admin" },
+      audience: { vi: "Nhóm nghiên cứu, lab, đối tác kiểm chứng", en: "Research team, labs, validation partners" },
+      quota: { vi: "Theo thỏa thuận dữ liệu", en: "Per data agreement" },
+      features: [
+        { vi: "Quản lý dữ liệu mẫu và audit log", en: "Sample data and audit-log management" },
+        { vi: "Bất định/SHAP chuyên sâu", en: "Deeper uncertainty/SHAP views" },
+        { vi: "Version model và retraining", en: "Model versioning and retraining" },
+      ],
+    },
+  ];
+
+  return (
+    <section id="toolkit" className="toolkit-access-section scroll-mt-24 bg-[#fffdf7] py-20">
+      <div className="site-container">
+        <div className="max-w-[860px]">
+          <p className="eyebrow">{locale === "vi" ? "Toolkit & phân quyền" : "Toolkit & access"}</p>
+          <h2 className="section-title mt-3">
+            {locale === "vi"
+              ? "Prototype không chỉ là bản đồ: nó có toolkit và quyền truy cập theo vai trò"
+              : "The prototype is not only a map: it includes a toolkit and tiered access"}
+          </h2>
+          <p className="mt-5 text-lg font-medium leading-[1.65] text-[#4c5a50]">
+            {locale === "vi"
+              ? "Hệ thống tách rõ vai trò trả lời của chatbot với quyền truy cập dữ liệu. Bản public giữ thông tin tổng quan; Partner Pro mới có báo cáo vùng nguyên liệu và công cụ lập kế hoạch lấy mẫu."
+              : "The system separates chatbot answer roles from data-access permissions. The public view stays general; Partner Pro adds sourcing-area reports and sampling-planning tools."}
+          </p>
+        </div>
+
+        <div className="toolkit-access-layout mt-8">
+          <div className="toolkit-panel">
+            <div className="toolkit-panel-heading">
+              <span className="impact-icon">
+                <Users size={24} />
+              </span>
+              <div>
+                <p className="eyebrow">{locale === "vi" ? "Assisted access" : "Assisted access"}</p>
+                <h3>{locale === "vi" ? "Nông dân là beneficiary trung tâm" : "Farmers remain the central beneficiary"}</h3>
+              </div>
+            </div>
+            <div className="toolkit-checklist mt-5">
+              {toolkitItems.map((item) => (
+                <article key={t(item.title, locale)} className="toolkit-check-item">
+                  <span>{item.icon}</span>
+                  <div>
+                    <strong>{t(item.title, locale)}</strong>
+                    <p>{t(item.body, locale)}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p className="toolkit-note mt-5">
+              {locale === "vi"
+                ? "Giá trị với nông dân không nằm ở việc họ dùng AI, mà ở việc họ không bị đánh đồng rủi ro khi chưa có dữ liệu xác minh."
+                : "The farmer value is not that they use AI themselves; it is that they are not broadly labeled as risky without verification data."}
+            </p>
+          </div>
+
+          <div className="access-tier-grid">
+            {tiers.map((tier) => (
+              <article key={t(tier.title, locale)} className={cn("access-tier-card", tier.highlight && "access-tier-card-pro")}>
+                <div className="access-tier-header">
+                  <div>
+                    <h3>{t(tier.title, locale)}</h3>
+                    <p>{t(tier.audience, locale)}</p>
+                  </div>
+                  {tier.highlight ? <span>{t(tier.highlight, locale)}</span> : null}
+                </div>
+                <p className="access-tier-quota">{t(tier.quota, locale)}</p>
+                <ul>
+                  {tier.features.map((feature) => (
+                    <li key={t(feature, locale)}>
+                      <CheckCircle2 size={16} />
+                      <span>{t(feature, locale)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PilotSustainabilitySection() {
+  const { locale } = useLocale();
+  const pilotMetrics = [
+    { value: "3-5", label: { vi: "tỉnh/vùng trồng ĐBSH", en: "Red River Delta provinces/areas" } },
+    { value: "5-10", label: { vi: "HTX/doanh nghiệp/địa phương", en: "co-ops, businesses or local partners" } },
+    { value: "300-500", label: { vi: "người dùng pilot", en: "pilot users" } },
+    { value: locale === "vi" ? "75 triệu" : "75M", label: { vi: "VND vận hành 12 tháng", en: "VND for 12-month operations" } },
+  ];
+  const stakeholderLayers = [
+    {
+      title: { vi: "Người dùng trực tiếp", en: "Direct users" },
+      body: {
+        vi: "Cán bộ khuyến nông, HTX lớn, doanh nghiệp thu mua/xuất khẩu, nhóm nghiên cứu/lab.",
+        en: "Extension staff, large co-ops, buyers/exporters, research teams and labs.",
+      },
+    },
+    {
+      title: { vi: "Người hưởng lợi", en: "Beneficiaries" },
+      body: {
+        vi: "Nông dân vùng trồng, HTX, địa phương, người tiêu dùng hưởng lợi gián tiếp từ chuỗi dữ liệu minh bạch hơn.",
+        en: "Farmers, co-ops, local agencies and consumers who benefit indirectly from clearer data chains.",
+      },
+    },
+    {
+      title: { vi: "Người trả tiền/tài trợ", en: "Payers and sponsors" },
+      body: {
+        vi: "Partner Pro 15 triệu/năm/đơn vị, tài trợ vùng pilot 50 triệu/năm, sponsor toolkit có kiểm soát.",
+        en: "Partner Pro at 15M VND/year/org, 50M VND/year regional sponsorship, controlled toolkit sponsorship.",
+      },
+    },
+    {
+      title: { vi: "Đối tác xác nhận", en: "Verification partners" },
+      body: {
+        vi: "Phòng lab, trường/viện và chuyên gia giúp kiểm chứng mẫu, không bị AI thay thế.",
+        en: "Labs, universities/institutes and experts verify samples and are not replaced by AI.",
+      },
+    },
+  ];
+
+  return (
+    <section id="pilot" className="pilot-section scroll-mt-24 bg-[#f3f7ea] py-20">
+      <div className="site-container">
+        <div className="pilot-hero-grid">
+          <div>
+            <p className="eyebrow">{locale === "vi" ? "Sau cuộc thi" : "After the competition"}</p>
+            <h2 className="section-title mt-3">
+              {locale === "vi"
+                ? "Pilot 12 tháng: tự duy trì bằng gói Pro và tài trợ vùng"
+                : "12-month pilot: sustained by Pro plans and regional sponsorship"}
+            </h2>
+            <p className="mt-5 text-lg font-medium leading-[1.65] text-[#4c5a50]">
+              {locale === "vi"
+                ? "Dự toán được xây ở mức hợp lý cho pilot tại đồng bằng sông Hồng như Hưng Yên, Ninh Bình, Hải Phòng và vùng ven Hà Nội; chưa tính như một hệ thống quốc gia và chưa gộp chi phí xét nghiệm lab theo đợt."
+                : "The budget is scoped for a reasonable Red River Delta pilot across areas such as Hung Yen, Ninh Binh, Hai Phong and peri-urban Hanoi; it is not a national system and excludes separate campaign-based lab-testing costs."}
+            </p>
+          </div>
+          <div className="pilot-break-even">
+            <span>{locale === "vi" ? "Điểm hòa vốn pilot" : "Pilot break-even"}</span>
+            <strong>{locale === "vi" ? "5 Partner Pro" : "5 Partner Pro accounts"}</strong>
+            <p>
+              {locale === "vi"
+                ? "5 đơn vị x 15 triệu VND/năm = 75 triệu VND, đủ duy trì nền tảng pilot 12 tháng."
+                : "5 organizations x 15M VND/year = 75M VND, enough to sustain the 12-month pilot platform."}
+            </p>
+          </div>
+        </div>
+
+        <div className="pilot-metric-grid mt-8">
+          {pilotMetrics.map((metric) => (
+            <article key={metric.value} className="pilot-metric-card">
+              <strong>{metric.value}</strong>
+              <span>{t(metric.label, locale)}</span>
+            </article>
+          ))}
+        </div>
+
+        <div className="stakeholder-layer-grid mt-6">
+          {stakeholderLayers.map((layer) => (
+            <article key={t(layer.title, locale)} className="stakeholder-layer-card">
+              <h3>{t(layer.title, locale)}</h3>
+              <p>{t(layer.body, locale)}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="pilot-guardrail-band mt-6">
+          {[
+            locale === "vi" ? "Không thay lab" : "Does not replace labs",
+            locale === "vi" ? "Không cấm trồng" : "Does not ban farming",
+            locale === "vi" ? "Không công khai tọa độ ruộng/hộ dân" : "Does not publish field/household coordinates",
+            locale === "vi" ? "Ưu tiên kiểm tra đúng nơi" : "Prioritizes the right places to test",
+          ].map((item) => (
+            <span key={item}>{item}</span>
           ))}
         </div>
       </div>
@@ -2269,9 +2717,9 @@ function ArsenicScenarioChart({ locale }: { locale: Locale }) {
         {summarySeries.map(({ series, point }) => (
           <div key={series.id}>
             <span>{t(series.label, locale)}</span>
-            <strong>{point.year}: {point.mean.toFixed(3).replace(/\.?0+$/, "")} mg/kg</strong>
+            <strong>{point.year}: {formatMgKg(point.mean)} mg/kg</strong>
             <em>
-              p10-p90 {point.p10.toFixed(3).replace(/\.?0+$/, "")}-{point.p90.toFixed(3).replace(/\.?0+$/, "")} · {locale === "vi" ? "Vượt ngưỡng" : "Exceedance"} {Math.round(point.exceedancePercent)}%
+              p10-p90 {formatMgKg(point.p10)}-{formatMgKg(point.p90)} · {locale === "vi" ? "Vượt ngưỡng" : "Exceedance"} {Math.round(point.exceedancePercent)}%
             </em>
           </div>
         ))}
@@ -2772,7 +3220,7 @@ function TechnicalDetailsSection() {
 
   return (
     <section id="technical" className="scroll-mt-24 bg-[#f3f7ea] py-20">
-      <div className="site-container grid gap-8">
+      <div className="site-container technical-section-shell grid gap-8">
         <div className="technical-section-header">
           <div>
             <p className="eyebrow">{locale === "vi" ? "Kỹ thuật" : "Technical"}</p>
@@ -2963,6 +3411,13 @@ export function AppDashboardPage() {
                   : `Estimated probability above the 0.20 mg/kg reference threshold: ${activeUncertainty.exceedance}. This is early warning, not a substitute for laboratory testing or official food-safety decisions.`}
               </p>
             </article>
+            <PartnerProMockPanel
+              locale={locale}
+              scenarioLabel={t(activeScenario.label, locale)}
+              regionLabel={locale === "vi" ? activeRegion.viName : activeRegion.name}
+              regionValue={`${activeValue} mg/kg`}
+              uncertainty={activeUncertainty}
+            />
             <ModelConfigurationCard />
             <article className="dashboard-panel">
               <h2 className="text-2xl font-extrabold text-[#143d2a]">
@@ -2985,6 +3440,98 @@ export function AppDashboardPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+function PartnerProMockPanel({
+  locale,
+  scenarioLabel,
+  regionLabel,
+  regionValue,
+  uncertainty,
+}: {
+  locale: Locale;
+  scenarioLabel: string;
+  regionLabel: string;
+  regionValue: string;
+  uncertainty: (typeof uncertaintyBands)[number];
+}) {
+  const [exportFormat, setExportFormat] = useState<"pdf" | "csv" | null>(null);
+  const reportRows = [
+    {
+      label: locale === "vi" ? "Vùng nguyên liệu" : "Sourcing area",
+      value: regionLabel,
+    },
+    {
+      label: locale === "vi" ? "Kịch bản đang xem" : "Active scenario",
+      value: scenarioLabel,
+    },
+    {
+      label: locale === "vi" ? "Tín hiệu rủi ro" : "Risk signal",
+      value: regionValue,
+    },
+    {
+      label: locale === "vi" ? "Bất định p10/p90" : "p10/p90 uncertainty",
+      value: `${uncertainty.p10}-${uncertainty.p90} mg/kg`,
+    },
+    {
+      label: locale === "vi" ? "Trạng thái lab" : "Lab status",
+      value: locale === "vi" ? "Chưa xác nhận" : "Not verified",
+      warning: true,
+    },
+  ];
+
+  return (
+    <article className="partner-pro-panel" aria-label={locale === "vi" ? "Mô phỏng Partner Pro" : "Partner Pro mock"}>
+      <header className="partner-pro-header">
+        <div>
+          <p className="eyebrow">{locale === "vi" ? "Partner Pro mock" : "Partner Pro mock"}</p>
+          <h2>{locale === "vi" ? "Báo cáo vùng nguyên liệu" : "Sourcing-area report"}</h2>
+        </div>
+        <span>{locale === "vi" ? "15M VND/năm" : "15M VND/year"}</span>
+      </header>
+
+      <div className="partner-pro-status-list">
+        {reportRows.map((row) => (
+          <div key={row.label} className={cn("partner-pro-status-row", row.warning && "partner-pro-status-row-warning")}>
+            <span>{row.label}</span>
+            <strong>{row.value}</strong>
+          </div>
+        ))}
+      </div>
+
+      <div className="partner-pro-quota">
+        <span>{locale === "vi" ? "Quota chatbot tổ chức" : "Organization chatbot quota"}</span>
+        <strong>640 / 1.000</strong>
+      </div>
+
+      <div className="partner-pro-actions" aria-label={locale === "vi" ? "Xuất báo cáo demo" : "Demo report export"}>
+        {[
+          ["pdf", "PDF"],
+          ["csv", "CSV"],
+        ].map(([format, label]) => (
+          <button
+            key={format}
+            type="button"
+            className={cn("partner-pro-action", exportFormat === format && "partner-pro-action-active")}
+            aria-pressed={exportFormat === format}
+            onClick={() => setExportFormat(format as "pdf" | "csv")}
+          >
+            {locale === "vi" ? "Xuất" : "Export"} {label}
+          </button>
+        ))}
+      </div>
+
+      <p className="partner-pro-export-feedback" aria-live="polite">
+        {exportFormat
+          ? locale === "vi"
+            ? `Đã tạo yêu cầu xuất ${exportFormat.toUpperCase()} demo. Báo cáo vẫn ghi rõ: cần xác minh phòng lab trước khi kết luận.`
+            : `Demo ${exportFormat.toUpperCase()} export queued. The report still states that lab verification is required before conclusions.`
+          : locale === "vi"
+            ? "Pro là quyền truy cập báo cáo và lập kế hoạch lấy mẫu, không phải quyền chứng nhận an toàn thực phẩm."
+            : "Pro grants reporting and sampling-planning access, not food-safety certification."}
+      </p>
+    </article>
   );
 }
 
@@ -3861,7 +4408,7 @@ function AuthContent({ mode }: { mode: "login" | "signup" }) {
         </h1>
         <div className="mt-8 space-y-5">
           <input className="feedback-input" placeholder={locale === "vi" ? "Email hoặc tên người dùng" : "Email or username"} />
-          <input className="feedback-input" placeholder="Password" type="password" />
+          <input className="feedback-input" placeholder={locale === "vi" ? "Mật khẩu" : "Password"} type="password" />
           {!isLogin ? <input className="feedback-input" placeholder={locale === "vi" ? "Tổ chức" : "Organization"} /> : null}
         </div>
         <button type="button" className="feedback-primary mt-8 w-full">

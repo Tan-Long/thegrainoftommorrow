@@ -57,7 +57,9 @@ export const projectContact = {
 export const navItems: NavItem[] = [
   { href: "/", label: { vi: "Trang chủ", en: "Home" } },
   { href: "#why-it-matters", label: { vi: "Vì sao quan trọng", en: "Why it matters" } },
+  { href: "#warning-flow", label: { vi: "Cảnh báo", en: "Warnings" } },
   { href: "#dashboard", label: { vi: "Dashboard", en: "Dashboard" } },
+  { href: "#pilot", label: { vi: "Pilot", en: "Pilot" } },
   { href: "#impact", label: { vi: "Tác động", en: "Impact" } },
   { href: "#technical", label: { vi: "Kỹ thuật", en: "Technical" } },
   { href: "/frequently-asked-questions", label: { vi: "FAQ", en: "FAQ" } },
@@ -243,6 +245,7 @@ export const requiredMetrics = [
 ];
 
 const formatNumber = (value: number, fractionDigits = 3) => value.toFixed(fractionDigits).replace(/\.?0+$/, "");
+const formatConcentration = (value: number) => value.toFixed(3);
 
 const scenarioText: Record<string, { level: LocalizedText; description: LocalizedText }> = {
   baseline: {
@@ -304,7 +307,7 @@ export const scenarioResults = scenarioDataList.map((scenario) => {
   return {
     id: scenario.id,
     label: { vi: scenario.label, en: scenario.label },
-    value: formatNumber(scenario.stats.mean),
+    value: formatConcentration(scenario.stats.mean),
     max: formatNumber(scenario.stats.max),
     co2: formatNumber(metadata.co2Ppm, 2),
     increase: `${increasePercent > 0 ? "+" : ""}${formatNumber(increasePercent, 1)}%`,
@@ -380,7 +383,7 @@ export const modelConfiguration = [
   },
   {
     label: { vi: "Dải trung bình quốc gia", en: "National mean range" },
-    value: `${formatNumber(Math.min(...scenarioMeanValues))}-${formatNumber(Math.max(...scenarioMeanValues))} mg/kg`,
+    value: `${formatConcentration(Math.min(...scenarioMeanValues))}-${formatConcentration(Math.max(...scenarioMeanValues))} mg/kg`,
   },
   {
     label: { vi: "Dải giá trị max", en: "Maximum range" },

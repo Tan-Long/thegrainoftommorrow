@@ -15,11 +15,13 @@ const headingFont = Be_Vietnam_Pro({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
+const siteUrl = "https://ai-asen-clone.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tan-long.github.io"),
-  title: "The Grain of Tomorrow | Arsenic Early-Warning Demo",
+  metadataBase: new URL(siteUrl),
+  title: "Hạt Gạo Ngày Mai | Demo cảnh báo sớm arsenic",
   description:
-    "An interactive project demo for AI-based early warning of arsenic risk in Vietnamese rice under climate scenarios.",
+    "Demo dự án tương tác về hệ thống cảnh báo sớm rủi ro arsenic trong gạo Việt Nam bằng AI dưới các kịch bản khí hậu.",
   keywords: [
     "arsenic",
     "rice",
@@ -34,11 +36,11 @@ export const metadata: Metadata = {
     icon: publicAsset("/images/greenfarming/logo.svg"),
   },
   openGraph: {
-    title: "The Grain of Tomorrow | Arsenic Early-Warning Demo",
+    title: "Hạt Gạo Ngày Mai | Demo cảnh báo sớm arsenic",
     description:
-      "An interactive project demo for AI-based early warning of arsenic risk in Vietnamese rice under climate scenarios.",
+      "Demo dự án tương tác về hệ thống cảnh báo sớm rủi ro arsenic trong gạo Việt Nam bằng AI dưới các kịch bản khí hậu.",
     images: [publicAsset("/images/greenfarming/logo.png")],
-    url: "https://tan-long.github.io/AI_asen_clone/",
+    url: siteUrl,
     type: "website",
   },
 };
@@ -50,7 +52,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="vi"
       className={`${inter.variable} ${headingFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
